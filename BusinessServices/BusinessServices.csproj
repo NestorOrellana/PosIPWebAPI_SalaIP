@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8DCD89D-C3D7-4A75-81A5-3439C5142D8B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BusinessServices</RootNamespace>
+    <AssemblyName>BusinessServices</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces de Servicios\IConversionesProductos.cs" />
+    <Compile Include="Interfaces de Servicios\IDetalleFacturaServices.cs" />
+    <Compile Include="Interfaces de Servicios\IDetallePluAdServices.cs" />
+    <Compile Include="Interfaces de Servicios\IPedidosRecibidosServices.cs" />
+    <Compile Include="Interfaces de Servicios\IRegistroSincServices.cs" />
+    <Compile Include="Interfaces de Servicios\ISPGetPedidosServices.cs" />
+    <Compile Include="Interfaces de Servicios\ISPUpdateCorrelativo.cs" />
+    <Compile Include="Interfaces de Servicios\ITrasladoFacturas.cs" />
+    <Compile Include="Interfaces de Servicios\IViewPluServices.cs" />
+    <Compile Include="Interfaces de Servicios\IViewRecetaServices.cs" />
+    <Compile Include="Servicios\PedidosRecibidosServices.cs" />
+    <Compile Include="Servicios\RegistroSincServices.cs" />
+    <Compile Include="Servicios\ServiciosConversiones.cs" />
+    <Compile Include="Servicios\ServiciosTrasladoFacturas.cs" />
+    <Compile Include="Servicios\SPGetPedidosServices.cs" />
+    <Compile Include="Servicios\CajaChicaServices.cs" />
+    <Compile Include="Servicios\CategoryServices.cs" />
+    <Compile Include="DependencyResolver.cs" />
+    <Compile Include="Interfaces de Servicios\ICajaChicaServices.cs" />
+    <Compile Include="Interfaces de Servicios\ICategoryServices.cs" />
+    <Compile Include="Interfaces de Servicios\IEncabezadoFacturaServices.cs" />
+    <Compile Include="Interfaces de Servicios\IMotivosInventarioServices.cs" />
+    <Compile Include="Interfaces de Servicios\IPluServices.cs" />
+    <Compile Include="Interfaces de Servicios\IProductServices.cs" />
+    <Compile Include="Interfaces de Servicios\IRecipeServices.cs" />
+    <Compile Include="Interfaces de Servicios\ISFactServices.cs" />
+    <Compile Include="Interfaces de Servicios\ISucursalServices.cs" />
+    <Compile Include="Interfaces de Servicios\IUserServices.cs" />
+    <Compile Include="Servicios\DetalleFacturaServices.cs" />
+    <Compile Include="Servicios\DetallePluAdServices.cs" />
+    <Compile Include="Servicios\EncabezadoFacturaServices.cs" />
+    <Compile Include="Servicios\MotivosInventarioServices.cs" />
+    <Compile Include="Servicios\PluServices.cs" />
+    <Compile Include="Servicios\ProductServices.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\RecipeServices.cs" />
+    <Compile Include="Servicios\SFactServices.cs" />
+    <Compile Include="Servicios\SPUpdateCorrelativo.cs" />
+    <Compile Include="Servicios\SucursalServices.cs" />
+    <Compile Include="Servicios\UserServices.cs" />
+    <Compile Include="Servicios\ViewPluServices.cs" />
+    <Compile Include="Servicios\ViewRecetaServices.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj">
+      <Project>{68e4950d-f48f-4f16-b8a6-a97c2eb8e391}</Project>
+      <Name>BusinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataModel\DataModel.csproj">
+      <Project>{c6111e75-92b2-4de8-82d0-b3fe42563d82}</Project>
+      <Name>DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resolver\Resolver.csproj">
+      <Project>{0f9dc521-7fc9-427e-b3d0-60a819df7f5a}</Project>
+      <Name>Resolver</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+</Project>

@@ -1,0 +1,2275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ComercializacionDIPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BitAjusteInventario">
+          <Key>
+            <PropertyRef Name="IdAjuste" />
+          </Key>
+          <Property Name="IdAjuste" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CajaChica">
+          <Key>
+            <PropertyRef Name="IDCajaChica" />
+          </Key>
+          <Property Name="IdUsuario" Type="bigint" Nullable="false" />
+          <Property Name="IdSucursal" Type="smallint" Nullable="false" />
+          <Property Name="FECHA" Type="datetime" Nullable="false" />
+          <Property Name="MONTO" Type="money" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="IDCajaChica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConversionesProductos">
+          <Key>
+            <PropertyRef Name="IdConversion" />
+          </Key>
+          <Property Name="IdConversion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProductoSAP" Type="bigint" Nullable="false" />
+          <Property Name="IdProductoDestino" Type="bigint" />
+          <Property Name="Cantidad" Type="float" />
+        </EntityType>
+        <EntityType Name="DetalleBitAjusteInventario">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdAjuste" Type="int" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IdProducto" Type="bigint" Nullable="false" />
+          <Property Name="Cantidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Operacion" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleFactura">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrecioPlu" Type="money" Nullable="false" />
+          <Property Name="SubTotal" Type="money" Nullable="false" />
+          <Property Name="NoSerie" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NoCorrelativo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdPlu" Type="bigint" Nullable="false" />
+          <Property Name="UnidadMedida" Type="smallint" Nullable="false" />
+          <Property Name="Cantidad" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleInventario">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProducto" Type="bigint" Nullable="false" />
+          <Property Name="Cantidad" Type="float" />
+          <Property Name="IdRegistro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetallePluAdquirido">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProducto" Type="bigint" Nullable="false" />
+          <Property Name="Cantidad" Type="float" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="money" Nullable="false" />
+          <Property Name="IdDetalleFactura" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FacturaE">
+          <Key>
+            <PropertyRef Name="Correlativo" />
+            <PropertyRef Name="NumeroSerie" />
+          </Key>
+          <Property Name="Nit" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="Total" Type="money" Nullable="false" />
+          <Property Name="Correlativo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NumeroSerie" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdSucursal" Type="smallint" Nullable="false" />
+          <Property Name="Estado" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="EstadoTraslado" Type="tinyint" Nullable="false" />
+          <Property Name="TipoPago" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="NumeroAutorizacion" Type="bigint" />
+        </EntityType>
+        <EntityType Name="MotivosInventario">
+          <Key>
+            <PropertyRef Name="IdMotivo" />
+          </Key>
+          <Property Name="IdMotivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Estado" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PedidosRecibidos">
+          <Key>
+            <PropertyRef Name="IdRegistro" />
+          </Key>
+          <Property Name="IdRegistro" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSucursal" Type="smallint" Nullable="false" />
+          <Property Name="IdProducto" Type="bigint" Nullable="false" />
+          <Property Name="FechaEntrega" Type="date" Nullable="false" />
+          <Property Name="CantidadEnviada" Type="float" Nullable="false" />
+          <Property Name="CantidadConfirmada" Type="float" Nullable="false" />
+          <Property Name="Estado" Type="tinyint" Nullable="false" />
+          <Property Name="IdPedido" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PLU">
+          <Key>
+            <PropertyRef Name="IdPLU" />
+          </Key>
+          <Property Name="IdPLU" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRecetaEnc" Type="bigint" Nullable="false" />
+          <Property Name="IdProducto" Type="bigint" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="SeDetalla" Type="bit" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="CodigoSAP" />
+          </Key>
+          <Property Name="NombreCompleto" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="UnidadMedida" Type="tinyint" Nullable="false" />
+          <Property Name="IdCategoria" Type="smallint" />
+          <Property Name="Precio" Type="money" Nullable="false" />
+          <Property Name="Tipo" Type="tinyint" />
+          <Property Name="CodigoSAP" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RecetaDet">
+          <Key>
+            <PropertyRef Name="IdRecetaDet" />
+          </Key>
+          <Property Name="IdRecetaDet" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProducto" Type="bigint" Nullable="false" />
+          <Property Name="IdRecetaEnc" Type="bigint" Nullable="false" />
+          <Property Name="precio" Type="money" Nullable="false" />
+          <Property Name="cantidad" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RecetaEnc">
+          <Key>
+            <PropertyRef Name="IdRecetaEnc" />
+          </Key>
+          <Property Name="IdRecetaEnc" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSucursal" Type="smallint" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegistroInventario">
+          <Key>
+            <PropertyRef Name="IdRegistro" />
+          </Key>
+          <Property Name="IdRegistro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="IdSucursal" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegistroSincronizacion">
+          <Key>
+            <PropertyRef Name="IdRegistro" />
+          </Key>
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="Operacion" Type="smallint" Nullable="false" />
+          <Property Name="IdSucursal" Type="smallint" Nullable="false" />
+          <Property Name="IdRegistro" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="idSerie" />
+          </Key>
+          <Property Name="idSerie" Type="smallint" Nullable="false" />
+          <Property Name="numeroSerie" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="idSucursal" Type="smallint" Nullable="false" />
+          <Property Name="fechaInicio" Type="datetime" />
+          <Property Name="fechaFin" Type="datetime" />
+          <Property Name="resolucion" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional1" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional2" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional3" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional4" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional5" Type="nvarchar" MaxLength="42" />
+          <Property Name="correlativo" Type="bigint" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="nit" Type="nvarchar" MaxLength="16" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="12" />
+          <Property Name="tipo_documento" Type="nvarchar" MaxLength="15" />
+          <Property Name="moneda" Type="nvarchar" MaxLength="5" />
+          <Property Name="datoAdicional6" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional7" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional8" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional9" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional10" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional11" Type="nvarchar" MaxLength="42" />
+          <Property Name="identifica" Type="char" MaxLength="6" />
+          <Property Name="idSeccion" Type="smallint" />
+          <Property Name="FechaAutorizacion" Type="datetime" />
+          <Property Name="numeroDel" Type="bigint" />
+          <Property Name="numeroAl" Type="bigint" />
+          <Property Name="SerieNC" Type="varchar" MaxLength="10" />
+          <Property Name="CorrelativoNC" Type="bigint" />
+          <Property Name="NumeroReciboCesta" Type="bigint" />
+          <Property Name="RangoInicialFacturaContadoManual" Type="bigint" />
+          <Property Name="RangoFinalFacturaContadoManual" Type="bigint" />
+          <Property Name="RangoInicialFacturaCreditoManual" Type="bigint" />
+          <Property Name="RangoFinalFacturaCreditoManual" Type="bigint" />
+          <Property Name="FechaModificacion" Type="datetime" />
+          <Property Name="SerieFacturaManual" Type="varchar" MaxLength="10" />
+          <Property Name="RangoInicioFacturaManual" Type="bigint" />
+          <Property Name="RangoFinFacturaManual" Type="bigint" />
+          <Property Name="Cai" Type="nvarchar" MaxLength="50" />
+          <Property Name="idTipoSerie" Type="tinyint" />
+          <Property Name="DatoAdicional12" Type="nvarchar" MaxLength="42" />
+          <Property Name="idEstado" Type="tinyint" />
+          <Property Name="IdUsuarioIngresa" Type="int" />
+          <Property Name="FechaIngreso" Type="datetime" />
+          <Property Name="IdUsuarioModifica" Type="int" />
+        </EntityType>
+        <EntityType Name="Sucursal">
+          <Key>
+            <PropertyRef Name="IdSucursal" />
+          </Key>
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="CentroSAP" Type="bigint" Nullable="false" />
+          <Property Name="IdSucursal" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OficinaVenta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="IdTipoUsuario" />
+          </Key>
+          <Property Name="IdTipoUsuario" Type="smallint" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="PIN" Type="smallint" Nullable="false" />
+          <Property Name="IdSucursal" Type="smallint" Nullable="false" />
+          <Property Name="IdTipoUsuario" Type="smallint" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdUsuario" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ComercializacionDIP.PosIP.WebServicePath' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="WebServicePath">
+          <Key>
+            <PropertyRef Name="IdPath" />
+            <PropertyRef Name="WsPath" />
+            <PropertyRef Name="Tipo" />
+          </Key>
+          <Property Name="IdPath" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WsPath" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tipo" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaPLU' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VistaPLU">
+          <Key>
+            <PropertyRef Name="IdPLU" />
+            <PropertyRef Name="IdReceta" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="IdUnidadVenta" />
+            <PropertyRef Name="IdCategoria" />
+            <PropertyRef Name="IdSucursal" />
+            <PropertyRef Name="IdEstado" />
+            <PropertyRef Name="CodigoSAP" />
+          </Key>
+          <Property Name="IdPLU" Type="bigint" Nullable="false" />
+          <Property Name="IdReceta" Type="bigint" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="IdUnidadVenta" Type="tinyint" Nullable="false" />
+          <Property Name="IdCategoria" Type="smallint" Nullable="false" />
+          <Property Name="IdSucursal" Type="smallint" Nullable="false" />
+          <Property Name="IdEstado" Type="bit" Nullable="false" />
+          <Property Name="CodigoSAP" Type="bigint" Nullable="false" />
+          <Property Name="SeDetalla" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaReceta' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VistaReceta">
+          <Key>
+            <PropertyRef Name="IdReceta" />
+            <PropertyRef Name="IdProducto" />
+            <PropertyRef Name="precio" />
+            <PropertyRef Name="cantidad" />
+            <PropertyRef Name="IdSucursal" />
+          </Key>
+          <Property Name="IdReceta" Type="bigint" Nullable="false" />
+          <Property Name="IdProducto" Type="bigint" Nullable="false" />
+          <Property Name="precio" Type="money" Nullable="false" />
+          <Property Name="cantidad" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="IdSucursal" Type="smallint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VistaSeriesFacturas">
+          <Key>
+            <PropertyRef Name="idSerie" />
+            <PropertyRef Name="numeroSerie" />
+            <PropertyRef Name="idSucursal" />
+            <PropertyRef Name="correlativo" />
+            <PropertyRef Name="estado" />
+          </Key>
+          <Property Name="idSerie" Type="smallint" Nullable="false" />
+          <Property Name="numeroSerie" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="idSucursal" Type="smallint" Nullable="false" />
+          <Property Name="fechaInicio" Type="datetime" />
+          <Property Name="fechaFin" Type="datetime" />
+          <Property Name="resolucion" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional1" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional2" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional3" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional4" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional5" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional6" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional7" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional8" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional9" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional10" Type="nvarchar" MaxLength="42" />
+          <Property Name="datoAdicional11" Type="nvarchar" MaxLength="42" />
+          <Property Name="DatoAdicional12" Type="nvarchar" MaxLength="42" />
+          <Property Name="correlativo" Type="bigint" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="nit" Type="nvarchar" MaxLength="16" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="12" />
+          <Property Name="tipo_documento" Type="nvarchar" MaxLength="15" />
+          <Property Name="moneda" Type="nvarchar" MaxLength="5" />
+          <Property Name="idSeccion" Type="smallint" />
+          <Property Name="numeroDel" Type="bigint" />
+          <Property Name="numeroAl" Type="bigint" />
+          <Property Name="SerieNC" Type="varchar" MaxLength="10" />
+          <Property Name="CorrelativoNC" Type="bigint" />
+          <Property Name="NumeroReciboCesta" Type="bigint" />
+          <Property Name="idtiposerie" Type="tinyint" />
+          <Property Name="TipoDocumento" Type="varchar" MaxLength="50" />
+          <Property Name="idestado" Type="tinyint" />
+          <Property Name="EstadoDocumento" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <Association Name="FK__CajaChica__IdSuc__371D989C">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="CajaChica" Type="Self.CajaChica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="CajaChica">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CajaChica__IdUsu__36297463">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="CajaChica" Type="Self.CajaChica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="CajaChica">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conversio__IdPro__28CF7945">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="ConversionesProductos" Type="Self.ConversionesProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="ConversionesProductos">
+              <PropertyRef Name="IdProductoSAP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conversio__IdPro__29C39D7E">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="ConversionesProductos" Type="Self.ConversionesProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="ConversionesProductos">
+              <PropertyRef Name="IdProductoDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleBi__IdAju__0C9D4EEB">
+          <End Role="BitAjusteInventario" Type="Self.BitAjusteInventario" Multiplicity="0..1" />
+          <End Role="DetalleBitAjusteInventario" Type="Self.DetalleBitAjusteInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BitAjusteInventario">
+              <PropertyRef Name="IdAjuste" />
+            </Principal>
+            <Dependent Role="DetalleBitAjusteInventario">
+              <PropertyRef Name="IdAjuste" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleBi__IdPro__3258E37F">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleBitAjusteInventario" Type="Self.DetalleBitAjusteInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="DetalleBitAjusteInventario">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleFa__IdPlu__5C4F1D4B">
+          <End Role="PLU" Type="Self.PLU" Multiplicity="1" />
+          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLU">
+              <PropertyRef Name="IdPLU" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="IdPlu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleIn__IdPro__2CA00A29">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleInventario" Type="Self.DetalleInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="DetalleInventario">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleIn__IdPro__30709B0D">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleInventario" Type="Self.DetalleInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="DetalleInventario">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleIn__IdReg__0B5424F7">
+          <End Role="RegistroInventario" Type="Self.RegistroInventario" Multiplicity="1" />
+          <End Role="DetalleInventario" Type="Self.DetalleInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegistroInventario">
+              <PropertyRef Name="IdRegistro" />
+            </Principal>
+            <Dependent Role="DetalleInventario">
+              <PropertyRef Name="IdRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetallePl__IdPro__601FAE2F">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetallePluAdquirido" Type="Self.DetallePluAdquirido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="DetallePluAdquirido">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FacturaE__IdSucu__2AB7C1B7">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="FacturaE" Type="Self.FacturaE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="FacturaE">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PedidosRe__Estad__214E530E">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="PedidosRecibidos">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PedidosRe__IdPro__22427747">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="PedidosRecibidos">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PLU__IdProducto__5972B0A0">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="PLU" Type="Self.PLU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="PLU">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PLU__IdRecetaEnc__587E8C67">
+          <End Role="RecetaEnc" Type="Self.RecetaEnc" Multiplicity="1" />
+          <End Role="PLU" Type="Self.PLU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecetaEnc">
+              <PropertyRef Name="IdRecetaEnc" />
+            </Principal>
+            <Dependent Role="PLU">
+              <PropertyRef Name="IdRecetaEnc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Productos__IdCat__12E03826">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RecetaDet__IdPro__54ADFB83">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="RecetaDet" Type="Self.RecetaDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="RecetaDet">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RecetaDet__IdRec__55A21FBC">
+          <End Role="RecetaEnc" Type="Self.RecetaEnc" Multiplicity="1" />
+          <End Role="RecetaDet" Type="Self.RecetaDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecetaEnc">
+              <PropertyRef Name="IdRecetaEnc" />
+            </Principal>
+            <Dependent Role="RecetaDet">
+              <PropertyRef Name="IdRecetaEnc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RecetaEnc__IdSuc__51D18ED8">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="RecetaEnc" Type="Self.RecetaEnc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="RecetaEnc">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegistroI__IdSuc__0F0FA742">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="RegistroInventario" Type="Self.RegistroInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="RegistroInventario">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegistroS__IdSuc__41F02CCA">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="RegistroSincronizacion" Type="Self.RegistroSincronizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="RegistroSincronizacion">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Series__idSucurs__0E1B8309">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="Series" Type="Self.Series" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="Series">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__IdSucu__0D275ED0">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__IdTipo__02A9D05D">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="IdTipoUsuario" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_detalleProducto">
+          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetallePluAdquirido" Type="Self.DetallePluAdquirido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DetalleFactura">
+              <PropertyRef Name="IdDetalle" />
+            </Principal>
+            <Dependent Role="DetallePluAdquirido">
+              <PropertyRef Name="IdDetalleFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_FacturaE">
+          <End Role="FacturaE" Type="Self.FacturaE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacturaE">
+              <PropertyRef Name="Correlativo" />
+              <PropertyRef Name="NumeroSerie" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="NoCorrelativo" />
+              <PropertyRef Name="NoSerie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SPInactivarCorrelativo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="PosIP">
+          <Parameter Name="NumeroSerie" Type="varchar" Mode="In" />
+          <Parameter Name="IdSucursal" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPObtenerProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="PosIP" />
+        <Function Name="SPUpdateCorrelativo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="PosIP">
+          <Parameter Name="NumeroSerie" Type="varchar" Mode="In" />
+          <Parameter Name="IdSucursal" Type="int" Mode="In" />
+          <Parameter Name="Correlativo" Type="bigint" Mode="In" />
+          <Parameter Name="Serie" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="TrasladoFacturas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="PosIP">
+          <Parameter Name="fecha" Type="date" Mode="In" />
+          <Parameter Name="sucursal" Type="int" Mode="In" />
+          <Parameter Name="user" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="WsGetPedidosHoyJSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="PosIP">
+          <Parameter Name="CodCliente" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="ComercializacionDIPModelStoreContainer">
+          <EntitySet Name="BitAjusteInventario" EntityType="Self.BitAjusteInventario" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="CajaChica" EntityType="Self.CajaChica" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="ConversionesProductos" EntityType="Self.ConversionesProductos" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="DetalleBitAjusteInventario" EntityType="Self.DetalleBitAjusteInventario" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="DetalleInventario" EntityType="Self.DetalleInventario" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="DetallePluAdquirido" EntityType="Self.DetallePluAdquirido" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="FacturaE" EntityType="Self.FacturaE" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="MotivosInventario" EntityType="Self.MotivosInventario" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="PedidosRecibidos" EntityType="Self.PedidosRecibidos" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="PLU" EntityType="Self.PLU" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="RecetaDet" EntityType="Self.RecetaDet" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="RecetaEnc" EntityType="Self.RecetaEnc" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="RegistroInventario" EntityType="Self.RegistroInventario" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="RegistroSincronizacion" EntityType="Self.RegistroSincronizacion" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="Series" EntityType="Self.Series" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="Sucursal" EntityType="Self.Sucursal" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="WebServicePath" EntityType="Self.WebServicePath" store:Type="Tables" store:Schema="PosIP">
+            <DefiningQuery>SELECT 
+    [WebServicePath].[IdPath] AS [IdPath], 
+    [WebServicePath].[WsPath] AS [WsPath], 
+    [WebServicePath].[Tipo] AS [Tipo]
+    FROM [PosIP].[WebServicePath] AS [WebServicePath]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VistaPLU" EntityType="Self.VistaPLU" store:Type="Views" store:Schema="PosIP">
+            <DefiningQuery>SELECT 
+    [VistaPLU].[IdPLU] AS [IdPLU], 
+    [VistaPLU].[IdReceta] AS [IdReceta], 
+    [VistaPLU].[Descripcion] AS [Descripcion], 
+    [VistaPLU].[precio] AS [precio], 
+    [VistaPLU].[IdUnidadVenta] AS [IdUnidadVenta], 
+    [VistaPLU].[IdCategoria] AS [IdCategoria], 
+    [VistaPLU].[IdSucursal] AS [IdSucursal], 
+    [VistaPLU].[IdEstado] AS [IdEstado], 
+    [VistaPLU].[CodigoSAP] AS [CodigoSAP], 
+    [VistaPLU].[SeDetalla] AS [SeDetalla]
+    FROM [PosIP].[VistaPLU] AS [VistaPLU]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VistaReceta" EntityType="Self.VistaReceta" store:Type="Views" store:Schema="PosIP">
+            <DefiningQuery>SELECT 
+    [VistaReceta].[IdReceta] AS [IdReceta], 
+    [VistaReceta].[IdProducto] AS [IdProducto], 
+    [VistaReceta].[precio] AS [precio], 
+    [VistaReceta].[cantidad] AS [cantidad], 
+    [VistaReceta].[IdSucursal] AS [IdSucursal]
+    FROM [PosIP].[VistaReceta] AS [VistaReceta]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VistaSeriesFacturas" EntityType="Self.VistaSeriesFacturas" store:Type="Views" store:Schema="PosIP">
+            <DefiningQuery>SELECT 
+    [VistaSeriesFacturas].[idSerie] AS [idSerie], 
+    [VistaSeriesFacturas].[numeroSerie] AS [numeroSerie], 
+    [VistaSeriesFacturas].[idSucursal] AS [idSucursal], 
+    [VistaSeriesFacturas].[fechaInicio] AS [fechaInicio], 
+    [VistaSeriesFacturas].[fechaFin] AS [fechaFin], 
+    [VistaSeriesFacturas].[resolucion] AS [resolucion], 
+    [VistaSeriesFacturas].[datoAdicional1] AS [datoAdicional1], 
+    [VistaSeriesFacturas].[datoAdicional2] AS [datoAdicional2], 
+    [VistaSeriesFacturas].[datoAdicional3] AS [datoAdicional3], 
+    [VistaSeriesFacturas].[datoAdicional4] AS [datoAdicional4], 
+    [VistaSeriesFacturas].[datoAdicional5] AS [datoAdicional5], 
+    [VistaSeriesFacturas].[datoAdicional6] AS [datoAdicional6], 
+    [VistaSeriesFacturas].[datoAdicional7] AS [datoAdicional7], 
+    [VistaSeriesFacturas].[datoAdicional8] AS [datoAdicional8], 
+    [VistaSeriesFacturas].[datoAdicional9] AS [datoAdicional9], 
+    [VistaSeriesFacturas].[datoAdicional10] AS [datoAdicional10], 
+    [VistaSeriesFacturas].[datoAdicional11] AS [datoAdicional11], 
+    [VistaSeriesFacturas].[DatoAdicional12] AS [DatoAdicional12], 
+    [VistaSeriesFacturas].[correlativo] AS [correlativo], 
+    [VistaSeriesFacturas].[estado] AS [estado], 
+    [VistaSeriesFacturas].[nit] AS [nit], 
+    [VistaSeriesFacturas].[nombre] AS [nombre], 
+    [VistaSeriesFacturas].[tipo_documento] AS [tipo_documento], 
+    [VistaSeriesFacturas].[moneda] AS [moneda], 
+    [VistaSeriesFacturas].[idSeccion] AS [idSeccion], 
+    [VistaSeriesFacturas].[numeroDel] AS [numeroDel], 
+    [VistaSeriesFacturas].[numeroAl] AS [numeroAl], 
+    [VistaSeriesFacturas].[SerieNC] AS [SerieNC], 
+    [VistaSeriesFacturas].[CorrelativoNC] AS [CorrelativoNC], 
+    [VistaSeriesFacturas].[NumeroReciboCesta] AS [NumeroReciboCesta], 
+    [VistaSeriesFacturas].[idtiposerie] AS [idtiposerie], 
+    [VistaSeriesFacturas].[TipoDocumento] AS [TipoDocumento], 
+    [VistaSeriesFacturas].[idestado] AS [idestado], 
+    [VistaSeriesFacturas].[EstadoDocumento] AS [EstadoDocumento]
+    FROM [PosIP].[VistaSeriesFacturas] AS [VistaSeriesFacturas]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__CajaChica__IdSuc__371D989C" Association="Self.FK__CajaChica__IdSuc__371D989C">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="CajaChica" EntitySet="CajaChica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CajaChica__IdUsu__36297463" Association="Self.FK__CajaChica__IdUsu__36297463">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CajaChica" EntitySet="CajaChica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conversio__IdPro__28CF7945" Association="Self.FK__Conversio__IdPro__28CF7945">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="ConversionesProductos" EntitySet="ConversionesProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conversio__IdPro__29C39D7E" Association="Self.FK__Conversio__IdPro__29C39D7E">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="ConversionesProductos" EntitySet="ConversionesProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleBi__IdAju__0C9D4EEB" Association="Self.FK__DetalleBi__IdAju__0C9D4EEB">
+            <End Role="BitAjusteInventario" EntitySet="BitAjusteInventario" />
+            <End Role="DetalleBitAjusteInventario" EntitySet="DetalleBitAjusteInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleBi__IdPro__3258E37F" Association="Self.FK__DetalleBi__IdPro__3258E37F">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleBitAjusteInventario" EntitySet="DetalleBitAjusteInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleFa__IdPlu__5C4F1D4B" Association="Self.FK__DetalleFa__IdPlu__5C4F1D4B">
+            <End Role="PLU" EntitySet="PLU" />
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleIn__IdPro__2CA00A29" Association="Self.FK__DetalleIn__IdPro__2CA00A29">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleInventario" EntitySet="DetalleInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleIn__IdPro__30709B0D" Association="Self.FK__DetalleIn__IdPro__30709B0D">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleInventario" EntitySet="DetalleInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleIn__IdReg__0B5424F7" Association="Self.FK__DetalleIn__IdReg__0B5424F7">
+            <End Role="RegistroInventario" EntitySet="RegistroInventario" />
+            <End Role="DetalleInventario" EntitySet="DetalleInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetallePl__IdPro__601FAE2F" Association="Self.FK__DetallePl__IdPro__601FAE2F">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetallePluAdquirido" EntitySet="DetallePluAdquirido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FacturaE__IdSucu__2AB7C1B7" Association="Self.FK__FacturaE__IdSucu__2AB7C1B7">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="FacturaE" EntitySet="FacturaE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PedidosRe__Estad__214E530E" Association="Self.FK__PedidosRe__Estad__214E530E">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PedidosRe__IdPro__22427747" Association="Self.FK__PedidosRe__IdPro__22427747">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PLU__IdProducto__5972B0A0" Association="Self.FK__PLU__IdProducto__5972B0A0">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="PLU" EntitySet="PLU" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PLU__IdRecetaEnc__587E8C67" Association="Self.FK__PLU__IdRecetaEnc__587E8C67">
+            <End Role="RecetaEnc" EntitySet="RecetaEnc" />
+            <End Role="PLU" EntitySet="PLU" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Productos__IdCat__12E03826" Association="Self.FK__Productos__IdCat__12E03826">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RecetaDet__IdPro__54ADFB83" Association="Self.FK__RecetaDet__IdPro__54ADFB83">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="RecetaDet" EntitySet="RecetaDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RecetaDet__IdRec__55A21FBC" Association="Self.FK__RecetaDet__IdRec__55A21FBC">
+            <End Role="RecetaEnc" EntitySet="RecetaEnc" />
+            <End Role="RecetaDet" EntitySet="RecetaDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RecetaEnc__IdSuc__51D18ED8" Association="Self.FK__RecetaEnc__IdSuc__51D18ED8">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="RecetaEnc" EntitySet="RecetaEnc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegistroI__IdSuc__0F0FA742" Association="Self.FK__RegistroI__IdSuc__0F0FA742">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="RegistroInventario" EntitySet="RegistroInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegistroS__IdSuc__41F02CCA" Association="Self.FK__RegistroS__IdSuc__41F02CCA">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="RegistroSincronizacion" EntitySet="RegistroSincronizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Series__idSucurs__0E1B8309" Association="Self.FK__Series__idSucurs__0E1B8309">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Series" EntitySet="Series" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__IdSucu__0D275ED0" Association="Self.FK__Usuarios__IdSucu__0D275ED0">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__IdTipo__02A9D05D" Association="Self.FK__Usuarios__IdTipo__02A9D05D">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_detalleProducto" Association="Self.Fk_detalleProducto">
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+            <End Role="DetallePluAdquirido" EntitySet="DetallePluAdquirido" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_FacturaE" Association="Self.Fk_FacturaE">
+            <End Role="FacturaE" EntitySet="FacturaE" />
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ComercializacionDIPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BitAjusteInventario">
+          <Key>
+            <PropertyRef Name="IdAjuste" />
+          </Key>
+          <Property Name="IdAjuste" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="DetalleBitAjusteInventario" Relationship="Self.FK__DetalleBi__IdAju__0C9D4EEB" FromRole="BitAjusteInventario" ToRole="DetalleBitAjusteInventario" />
+        </EntityType>
+        <EntityType Name="CajaChica">
+          <Key>
+            <PropertyRef Name="IDCajaChica" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int64" Nullable="false" />
+          <Property Name="IdSucursal" Type="Int16" Nullable="false" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MONTO" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="IDCajaChica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK__CajaChica__IdSuc__371D989C" FromRole="CajaChica" ToRole="Sucursal" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__CajaChica__IdUsu__36297463" FromRole="CajaChica" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__Productos__IdCat__12E03826" FromRole="Categorias" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="ConversionesProductos">
+          <Key>
+            <PropertyRef Name="IdConversion" />
+          </Key>
+          <Property Name="IdConversion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProductoSAP" Type="Int64" Nullable="false" />
+          <Property Name="IdProductoDestino" Type="Int64" />
+          <Property Name="Cantidad" Type="Double" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__Conversio__IdPro__28CF7945" FromRole="ConversionesProductos" ToRole="Productos" />
+          <NavigationProperty Name="Productos1" Relationship="Self.FK__Conversio__IdPro__29C39D7E" FromRole="ConversionesProductos" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="DetalleBitAjusteInventario">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAjuste" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdProducto" Type="Int64" Nullable="false" />
+          <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Operacion" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="BitAjusteInventario" Relationship="Self.FK__DetalleBi__IdAju__0C9D4EEB" FromRole="DetalleBitAjusteInventario" ToRole="BitAjusteInventario" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleBi__IdPro__3258E37F" FromRole="DetalleBitAjusteInventario" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="DetalleFactura">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrecioPlu" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="SubTotal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="NoSerie" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NoCorrelativo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdPlu" Type="Int64" Nullable="false" />
+          <Property Name="UnidadMedida" Type="Int16" Nullable="false" />
+          <Property Name="Cantidad" Type="Double" Nullable="false" />
+          <NavigationProperty Name="DetallePluAdquirido" Relationship="Self.Fk_detalleProducto" FromRole="DetalleFactura" ToRole="DetallePluAdquirido" />
+          <NavigationProperty Name="FacturaE" Relationship="Self.Fk_FacturaE" FromRole="DetalleFactura" ToRole="FacturaE" />
+          <NavigationProperty Name="PLU" Relationship="ComercializacionDIPModel.FK__DetalleFa__IdPlu__5C4F1D4B" FromRole="DetalleFactura" ToRole="PLU1" />
+        </EntityType>
+        <EntityType Name="DetalleInventario">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProducto" Type="Int64" Nullable="false" />
+          <Property Name="Cantidad" Type="Double" />
+          <Property Name="IdRegistro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleIn__IdPro__2CA00A29" FromRole="DetalleInventario" ToRole="Productos" />
+          <NavigationProperty Name="Productos1" Relationship="Self.FK__DetalleIn__IdPro__30709B0D" FromRole="DetalleInventario" ToRole="Productos" />
+          <NavigationProperty Name="RegistroInventario" Relationship="Self.FK__DetalleIn__IdReg__0B5424F7" FromRole="DetalleInventario" ToRole="RegistroInventario" />
+        </EntityType>
+        <EntityType Name="DetallePluAdquirido">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProducto" Type="Int64" Nullable="false" />
+          <Property Name="Cantidad" Type="Double" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="IdDetalleFactura" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetalleFactura" Relationship="Self.Fk_detalleProducto" FromRole="DetallePluAdquirido" ToRole="DetalleFactura" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__DetallePl__IdPro__2F7C76D4" FromRole="DetallePluAdquirido" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="FacturaE">
+          <Key>
+            <PropertyRef Name="Correlativo" />
+            <PropertyRef Name="NumeroSerie" />
+          </Key>
+          <Property Name="Nit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Total" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Correlativo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumeroSerie" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdSucursal" Type="Int16" Nullable="false" />
+          <Property Name="Estado" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EstadoTraslado" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="DetalleFactura" Relationship="Self.Fk_FacturaE" FromRole="FacturaE" ToRole="DetalleFactura" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK__FacturaE__IdSucu__2AB7C1B7" FromRole="FacturaE" ToRole="Sucursal" />
+          <Property Name="TipoPago" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="NumeroAutorizacion" Type="Int64" />
+        </EntityType>
+        <EntityType Name="MotivosInventario">
+          <Key>
+            <PropertyRef Name="IdMotivo" />
+          </Key>
+          <Property Name="IdMotivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="CodigoSAP" />
+          </Key>
+          <Property Name="NombreCompleto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnidadMedida" Type="Byte" Nullable="false" />
+          <Property Name="IdCategoria" Type="Int16" />
+          <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Tipo" Type="Byte" />
+          <Property Name="CodigoSAP" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Categorias" Relationship="Self.FK__Productos__IdCat__12E03826" FromRole="Productos" ToRole="Categorias" />
+          <NavigationProperty Name="ConversionesProductos" Relationship="Self.FK__Conversio__IdPro__28CF7945" FromRole="Productos" ToRole="ConversionesProductos" />
+          <NavigationProperty Name="ConversionesProductos1" Relationship="Self.FK__Conversio__IdPro__29C39D7E" FromRole="Productos" ToRole="ConversionesProductos" />
+          <NavigationProperty Name="DetalleBitAjusteInventario" Relationship="Self.FK__DetalleBi__IdPro__3258E37F" FromRole="Productos" ToRole="DetalleBitAjusteInventario" />
+          <NavigationProperty Name="DetalleInventario" Relationship="Self.FK__DetalleIn__IdPro__2CA00A29" FromRole="Productos" ToRole="DetalleInventario" />
+          <NavigationProperty Name="DetalleInventario1" Relationship="Self.FK__DetalleIn__IdPro__30709B0D" FromRole="Productos" ToRole="DetalleInventario" />
+          <NavigationProperty Name="DetallePluAdquirido" Relationship="Self.FK__DetallePl__IdPro__2F7C76D4" FromRole="Productos" ToRole="DetallePluAdquirido" />
+          <NavigationProperty Name="PLU" Relationship="ComercializacionDIPModel.FK__PLU__IdProducto__5972B0A0" FromRole="Productos" ToRole="PLU1" />
+          <NavigationProperty Name="RecetaDet" Relationship="ComercializacionDIPModel.FK__RecetaDet__IdPro__54ADFB83" FromRole="Productos" ToRole="RecetaDet" />
+          <NavigationProperty Name="PedidosRecibidos" Relationship="ComercializacionDIPModel.FK__PedidosRe__IdPro__22427747" FromRole="Productos" ToRole="PedidosRecibidos" />
+        </EntityType>
+        <EntityType Name="RegistroInventario">
+          <Key>
+            <PropertyRef Name="IdRegistro" />
+          </Key>
+          <Property Name="IdRegistro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdSucursal" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="DetalleInventario" Relationship="Self.FK__DetalleIn__IdReg__0B5424F7" FromRole="RegistroInventario" ToRole="DetalleInventario" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK__RegistroI__IdSuc__0F0FA742" FromRole="RegistroInventario" ToRole="Sucursal" />
+        </EntityType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="idSerie" />
+          </Key>
+          <Property Name="idSerie" Type="Int16" Nullable="false" />
+          <Property Name="numeroSerie" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idSucursal" Type="Int16" Nullable="false" />
+          <Property Name="fechaInicio" Type="DateTime" Precision="3" />
+          <Property Name="fechaFin" Type="DateTime" Precision="3" />
+          <Property Name="resolucion" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional1" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional2" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional3" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional4" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional5" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="correlativo" Type="Int64" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nit" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="tipo_documento" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="moneda" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional6" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional7" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional8" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional9" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional10" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional11" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="identifica" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="idSeccion" Type="Int16" />
+          <Property Name="FechaAutorizacion" Type="DateTime" Precision="3" />
+          <Property Name="numeroDel" Type="Int64" />
+          <Property Name="numeroAl" Type="Int64" />
+          <Property Name="SerieNC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CorrelativoNC" Type="Int64" />
+          <Property Name="NumeroReciboCesta" Type="Int64" />
+          <Property Name="RangoInicialFacturaContadoManual" Type="Int64" />
+          <Property Name="RangoFinalFacturaContadoManual" Type="Int64" />
+          <Property Name="RangoInicialFacturaCreditoManual" Type="Int64" />
+          <Property Name="RangoFinalFacturaCreditoManual" Type="Int64" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="SerieFacturaManual" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RangoInicioFacturaManual" Type="Int64" />
+          <Property Name="RangoFinFacturaManual" Type="Int64" />
+          <Property Name="Cai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idTipoSerie" Type="Byte" />
+          <Property Name="DatoAdicional12" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="idEstado" Type="Byte" />
+          <Property Name="IdUsuarioIngresa" Type="Int32" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuarioModifica" Type="Int32" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK__Series__idSucurs__0E1B8309" FromRole="Series" ToRole="Sucursal" />
+        </EntityType>
+        <EntityType Name="Sucursal">
+          <Key>
+            <PropertyRef Name="IdSucursal" />
+          </Key>
+          <Property Name="Descripcion" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="CentroSAP" Type="Int64" Nullable="false" />
+          <Property Name="IdSucursal" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="CajaChica" Relationship="Self.FK__CajaChica__IdSuc__371D989C" FromRole="Sucursal" ToRole="CajaChica" />
+          <NavigationProperty Name="FacturaE" Relationship="Self.FK__FacturaE__IdSucu__2AB7C1B7" FromRole="Sucursal" ToRole="FacturaE" />
+          <NavigationProperty Name="RegistroInventario" Relationship="Self.FK__RegistroI__IdSuc__0F0FA742" FromRole="Sucursal" ToRole="RegistroInventario" />
+          <NavigationProperty Name="Series" Relationship="Self.FK__Series__idSucurs__0E1B8309" FromRole="Sucursal" ToRole="Series" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__IdSucu__0D275ED0" FromRole="Sucursal" ToRole="Usuarios" />
+          <NavigationProperty Name="RecetaEnc" Relationship="ComercializacionDIPModel.FK__RecetaEnc__IdSuc__51D18ED8" FromRole="Sucursal" ToRole="RecetaEnc" />
+          <Property Name="OficinaVenta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RegistroSincronizacion" Relationship="ComercializacionDIPModel.FK__RegistroS__IdSuc__41F02CCA" FromRole="Sucursal" ToRole="RegistroSincronizacion" />
+          <NavigationProperty Name="PedidosRecibidos" Relationship="ComercializacionDIPModel.FK__PedidosRe__Estad__214E530E" FromRole="Sucursal" ToRole="PedidosRecibidos" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="IdTipoUsuario" />
+          </Key>
+          <Property Name="IdTipoUsuario" Type="Int16" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__IdTipo__02A9D05D" FromRole="TipoUsuario" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="PIN" Type="Int16" Nullable="false" />
+          <Property Name="IdSucursal" Type="Int16" Nullable="false" />
+          <Property Name="IdTipoUsuario" Type="Int16" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdUsuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CajaChica" Relationship="Self.FK__CajaChica__IdUsu__36297463" FromRole="Usuarios" ToRole="CajaChica" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK__Usuarios__IdSucu__0D275ED0" FromRole="Usuarios" ToRole="Sucursal" />
+          <NavigationProperty Name="TipoUsuario" Relationship="Self.FK__Usuarios__IdTipo__02A9D05D" FromRole="Usuarios" ToRole="TipoUsuario" />
+        </EntityType>
+        <EntityType Name="VistaSeriesFacturas">
+          <Key>
+            <PropertyRef Name="idSerie" />
+            <PropertyRef Name="numeroSerie" />
+            <PropertyRef Name="correlativo" />
+            <PropertyRef Name="estado" />
+            <PropertyRef Name="idSucursal" />
+          </Key>
+          <Property Name="idSerie" Type="Int16" Nullable="false" />
+          <Property Name="numeroSerie" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaInicio" Type="DateTime" Precision="3" />
+          <Property Name="fechaFin" Type="DateTime" Precision="3" />
+          <Property Name="resolucion" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional1" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional2" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional3" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional4" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional5" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional6" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional7" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional8" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional9" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional10" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="datoAdicional11" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="DatoAdicional12" Type="String" MaxLength="42" FixedLength="false" Unicode="true" />
+          <Property Name="correlativo" Type="Int64" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nit" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="tipo_documento" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="moneda" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="idSeccion" Type="Int16" />
+          <Property Name="numeroDel" Type="Int64" />
+          <Property Name="numeroAl" Type="Int64" />
+          <Property Name="SerieNC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CorrelativoNC" Type="Int64" />
+          <Property Name="NumeroReciboCesta" Type="Int64" />
+          <Property Name="idtiposerie" Type="Byte" />
+          <Property Name="TipoDocumento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idestado" Type="Byte" />
+          <Property Name="EstadoDocumento" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="idSucursal" Type="Int16" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__DetalleBi__IdAju__0C9D4EEB">
+          <End Role="BitAjusteInventario" Type="Self.BitAjusteInventario" Multiplicity="0..1" />
+          <End Role="DetalleBitAjusteInventario" Type="Self.DetalleBitAjusteInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BitAjusteInventario">
+              <PropertyRef Name="IdAjuste" />
+            </Principal>
+            <Dependent Role="DetalleBitAjusteInventario">
+              <PropertyRef Name="IdAjuste" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CajaChica__IdSuc__371D989C">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="CajaChica" Type="Self.CajaChica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="CajaChica">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CajaChica__IdUsu__36297463">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="CajaChica" Type="Self.CajaChica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="CajaChica">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Productos__IdCat__12E03826">
+          <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorias">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conversio__IdPro__28CF7945">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="ConversionesProductos" Type="Self.ConversionesProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="ConversionesProductos">
+              <PropertyRef Name="IdProductoSAP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Conversio__IdPro__29C39D7E">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="ConversionesProductos" Type="Self.ConversionesProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="ConversionesProductos">
+              <PropertyRef Name="IdProductoDestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleBi__IdPro__3258E37F">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleBitAjusteInventario" Type="Self.DetalleBitAjusteInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="DetalleBitAjusteInventario">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_detalleProducto">
+          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetallePluAdquirido" Type="Self.DetallePluAdquirido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DetalleFactura">
+              <PropertyRef Name="IdDetalle" />
+            </Principal>
+            <Dependent Role="DetallePluAdquirido">
+              <PropertyRef Name="IdDetalleFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_FacturaE">
+          <End Role="FacturaE" Type="Self.FacturaE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacturaE">
+              <PropertyRef Name="Correlativo" />
+              <PropertyRef Name="NumeroSerie" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="NoCorrelativo" />
+              <PropertyRef Name="NoSerie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleIn__IdPro__2CA00A29">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleInventario" Type="Self.DetalleInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="DetalleInventario">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleIn__IdPro__30709B0D">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetalleInventario" Type="Self.DetalleInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="DetalleInventario">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleIn__IdReg__0B5424F7">
+          <End Role="RegistroInventario" Type="Self.RegistroInventario" Multiplicity="1" />
+          <End Role="DetalleInventario" Type="Self.DetalleInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegistroInventario">
+              <PropertyRef Name="IdRegistro" />
+            </Principal>
+            <Dependent Role="DetalleInventario">
+              <PropertyRef Name="IdRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetallePl__IdPro__2F7C76D4">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="DetallePluAdquirido" Type="Self.DetallePluAdquirido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="DetallePluAdquirido">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FacturaE__IdSucu__2AB7C1B7">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="FacturaE" Type="Self.FacturaE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="FacturaE">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegistroI__IdSuc__0F0FA742">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="RegistroInventario" Type="Self.RegistroInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="RegistroInventario">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Series__idSucurs__0E1B8309">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="Series" Type="Self.Series" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="Series">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__IdSucu__0D275ED0">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__IdTipo__02A9D05D">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="IdTipoUsuario" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ComercializacionDIPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BitAjusteInventario" EntityType="Self.BitAjusteInventario" />
+          <EntitySet Name="CajaChica" EntityType="Self.CajaChica" />
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" />
+          <EntitySet Name="ConversionesProductos" EntityType="Self.ConversionesProductos" />
+          <EntitySet Name="DetalleBitAjusteInventario" EntityType="Self.DetalleBitAjusteInventario" />
+          <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" />
+          <EntitySet Name="DetalleInventario" EntityType="Self.DetalleInventario" />
+          <EntitySet Name="DetallePluAdquirido" EntityType="Self.DetallePluAdquirido" />
+          <EntitySet Name="FacturaE" EntityType="Self.FacturaE" />
+          <EntitySet Name="MotivosInventario" EntityType="ComercializacionDIPModel.MotivosInventario" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="RegistroInventario" EntityType="Self.RegistroInventario" />
+          <EntitySet Name="Series" EntityType="Self.Series" />
+          <EntitySet Name="Sucursal" EntityType="Self.Sucursal" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="VistaSeriesFacturas" EntityType="Self.VistaSeriesFacturas" />
+          <AssociationSet Name="FK__DetalleBi__IdAju__0C9D4EEB" Association="Self.FK__DetalleBi__IdAju__0C9D4EEB">
+            <End Role="BitAjusteInventario" EntitySet="BitAjusteInventario" />
+            <End Role="DetalleBitAjusteInventario" EntitySet="DetalleBitAjusteInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CajaChica__IdSuc__371D989C" Association="Self.FK__CajaChica__IdSuc__371D989C">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="CajaChica" EntitySet="CajaChica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CajaChica__IdUsu__36297463" Association="Self.FK__CajaChica__IdUsu__36297463">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CajaChica" EntitySet="CajaChica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Productos__IdCat__12E03826" Association="Self.FK__Productos__IdCat__12E03826">
+            <End Role="Categorias" EntitySet="Categorias" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conversio__IdPro__28CF7945" Association="Self.FK__Conversio__IdPro__28CF7945">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="ConversionesProductos" EntitySet="ConversionesProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Conversio__IdPro__29C39D7E" Association="Self.FK__Conversio__IdPro__29C39D7E">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="ConversionesProductos" EntitySet="ConversionesProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleBi__IdPro__3258E37F" Association="Self.FK__DetalleBi__IdPro__3258E37F">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleBitAjusteInventario" EntitySet="DetalleBitAjusteInventario" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_detalleProducto" Association="Self.Fk_detalleProducto">
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+            <End Role="DetallePluAdquirido" EntitySet="DetallePluAdquirido" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_FacturaE" Association="Self.Fk_FacturaE">
+            <End Role="FacturaE" EntitySet="FacturaE" />
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleIn__IdPro__2CA00A29" Association="Self.FK__DetalleIn__IdPro__2CA00A29">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleInventario" EntitySet="DetalleInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleIn__IdPro__30709B0D" Association="Self.FK__DetalleIn__IdPro__30709B0D">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleInventario" EntitySet="DetalleInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleIn__IdReg__0B5424F7" Association="Self.FK__DetalleIn__IdReg__0B5424F7">
+            <End Role="RegistroInventario" EntitySet="RegistroInventario" />
+            <End Role="DetalleInventario" EntitySet="DetalleInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetallePl__IdPro__2F7C76D4" Association="Self.FK__DetallePl__IdPro__2F7C76D4">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetallePluAdquirido" EntitySet="DetallePluAdquirido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FacturaE__IdSucu__2AB7C1B7" Association="Self.FK__FacturaE__IdSucu__2AB7C1B7">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="FacturaE" EntitySet="FacturaE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegistroI__IdSuc__0F0FA742" Association="Self.FK__RegistroI__IdSuc__0F0FA742">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="RegistroInventario" EntitySet="RegistroInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Series__idSucurs__0E1B8309" Association="Self.FK__Series__idSucurs__0E1B8309">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Series" EntitySet="Series" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__IdSucu__0D275ED0" Association="Self.FK__Usuarios__IdSucu__0D275ED0">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__IdTipo__02A9D05D" Association="Self.FK__Usuarios__IdTipo__02A9D05D">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <FunctionImport Name="SPObtenerProductos" ReturnType="Collection(ComercializacionDIPModel.SPObtenerProductos_Result)" />
+          <FunctionImport Name="SPUpdateCorrelativo">
+            <Parameter Name="NumeroSerie" Mode="In" Type="String" />
+            <Parameter Name="IdSucursal" Mode="In" Type="Int32" />
+            <Parameter Name="Correlativo" Mode="In" Type="Int64" />
+            <Parameter Name="Serie" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="TrasladoFacturas">
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="sucursal" Mode="In" Type="Int32" />
+            <Parameter Name="user" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="WsGetPedidosHoyJSON" ReturnType="Collection(ComercializacionDIPModel.WsGetPedidosHoyJSON_Result)">
+          <Parameter Name="CodCliente" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="PLUSet" EntityType="ComercializacionDIPModel.PLU" />
+          <EntitySet Name="RecetaDet" EntityType="ComercializacionDIPModel.RecetaDet" />
+          <EntitySet Name="RecetaEnc" EntityType="ComercializacionDIPModel.RecetaEnc" />
+          <AssociationSet Name="FK__DetalleFa__IdPlu__5C4F1D4B" Association="ComercializacionDIPModel.FK__DetalleFa__IdPlu__5C4F1D4B">
+            <End Role="PLU1" EntitySet="PLUSet" />
+            <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PLU__IdProducto__5972B0A0" Association="ComercializacionDIPModel.FK__PLU__IdProducto__5972B0A0">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="PLU1" EntitySet="PLUSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PLU__IdRecetaEnc__587E8C67" Association="ComercializacionDIPModel.FK__PLU__IdRecetaEnc__587E8C67">
+            <End Role="RecetaEnc" EntitySet="RecetaEnc" />
+            <End Role="PLU1" EntitySet="PLUSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RecetaDet__IdPro__54ADFB83" Association="ComercializacionDIPModel.FK__RecetaDet__IdPro__54ADFB83">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="RecetaDet" EntitySet="RecetaDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RecetaDet__IdRec__55A21FBC" Association="ComercializacionDIPModel.FK__RecetaDet__IdRec__55A21FBC">
+            <End Role="RecetaEnc" EntitySet="RecetaEnc" />
+            <End Role="RecetaDet" EntitySet="RecetaDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RecetaEnc__IdSuc__51D18ED8" Association="ComercializacionDIPModel.FK__RecetaEnc__IdSuc__51D18ED8">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="RecetaEnc" EntitySet="RecetaEnc" />
+          </AssociationSet>
+          <EntitySet Name="VistaPLU" EntityType="ComercializacionDIPModel.VistaPLU" />
+          <EntitySet Name="VistaReceta" EntityType="ComercializacionDIPModel.VistaReceta" />
+          <FunctionImport Name="SPInactivarCorrelativo">
+            <Parameter Name="NumeroSerie" Mode="In" Type="String" />
+            <Parameter Name="IdSucursal" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="WebServicePath" EntityType="ComercializacionDIPModel.WebServicePath" />
+          <EntitySet Name="RegistroSincronizacion" EntityType="ComercializacionDIPModel.RegistroSincronizacion" />
+          <AssociationSet Name="FK__RegistroS__IdSuc__41F02CCA" Association="ComercializacionDIPModel.FK__RegistroS__IdSuc__41F02CCA">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="RegistroSincronizacion" EntitySet="RegistroSincronizacion" />
+          </AssociationSet>
+          <EntitySet Name="PedidosRecibidos" EntityType="ComercializacionDIPModel.PedidosRecibidos" />
+          <AssociationSet Name="FK__PedidosRe__Estad__214E530E" Association="ComercializacionDIPModel.FK__PedidosRe__Estad__214E530E">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PedidosRe__IdPro__22427747" Association="ComercializacionDIPModel.FK__PedidosRe__IdPro__22427747">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="SPObtenerProductos_Result">
+          <Property Type="Int64" Name="idProducto" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="NombreCorto" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="CodigoOrganizacion" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="CanalDistribucion" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="Linea" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="Clase" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="Familia" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="ProductoIntegrado" Nullable="true" MaxLength="18" />
+          <Property Type="Decimal" Name="PesoNeto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="UnidadPeso" Nullable="true" MaxLength="3" />
+          <Property Type="Decimal" Name="ToleranciaMerma1" Nullable="false" Precision="5" Scale="3" />
+          <Property Type="Decimal" Name="ToleranciaMerma2" Nullable="false" Precision="5" Scale="3" />
+          <Property Type="String" Name="Dimension" Nullable="true" MaxLength="32" />
+          <Property Type="String" Name="UnidadMedidaVenta" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="UnidadMedidaBase" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="UnidadMedidaConsulta" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="AceptaMerma" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="AceptaDevolucion" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="Pesado" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="CWMActivado" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="DependeLote" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="CodigoCompatibilidad" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="GrupoMateriales" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="GrupoMateriales1" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="GrupoMateriales2" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="GrupoMateriales3" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="GrupoMateriales4" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="GrupoMateriales5" Nullable="true" MaxLength="4" />
+          <Property Type="Boolean" Name="ProductoLocal" Nullable="false" />
+          <Property Type="Decimal" Name="Costo" Nullable="true" Precision="19" />
+          <Property Type="Boolean" Name="AplicaImpuestos" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="WsGetPedidosHoyJSON_Result">
+          <Property Type="Int64" Name="IdPedido" Nullable="false" />
+          <Property Type="String" Name="FechaEntrega" Nullable="true" MaxLength="10" />
+          <Property Type="Int64" Name="IdProductos" Nullable="true" />
+          <Property Type="Decimal" Name="UnidadesPedido" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="PesoPedido" Nullable="true" Precision="38" Scale="4" />
+          <Property Type="Decimal" Name="PrecioUnitario" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Int64" Name="NumeroLinea" Nullable="true" />
+          <Property Type="Int32" Name="UnidadFacturacion" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="PLU">
+          <Key>
+            <PropertyRef Name="IdPLU" />
+          </Key>
+          <Property Name="IdPLU" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRecetaEnc" Type="Int64" Nullable="false" />
+          <Property Name="IdProducto" Type="Int64" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DetalleFactura" Relationship="ComercializacionDIPModel.FK__DetalleFa__IdPlu__5C4F1D4B" FromRole="PLU1" ToRole="DetalleFactura" />
+          <NavigationProperty Name="Productos" Relationship="ComercializacionDIPModel.FK__PLU__IdProducto__5972B0A0" FromRole="PLU1" ToRole="Productos" />
+          <NavigationProperty Name="RecetaEnc" Relationship="ComercializacionDIPModel.FK__PLU__IdRecetaEnc__587E8C67" FromRole="PLU1" ToRole="RecetaEnc" />
+          <Property Name="SeDetalla" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="RecetaDet">
+          <Key>
+            <PropertyRef Name="IdRecetaDet" />
+          </Key>
+          <Property Name="IdRecetaDet" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProducto" Type="Int64" Nullable="false" />
+          <Property Name="IdRecetaEnc" Type="Int64" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="cantidad" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <NavigationProperty Name="Productos" Relationship="ComercializacionDIPModel.FK__RecetaDet__IdPro__54ADFB83" FromRole="RecetaDet" ToRole="Productos" />
+          <NavigationProperty Name="RecetaEnc" Relationship="ComercializacionDIPModel.FK__RecetaDet__IdRec__55A21FBC" FromRole="RecetaDet" ToRole="RecetaEnc" />
+        </EntityType>
+        <EntityType Name="RecetaEnc">
+          <Key>
+            <PropertyRef Name="IdRecetaEnc" />
+          </Key>
+          <Property Name="IdRecetaEnc" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSucursal" Type="Int16" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PLU" Relationship="ComercializacionDIPModel.FK__PLU__IdRecetaEnc__587E8C67" FromRole="RecetaEnc" ToRole="PLU1" />
+          <NavigationProperty Name="RecetaDet" Relationship="ComercializacionDIPModel.FK__RecetaDet__IdRec__55A21FBC" FromRole="RecetaEnc" ToRole="RecetaDet" />
+          <NavigationProperty Name="Sucursal" Relationship="ComercializacionDIPModel.FK__RecetaEnc__IdSuc__51D18ED8" FromRole="RecetaEnc" ToRole="Sucursal" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__DetalleFa__IdPlu__5C4F1D4B">
+          <End Type="ComercializacionDIPModel.PLU" Role="PLU1" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.DetalleFactura" Role="DetalleFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLU1">
+              <PropertyRef Name="IdPLU" />
+            </Principal>
+            <Dependent Role="DetalleFactura">
+              <PropertyRef Name="IdPlu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PLU__IdProducto__5972B0A0">
+          <End Type="ComercializacionDIPModel.Productos" Role="Productos" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.PLU" Role="PLU1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="PLU1">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PLU__IdRecetaEnc__587E8C67">
+          <End Type="ComercializacionDIPModel.RecetaEnc" Role="RecetaEnc" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.PLU" Role="PLU1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecetaEnc">
+              <PropertyRef Name="IdRecetaEnc" />
+            </Principal>
+            <Dependent Role="PLU1">
+              <PropertyRef Name="IdRecetaEnc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RecetaDet__IdPro__54ADFB83">
+          <End Type="ComercializacionDIPModel.Productos" Role="Productos" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.RecetaDet" Role="RecetaDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="RecetaDet">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RecetaDet__IdRec__55A21FBC">
+          <End Type="ComercializacionDIPModel.RecetaEnc" Role="RecetaEnc" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.RecetaDet" Role="RecetaDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecetaEnc">
+              <PropertyRef Name="IdRecetaEnc" />
+            </Principal>
+            <Dependent Role="RecetaDet">
+              <PropertyRef Name="IdRecetaEnc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RecetaEnc__IdSuc__51D18ED8">
+          <End Type="ComercializacionDIPModel.Sucursal" Role="Sucursal" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.RecetaEnc" Role="RecetaEnc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="RecetaEnc">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VistaPLU">
+          <Key>
+            <PropertyRef Name="IdPLU" />
+            <PropertyRef Name="IdReceta" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="IdCategoria" />
+            <PropertyRef Name="IdSucursal" />
+            <PropertyRef Name="CodigoSAP" />
+            <PropertyRef Name="IdUnidadVenta" />
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdPLU" Type="Int64" Nullable="false" />
+          <Property Name="IdReceta" Type="Int64" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="precio" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="IdCategoria" Type="Int16" Nullable="false" />
+          <Property Name="IdSucursal" Type="Int16" Nullable="false" />
+          <Property Name="CodigoSAP" Type="Int64" Nullable="false" />
+          <Property Name="IdUnidadVenta" Type="Byte" Nullable="false" />
+          <Property Name="IdEstado" Type="Boolean" Nullable="false" />
+          <Property Name="SeDetalla" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="VistaReceta">
+          <Key>
+            <PropertyRef Name="IdReceta" />
+            <PropertyRef Name="IdProducto" />
+            <PropertyRef Name="precio" />
+            <PropertyRef Name="cantidad" />
+            <PropertyRef Name="IdSucursal" />
+          </Key>
+          <Property Name="IdReceta" Type="Int64" Nullable="false" />
+          <Property Name="IdProducto" Type="Int64" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="cantidad" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+          <Property Name="IdSucursal" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebServicePath">
+          <Key>
+            <PropertyRef Name="IdPath" />
+            <PropertyRef Name="WsPath" />
+            <PropertyRef Name="Tipo" />
+          </Key>
+          <Property Name="IdPath" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WsPath" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Tipo" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegistroSincronizacion">
+          <Key>
+            <PropertyRef Name="IdRegistro" />
+          </Key>
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Operacion" Type="Int16" Nullable="false" />
+          <Property Name="IdSucursal" Type="Int16" Nullable="false" />
+          <Property Name="IdRegistro" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Sucursal" Relationship="ComercializacionDIPModel.FK__RegistroS__IdSuc__41F02CCA" FromRole="RegistroSincronizacion" ToRole="Sucursal" />
+        </EntityType>
+        <Association Name="FK__RegistroS__IdSuc__41F02CCA">
+          <End Type="ComercializacionDIPModel.Sucursal" Role="Sucursal" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.RegistroSincronizacion" Role="RegistroSincronizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="RegistroSincronizacion">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PedidosRecibidos">
+          <Key>
+            <PropertyRef Name="IdRegistro" />
+          </Key>
+          <Property Name="IdRegistro" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSucursal" Type="Int16" Nullable="false" />
+          <Property Name="IdProducto" Type="Int64" Nullable="false" />
+          <Property Name="FechaEntrega" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CantidadEnviada" Type="Double" Nullable="false" />
+          <Property Name="CantidadConfirmada" Type="Double" Nullable="false" />
+          <Property Name="Estado" Type="Byte" Nullable="false" />
+          <Property Name="IdPedido" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Sucursal" Relationship="ComercializacionDIPModel.FK__PedidosRe__Estad__214E530E" FromRole="PedidosRecibidos" ToRole="Sucursal" />
+          <NavigationProperty Name="Productos" Relationship="ComercializacionDIPModel.FK__PedidosRe__IdPro__22427747" FromRole="PedidosRecibidos" ToRole="Productos" />
+        </EntityType>
+        <Association Name="FK__PedidosRe__Estad__214E530E">
+          <End Type="ComercializacionDIPModel.Sucursal" Role="Sucursal" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.PedidosRecibidos" Role="PedidosRecibidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="PedidosRecibidos">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PedidosRe__IdPro__22427747">
+          <End Type="ComercializacionDIPModel.Productos" Role="Productos" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.PedidosRecibidos" Role="PedidosRecibidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="PedidosRecibidos">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ComercializacionDIPModelStoreContainer" CdmEntityContainer="ComercializacionDIPEntities">
+          <EntitySetMapping Name="BitAjusteInventario">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.BitAjusteInventario">
+              <MappingFragment StoreEntitySet="BitAjusteInventario">
+                <ScalarProperty Name="IdAjuste" ColumnName="IdAjuste" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CajaChica">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.CajaChica">
+              <MappingFragment StoreEntitySet="CajaChica">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IDCajaChica" ColumnName="IDCajaChica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorias">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.Categorias">
+              <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConversionesProductos">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.ConversionesProductos">
+              <MappingFragment StoreEntitySet="ConversionesProductos">
+                <ScalarProperty Name="IdConversion" ColumnName="IdConversion" />
+                <ScalarProperty Name="IdProductoSAP" ColumnName="IdProductoSAP" />
+                <ScalarProperty Name="IdProductoDestino" ColumnName="IdProductoDestino" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleBitAjusteInventario">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.DetalleBitAjusteInventario">
+              <MappingFragment StoreEntitySet="DetalleBitAjusteInventario">
+                <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
+                <ScalarProperty Name="IdAjuste" ColumnName="IdAjuste" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Operacion" ColumnName="Operacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleFactura">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.DetalleFactura">
+              <MappingFragment StoreEntitySet="DetalleFactura">
+                <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
+                <ScalarProperty Name="PrecioPlu" ColumnName="PrecioPlu" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="NoSerie" ColumnName="NoSerie" />
+                <ScalarProperty Name="NoCorrelativo" ColumnName="NoCorrelativo" />
+                <ScalarProperty Name="IdPlu" ColumnName="IdPlu" />
+                <ScalarProperty Name="UnidadMedida" ColumnName="UnidadMedida" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleInventario">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.DetalleInventario">
+              <MappingFragment StoreEntitySet="DetalleInventario">
+                <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="IdRegistro" ColumnName="IdRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetallePluAdquirido">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.DetallePluAdquirido">
+              <MappingFragment StoreEntitySet="DetallePluAdquirido">
+                <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="IdDetalleFactura" ColumnName="IdDetalleFactura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacturaE">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.FacturaE">
+              <MappingFragment StoreEntitySet="FacturaE">
+                <ScalarProperty Name="NumeroAutorizacion" ColumnName="NumeroAutorizacion" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Correlativo" ColumnName="Correlativo" />
+                <ScalarProperty Name="NumeroSerie" ColumnName="NumeroSerie" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="EstadoTraslado" ColumnName="EstadoTraslado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MotivosInventario">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.MotivosInventario">
+              <MappingFragment StoreEntitySet="MotivosInventario">
+                <ScalarProperty Name="IdMotivo" ColumnName="IdMotivo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="UnidadMedida" ColumnName="UnidadMedida" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="CodigoSAP" ColumnName="CodigoSAP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistroInventario">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.RegistroInventario">
+              <MappingFragment StoreEntitySet="RegistroInventario">
+                <ScalarProperty Name="IdRegistro" ColumnName="IdRegistro" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Series">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.Series">
+              <MappingFragment StoreEntitySet="Series">
+                <ScalarProperty Name="idSerie" ColumnName="idSerie" />
+                <ScalarProperty Name="numeroSerie" ColumnName="numeroSerie" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="resolucion" ColumnName="resolucion" />
+                <ScalarProperty Name="datoAdicional1" ColumnName="datoAdicional1" />
+                <ScalarProperty Name="datoAdicional2" ColumnName="datoAdicional2" />
+                <ScalarProperty Name="datoAdicional3" ColumnName="datoAdicional3" />
+                <ScalarProperty Name="datoAdicional4" ColumnName="datoAdicional4" />
+                <ScalarProperty Name="datoAdicional5" ColumnName="datoAdicional5" />
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nit" ColumnName="nit" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
+                <ScalarProperty Name="moneda" ColumnName="moneda" />
+                <ScalarProperty Name="datoAdicional6" ColumnName="datoAdicional6" />
+                <ScalarProperty Name="datoAdicional7" ColumnName="datoAdicional7" />
+                <ScalarProperty Name="datoAdicional8" ColumnName="datoAdicional8" />
+                <ScalarProperty Name="datoAdicional9" ColumnName="datoAdicional9" />
+                <ScalarProperty Name="datoAdicional10" ColumnName="datoAdicional10" />
+                <ScalarProperty Name="datoAdicional11" ColumnName="datoAdicional11" />
+                <ScalarProperty Name="identifica" ColumnName="identifica" />
+                <ScalarProperty Name="idSeccion" ColumnName="idSeccion" />
+                <ScalarProperty Name="FechaAutorizacion" ColumnName="FechaAutorizacion" />
+                <ScalarProperty Name="numeroDel" ColumnName="numeroDel" />
+                <ScalarProperty Name="numeroAl" ColumnName="numeroAl" />
+                <ScalarProperty Name="SerieNC" ColumnName="SerieNC" />
+                <ScalarProperty Name="CorrelativoNC" ColumnName="CorrelativoNC" />
+                <ScalarProperty Name="NumeroReciboCesta" ColumnName="NumeroReciboCesta" />
+                <ScalarProperty Name="RangoInicialFacturaContadoManual" ColumnName="RangoInicialFacturaContadoManual" />
+                <ScalarProperty Name="RangoFinalFacturaContadoManual" ColumnName="RangoFinalFacturaContadoManual" />
+                <ScalarProperty Name="RangoInicialFacturaCreditoManual" ColumnName="RangoInicialFacturaCreditoManual" />
+                <ScalarProperty Name="RangoFinalFacturaCreditoManual" ColumnName="RangoFinalFacturaCreditoManual" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="SerieFacturaManual" ColumnName="SerieFacturaManual" />
+                <ScalarProperty Name="RangoInicioFacturaManual" ColumnName="RangoInicioFacturaManual" />
+                <ScalarProperty Name="RangoFinFacturaManual" ColumnName="RangoFinFacturaManual" />
+                <ScalarProperty Name="Cai" ColumnName="Cai" />
+                <ScalarProperty Name="idTipoSerie" ColumnName="idTipoSerie" />
+                <ScalarProperty Name="DatoAdicional12" ColumnName="DatoAdicional12" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="IdUsuarioIngresa" ColumnName="IdUsuarioIngresa" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="IdUsuarioModifica" ColumnName="IdUsuarioModifica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sucursal">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.Sucursal">
+              <MappingFragment StoreEntitySet="Sucursal">
+                <ScalarProperty Name="OficinaVenta" ColumnName="OficinaVenta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="CentroSAP" ColumnName="CentroSAP" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoUsuario">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.TipoUsuario">
+              <MappingFragment StoreEntitySet="TipoUsuario">
+                <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaSeriesFacturas">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.VistaSeriesFacturas">
+              <MappingFragment StoreEntitySet="VistaSeriesFacturas">
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="idSerie" ColumnName="idSerie" />
+                <ScalarProperty Name="numeroSerie" ColumnName="numeroSerie" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="resolucion" ColumnName="resolucion" />
+                <ScalarProperty Name="datoAdicional1" ColumnName="datoAdicional1" />
+                <ScalarProperty Name="datoAdicional2" ColumnName="datoAdicional2" />
+                <ScalarProperty Name="datoAdicional3" ColumnName="datoAdicional3" />
+                <ScalarProperty Name="datoAdicional4" ColumnName="datoAdicional4" />
+                <ScalarProperty Name="datoAdicional5" ColumnName="datoAdicional5" />
+                <ScalarProperty Name="datoAdicional6" ColumnName="datoAdicional6" />
+                <ScalarProperty Name="datoAdicional7" ColumnName="datoAdicional7" />
+                <ScalarProperty Name="datoAdicional8" ColumnName="datoAdicional8" />
+                <ScalarProperty Name="datoAdicional9" ColumnName="datoAdicional9" />
+                <ScalarProperty Name="datoAdicional10" ColumnName="datoAdicional10" />
+                <ScalarProperty Name="datoAdicional11" ColumnName="datoAdicional11" />
+                <ScalarProperty Name="DatoAdicional12" ColumnName="DatoAdicional12" />
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nit" ColumnName="nit" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
+                <ScalarProperty Name="moneda" ColumnName="moneda" />
+                <ScalarProperty Name="idSeccion" ColumnName="idSeccion" />
+                <ScalarProperty Name="numeroDel" ColumnName="numeroDel" />
+                <ScalarProperty Name="numeroAl" ColumnName="numeroAl" />
+                <ScalarProperty Name="SerieNC" ColumnName="SerieNC" />
+                <ScalarProperty Name="CorrelativoNC" ColumnName="CorrelativoNC" />
+                <ScalarProperty Name="NumeroReciboCesta" ColumnName="NumeroReciboCesta" />
+                <ScalarProperty Name="idtiposerie" ColumnName="idtiposerie" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+                <ScalarProperty Name="idestado" ColumnName="idestado" />
+                <ScalarProperty Name="EstadoDocumento" ColumnName="EstadoDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPObtenerProductos" FunctionName="ComercializacionDIPModel.Store.SPObtenerProductos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ComercializacionDIPModel.SPObtenerProductos_Result">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="NombreCorto" ColumnName="NombreCorto" />
+                <ScalarProperty Name="CodigoOrganizacion" ColumnName="CodigoOrganizacion" />
+                <ScalarProperty Name="CanalDistribucion" ColumnName="CanalDistribucion" />
+                <ScalarProperty Name="Linea" ColumnName="Linea" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Clase" ColumnName="Clase" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="ProductoIntegrado" ColumnName="ProductoIntegrado" />
+                <ScalarProperty Name="PesoNeto" ColumnName="PesoNeto" />
+                <ScalarProperty Name="UnidadPeso" ColumnName="UnidadPeso" />
+                <ScalarProperty Name="ToleranciaMerma1" ColumnName="ToleranciaMerma1" />
+                <ScalarProperty Name="ToleranciaMerma2" ColumnName="ToleranciaMerma2" />
+                <ScalarProperty Name="Dimension" ColumnName="Dimension" />
+                <ScalarProperty Name="UnidadMedidaVenta" ColumnName="UnidadMedidaVenta" />
+                <ScalarProperty Name="UnidadMedidaBase" ColumnName="UnidadMedidaBase" />
+                <ScalarProperty Name="UnidadMedidaConsulta" ColumnName="UnidadMedidaConsulta" />
+                <ScalarProperty Name="AceptaMerma" ColumnName="AceptaMerma" />
+                <ScalarProperty Name="AceptaDevolucion" ColumnName="AceptaDevolucion" />
+                <ScalarProperty Name="Pesado" ColumnName="Pesado" />
+                <ScalarProperty Name="CWMActivado" ColumnName="CWMActivado" />
+                <ScalarProperty Name="DependeLote" ColumnName="DependeLote" />
+                <ScalarProperty Name="CodigoCompatibilidad" ColumnName="CodigoCompatibilidad" />
+                <ScalarProperty Name="GrupoMateriales" ColumnName="GrupoMateriales" />
+                <ScalarProperty Name="GrupoMateriales1" ColumnName="GrupoMateriales1" />
+                <ScalarProperty Name="GrupoMateriales2" ColumnName="GrupoMateriales2" />
+                <ScalarProperty Name="GrupoMateriales3" ColumnName="GrupoMateriales3" />
+                <ScalarProperty Name="GrupoMateriales4" ColumnName="GrupoMateriales4" />
+                <ScalarProperty Name="GrupoMateriales5" ColumnName="GrupoMateriales5" />
+                <ScalarProperty Name="ProductoLocal" ColumnName="ProductoLocal" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="AplicaImpuestos" ColumnName="AplicaImpuestos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPUpdateCorrelativo" FunctionName="ComercializacionDIPModel.Store.SPUpdateCorrelativo" />
+          <FunctionImportMapping FunctionImportName="TrasladoFacturas" FunctionName="ComercializacionDIPModel.Store.TrasladoFacturas" />
+          <FunctionImportMapping FunctionImportName="WsGetPedidosHoyJSON" FunctionName="ComercializacionDIPModel.Store.WsGetPedidosHoyJSON">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ComercializacionDIPModel.WsGetPedidosHoyJSON_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="IdProductos" ColumnName="IdProductos" />
+                <ScalarProperty Name="UnidadesPedido" ColumnName="UnidadesPedido" />
+                <ScalarProperty Name="PesoPedido" ColumnName="PesoPedido" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="NumeroLinea" ColumnName="NumeroLinea" />
+                <ScalarProperty Name="UnidadFacturacion" ColumnName="UnidadFacturacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="PLUSet">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.PLU">
+              <MappingFragment StoreEntitySet="PLU">
+                <ScalarProperty Name="SeDetalla" ColumnName="SeDetalla" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdRecetaEnc" ColumnName="IdRecetaEnc" />
+                <ScalarProperty Name="IdPLU" ColumnName="IdPLU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecetaDet">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.RecetaDet">
+              <MappingFragment StoreEntitySet="RecetaDet">
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="IdRecetaEnc" ColumnName="IdRecetaEnc" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdRecetaDet" ColumnName="IdRecetaDet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecetaEnc">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.RecetaEnc">
+              <MappingFragment StoreEntitySet="RecetaEnc">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="IdRecetaEnc" ColumnName="IdRecetaEnc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaPLU">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.VistaPLU">
+              <MappingFragment StoreEntitySet="VistaPLU">
+                <ScalarProperty Name="SeDetalla" ColumnName="SeDetalla" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="IdUnidadVenta" ColumnName="IdUnidadVenta" />
+                <ScalarProperty Name="CodigoSAP" ColumnName="CodigoSAP" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdReceta" ColumnName="IdReceta" />
+                <ScalarProperty Name="IdPLU" ColumnName="IdPLU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaReceta">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.VistaReceta">
+              <MappingFragment StoreEntitySet="VistaReceta">
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdReceta" ColumnName="IdReceta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPInactivarCorrelativo" FunctionName="ComercializacionDIPModel.Store.SPInactivarCorrelativo" />
+          <EntitySetMapping Name="WebServicePath">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.WebServicePath">
+              <MappingFragment StoreEntitySet="WebServicePath">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="WsPath" ColumnName="WsPath" />
+                <ScalarProperty Name="IdPath" ColumnName="IdPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistroSincronizacion">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.RegistroSincronizacion">
+              <MappingFragment StoreEntitySet="RegistroSincronizacion">
+                <ScalarProperty Name="IdRegistro" ColumnName="IdRegistro" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="Operacion" ColumnName="Operacion" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PedidosRecibidos">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.PedidosRecibidos">
+              <MappingFragment StoreEntitySet="PedidosRecibidos">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="CantidadConfirmada" ColumnName="CantidadConfirmada" />
+                <ScalarProperty Name="CantidadEnviada" ColumnName="CantidadEnviada" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="IdRegistro" ColumnName="IdRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
