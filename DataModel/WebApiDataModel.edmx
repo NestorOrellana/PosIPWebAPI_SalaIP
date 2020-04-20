@@ -100,6 +100,13 @@
           <Property Name="EstadoTraslado" Type="tinyint" Nullable="false" />
           <Property Name="TipoPago" Type="char" MaxLength="3" Nullable="false" />
           <Property Name="NumeroAutorizacion" Type="bigint" />
+          <Property Name="FelSerie" Type="varchar" MaxLength="100" />
+          <Property Name="FelNumero" Type="varchar" MaxLength="100" />
+          <Property Name="FelDescripcion" Type="varchar" MaxLength="150" />
+          <Property Name="FelNombre" Type="varchar" MaxLength="150" />
+          <Property Name="FelDireccion" Type="varchar" MaxLength="150" />
+          <Property Name="EnviadoWs" Type="bit" />
+          <Property Name="Anulada" Type="bit" />
         </EntityType>
         <EntityType Name="MotivosInventario">
           <Key>
@@ -357,7 +364,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Name="idestado" Type="tinyint" />
           <Property Name="EstadoDocumento" Type="nvarchar" MaxLength="15" />
         </EntityType>
-        <Association Name="FK__CajaChica__IdSuc__371D989C">
+        <Association Name="FK__CajaChica__IdSuc__7E08442D">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="CajaChica" Type="Self.CajaChica" Multiplicity="*" />
           <ReferentialConstraint>
@@ -369,7 +376,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CajaChica__IdUsu__36297463">
+        <Association Name="FK__CajaChica__IdUsu__7EFC6866">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
           <End Role="CajaChica" Type="Self.CajaChica" Multiplicity="*" />
           <ReferentialConstraint>
@@ -381,19 +388,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conversio__IdPro__28CF7945">
-          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
-          <End Role="ConversionesProductos" Type="Self.ConversionesProductos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="CodigoSAP" />
-            </Principal>
-            <Dependent Role="ConversionesProductos">
-              <PropertyRef Name="IdProductoSAP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Conversio__IdPro__29C39D7E">
+        <Association Name="FK__Conversio__IdPro__00E4B0D8">
           <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
           <End Role="ConversionesProductos" Type="Self.ConversionesProductos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -405,7 +400,19 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleBi__IdAju__0C9D4EEB">
+        <Association Name="FK__Conversio__IdPro__7FF08C9F">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="ConversionesProductos" Type="Self.ConversionesProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="ConversionesProductos">
+              <PropertyRef Name="IdProductoSAP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleBi__IdAju__01D8D511">
           <End Role="BitAjusteInventario" Type="Self.BitAjusteInventario" Multiplicity="0..1" />
           <End Role="DetalleBitAjusteInventario" Type="Self.DetalleBitAjusteInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -417,7 +424,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleBi__IdPro__3258E37F">
+        <Association Name="FK__DetalleBi__IdPro__02CCF94A">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetalleBitAjusteInventario" Type="Self.DetalleBitAjusteInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -429,7 +436,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleFa__IdPlu__5C4F1D4B">
+        <Association Name="FK__DetalleFa__IdPlu__03C11D83">
           <End Role="PLU" Type="Self.PLU" Multiplicity="1" />
           <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -441,7 +448,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleIn__IdPro__2CA00A29">
+        <Association Name="FK__DetalleIn__IdPro__05A965F5">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetalleInventario" Type="Self.DetalleInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -453,7 +460,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleIn__IdPro__30709B0D">
+        <Association Name="FK__DetalleIn__IdPro__069D8A2E">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetalleInventario" Type="Self.DetalleInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -465,7 +472,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleIn__IdReg__0B5424F7">
+        <Association Name="FK__DetalleIn__IdReg__0791AE67">
           <End Role="RegistroInventario" Type="Self.RegistroInventario" Multiplicity="1" />
           <End Role="DetalleInventario" Type="Self.DetalleInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -477,7 +484,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetallePl__IdPro__601FAE2F">
+        <Association Name="FK__DetallePl__IdPro__0885D2A0">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetallePluAdquirido" Type="Self.DetallePluAdquirido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -489,7 +496,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__FacturaE__IdSucu__2AB7C1B7">
+        <Association Name="FK__FacturaE__IdSucu__0A6E1B12">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="FacturaE" Type="Self.FacturaE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -501,7 +508,43 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PedidosRe__Estad__214E530E">
+        <Association Name="FK__FacturaE__IdSucu__43718E44">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="FacturaE" Type="Self.FacturaE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="FacturaE">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PedidosRe__IdPro__58A1B554">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="PedidosRecibidos">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PedidosRe__IdPro__65078C39">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="PedidosRecibidos">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PedidosRe__IdSuc__57AD911B">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -513,19 +556,19 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PedidosRe__IdPro__22427747">
-          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+        <Association Name="FK__PedidosRe__IdSuc__64136800">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="CodigoSAP" />
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
             </Principal>
             <Dependent Role="PedidosRecibidos">
-              <PropertyRef Name="IdProducto" />
+              <PropertyRef Name="IdSucursal" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PLU__IdProducto__5972B0A0">
+        <Association Name="FK__PLU__IdProducto__0B623F4B">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="PLU" Type="Self.PLU" Multiplicity="*" />
           <ReferentialConstraint>
@@ -537,7 +580,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PLU__IdRecetaEnc__587E8C67">
+        <Association Name="FK__PLU__IdRecetaEnc__0C566384">
           <End Role="RecetaEnc" Type="Self.RecetaEnc" Multiplicity="1" />
           <End Role="PLU" Type="Self.PLU" Multiplicity="*" />
           <ReferentialConstraint>
@@ -549,7 +592,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Productos__IdCat__12E03826">
+        <Association Name="FK__Productos__IdCat__0D4A87BD">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
           <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -561,7 +604,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RecetaDet__IdPro__54ADFB83">
+        <Association Name="FK__RecetaDet__IdPro__0E3EABF6">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="RecetaDet" Type="Self.RecetaDet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -573,7 +616,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RecetaDet__IdRec__55A21FBC">
+        <Association Name="FK__RecetaDet__IdRec__0F32D02F">
           <End Role="RecetaEnc" Type="Self.RecetaEnc" Multiplicity="1" />
           <End Role="RecetaDet" Type="Self.RecetaDet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -585,7 +628,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RecetaEnc__IdSuc__51D18ED8">
+        <Association Name="FK__RecetaEnc__IdSuc__1026F468">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="RecetaEnc" Type="Self.RecetaEnc" Multiplicity="*" />
           <ReferentialConstraint>
@@ -597,7 +640,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RegistroI__IdSuc__0F0FA742">
+        <Association Name="FK__RegistroI__IdSuc__111B18A1">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="RegistroInventario" Type="Self.RegistroInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -609,7 +652,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RegistroS__IdSuc__41F02CCA">
+        <Association Name="FK__RegistroS__IdSuc__120F3CDA">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="RegistroSincronizacion" Type="Self.RegistroSincronizacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -621,7 +664,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Series__idSucurs__0E1B8309">
+        <Association Name="FK__Series__idSucurs__13036113">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="Series" Type="Self.Series" Multiplicity="*" />
           <ReferentialConstraint>
@@ -633,7 +676,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__IdSucu__0D275ED0">
+        <Association Name="FK__Usuarios__IdSucu__13F7854C">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -645,7 +688,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__IdTipo__02A9D05D">
+        <Association Name="FK__Usuarios__IdTipo__14EBA985">
           <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -796,103 +839,115 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
     [VistaSeriesFacturas].[EstadoDocumento] AS [EstadoDocumento]
     FROM [PosIP].[VistaSeriesFacturas] AS [VistaSeriesFacturas]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__CajaChica__IdSuc__371D989C" Association="Self.FK__CajaChica__IdSuc__371D989C">
+          <AssociationSet Name="FK__CajaChica__IdSuc__7E08442D" Association="Self.FK__CajaChica__IdSuc__7E08442D">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="CajaChica" EntitySet="CajaChica" />
           </AssociationSet>
-          <AssociationSet Name="FK__CajaChica__IdUsu__36297463" Association="Self.FK__CajaChica__IdUsu__36297463">
+          <AssociationSet Name="FK__CajaChica__IdUsu__7EFC6866" Association="Self.FK__CajaChica__IdUsu__7EFC6866">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="CajaChica" EntitySet="CajaChica" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conversio__IdPro__28CF7945" Association="Self.FK__Conversio__IdPro__28CF7945">
+          <AssociationSet Name="FK__Conversio__IdPro__00E4B0D8" Association="Self.FK__Conversio__IdPro__00E4B0D8">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="ConversionesProductos" EntitySet="ConversionesProductos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conversio__IdPro__29C39D7E" Association="Self.FK__Conversio__IdPro__29C39D7E">
+          <AssociationSet Name="FK__Conversio__IdPro__7FF08C9F" Association="Self.FK__Conversio__IdPro__7FF08C9F">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="ConversionesProductos" EntitySet="ConversionesProductos" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleBi__IdAju__0C9D4EEB" Association="Self.FK__DetalleBi__IdAju__0C9D4EEB">
+          <AssociationSet Name="FK__DetalleBi__IdAju__01D8D511" Association="Self.FK__DetalleBi__IdAju__01D8D511">
             <End Role="BitAjusteInventario" EntitySet="BitAjusteInventario" />
             <End Role="DetalleBitAjusteInventario" EntitySet="DetalleBitAjusteInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleBi__IdPro__3258E37F" Association="Self.FK__DetalleBi__IdPro__3258E37F">
+          <AssociationSet Name="FK__DetalleBi__IdPro__02CCF94A" Association="Self.FK__DetalleBi__IdPro__02CCF94A">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetalleBitAjusteInventario" EntitySet="DetalleBitAjusteInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__IdPlu__5C4F1D4B" Association="Self.FK__DetalleFa__IdPlu__5C4F1D4B">
+          <AssociationSet Name="FK__DetalleFa__IdPlu__03C11D83" Association="Self.FK__DetalleFa__IdPlu__03C11D83">
             <End Role="PLU" EntitySet="PLU" />
             <End Role="DetalleFactura" EntitySet="DetalleFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleIn__IdPro__2CA00A29" Association="Self.FK__DetalleIn__IdPro__2CA00A29">
+          <AssociationSet Name="FK__DetalleIn__IdPro__05A965F5" Association="Self.FK__DetalleIn__IdPro__05A965F5">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetalleInventario" EntitySet="DetalleInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleIn__IdPro__30709B0D" Association="Self.FK__DetalleIn__IdPro__30709B0D">
+          <AssociationSet Name="FK__DetalleIn__IdPro__069D8A2E" Association="Self.FK__DetalleIn__IdPro__069D8A2E">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetalleInventario" EntitySet="DetalleInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleIn__IdReg__0B5424F7" Association="Self.FK__DetalleIn__IdReg__0B5424F7">
+          <AssociationSet Name="FK__DetalleIn__IdReg__0791AE67" Association="Self.FK__DetalleIn__IdReg__0791AE67">
             <End Role="RegistroInventario" EntitySet="RegistroInventario" />
             <End Role="DetalleInventario" EntitySet="DetalleInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetallePl__IdPro__601FAE2F" Association="Self.FK__DetallePl__IdPro__601FAE2F">
+          <AssociationSet Name="FK__DetallePl__IdPro__0885D2A0" Association="Self.FK__DetallePl__IdPro__0885D2A0">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetallePluAdquirido" EntitySet="DetallePluAdquirido" />
           </AssociationSet>
-          <AssociationSet Name="FK__FacturaE__IdSucu__2AB7C1B7" Association="Self.FK__FacturaE__IdSucu__2AB7C1B7">
+          <AssociationSet Name="FK__FacturaE__IdSucu__0A6E1B12" Association="Self.FK__FacturaE__IdSucu__0A6E1B12">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="FacturaE" EntitySet="FacturaE" />
           </AssociationSet>
-          <AssociationSet Name="FK__PedidosRe__Estad__214E530E" Association="Self.FK__PedidosRe__Estad__214E530E">
+          <AssociationSet Name="FK__FacturaE__IdSucu__43718E44" Association="Self.FK__FacturaE__IdSucu__43718E44">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="FacturaE" EntitySet="FacturaE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PedidosRe__IdPro__58A1B554" Association="Self.FK__PedidosRe__IdPro__58A1B554">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PedidosRe__IdPro__65078C39" Association="Self.FK__PedidosRe__IdPro__65078C39">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PedidosRe__IdSuc__57AD911B" Association="Self.FK__PedidosRe__IdSuc__57AD911B">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
           </AssociationSet>
-          <AssociationSet Name="FK__PedidosRe__IdPro__22427747" Association="Self.FK__PedidosRe__IdPro__22427747">
-            <End Role="Productos" EntitySet="Productos" />
+          <AssociationSet Name="FK__PedidosRe__IdSuc__64136800" Association="Self.FK__PedidosRe__IdSuc__64136800">
+            <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
           </AssociationSet>
-          <AssociationSet Name="FK__PLU__IdProducto__5972B0A0" Association="Self.FK__PLU__IdProducto__5972B0A0">
+          <AssociationSet Name="FK__PLU__IdProducto__0B623F4B" Association="Self.FK__PLU__IdProducto__0B623F4B">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="PLU" EntitySet="PLU" />
           </AssociationSet>
-          <AssociationSet Name="FK__PLU__IdRecetaEnc__587E8C67" Association="Self.FK__PLU__IdRecetaEnc__587E8C67">
+          <AssociationSet Name="FK__PLU__IdRecetaEnc__0C566384" Association="Self.FK__PLU__IdRecetaEnc__0C566384">
             <End Role="RecetaEnc" EntitySet="RecetaEnc" />
             <End Role="PLU" EntitySet="PLU" />
           </AssociationSet>
-          <AssociationSet Name="FK__Productos__IdCat__12E03826" Association="Self.FK__Productos__IdCat__12E03826">
+          <AssociationSet Name="FK__Productos__IdCat__0D4A87BD" Association="Self.FK__Productos__IdCat__0D4A87BD">
             <End Role="Categorias" EntitySet="Categorias" />
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
-          <AssociationSet Name="FK__RecetaDet__IdPro__54ADFB83" Association="Self.FK__RecetaDet__IdPro__54ADFB83">
+          <AssociationSet Name="FK__RecetaDet__IdPro__0E3EABF6" Association="Self.FK__RecetaDet__IdPro__0E3EABF6">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="RecetaDet" EntitySet="RecetaDet" />
           </AssociationSet>
-          <AssociationSet Name="FK__RecetaDet__IdRec__55A21FBC" Association="Self.FK__RecetaDet__IdRec__55A21FBC">
+          <AssociationSet Name="FK__RecetaDet__IdRec__0F32D02F" Association="Self.FK__RecetaDet__IdRec__0F32D02F">
             <End Role="RecetaEnc" EntitySet="RecetaEnc" />
             <End Role="RecetaDet" EntitySet="RecetaDet" />
           </AssociationSet>
-          <AssociationSet Name="FK__RecetaEnc__IdSuc__51D18ED8" Association="Self.FK__RecetaEnc__IdSuc__51D18ED8">
+          <AssociationSet Name="FK__RecetaEnc__IdSuc__1026F468" Association="Self.FK__RecetaEnc__IdSuc__1026F468">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="RecetaEnc" EntitySet="RecetaEnc" />
           </AssociationSet>
-          <AssociationSet Name="FK__RegistroI__IdSuc__0F0FA742" Association="Self.FK__RegistroI__IdSuc__0F0FA742">
+          <AssociationSet Name="FK__RegistroI__IdSuc__111B18A1" Association="Self.FK__RegistroI__IdSuc__111B18A1">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="RegistroInventario" EntitySet="RegistroInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__RegistroS__IdSuc__41F02CCA" Association="Self.FK__RegistroS__IdSuc__41F02CCA">
+          <AssociationSet Name="FK__RegistroS__IdSuc__120F3CDA" Association="Self.FK__RegistroS__IdSuc__120F3CDA">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="RegistroSincronizacion" EntitySet="RegistroSincronizacion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Series__idSucurs__0E1B8309" Association="Self.FK__Series__idSucurs__0E1B8309">
+          <AssociationSet Name="FK__Series__idSucurs__13036113" Association="Self.FK__Series__idSucurs__13036113">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="Series" EntitySet="Series" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__IdSucu__0D275ED0" Association="Self.FK__Usuarios__IdSucu__0D275ED0">
+          <AssociationSet Name="FK__Usuarios__IdSucu__13F7854C" Association="Self.FK__Usuarios__IdSucu__13F7854C">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__IdTipo__02A9D05D" Association="Self.FK__Usuarios__IdTipo__02A9D05D">
+          <AssociationSet Name="FK__Usuarios__IdTipo__14EBA985" Association="Self.FK__Usuarios__IdTipo__14EBA985">
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -1022,6 +1077,13 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <NavigationProperty Name="Sucursal" Relationship="Self.FK__FacturaE__IdSucu__2AB7C1B7" FromRole="FacturaE" ToRole="Sucursal" />
           <Property Name="TipoPago" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="NumeroAutorizacion" Type="Int64" />
+          <Property Name="FelSerie" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FelNumero" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FelDescripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FelNombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FelDireccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EnviadoWs" Type="Boolean" />
+          <Property Name="Anulada" Type="Boolean" />
         </EntityType>
         <EntityType Name="MotivosInventario">
           <Key>
@@ -1931,6 +1993,13 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="FacturaE">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.FacturaE">
               <MappingFragment StoreEntitySet="FacturaE">
+                <ScalarProperty Name="Anulada" ColumnName="Anulada" />
+                <ScalarProperty Name="EnviadoWs" ColumnName="EnviadoWs" />
+                <ScalarProperty Name="FelDireccion" ColumnName="FelDireccion" />
+                <ScalarProperty Name="FelNombre" ColumnName="FelNombre" />
+                <ScalarProperty Name="FelDescripcion" ColumnName="FelDescripcion" />
+                <ScalarProperty Name="FelNumero" ColumnName="FelNumero" />
+                <ScalarProperty Name="FelSerie" ColumnName="FelSerie" />
                 <ScalarProperty Name="NumeroAutorizacion" ColumnName="NumeroAutorizacion" />
                 <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
                 <ScalarProperty Name="Nit" ColumnName="Nit" />

@@ -32,6 +32,13 @@ namespace DataModel
         public byte EstadoTraslado { get; set; }
         public string TipoPago { get; set; }
         public Nullable<long> NumeroAutorizacion { get; set; }
+        public string FelSerie { get; set; }
+        public string FelNumero { get; set; }
+        public string FelDescripcion { get; set; }
+        public string FelNombre { get; set; }
+        public string FelDireccion { get; set; }
+        public Nullable<bool> EnviadoWs { get; set; }
+        public Nullable<bool> Anulada { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleFactura> DetalleFactura { get; set; }
