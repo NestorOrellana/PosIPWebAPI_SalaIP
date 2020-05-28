@@ -77,7 +77,7 @@ namespace BusinessServices
                     Total = nuevoEncabezado.Total,
                     Estado = nuevoEncabezado.Estado,
                     Nombre = nuevoEncabezado.Nombre,
-                    Direccion = nuevoEncabezado.Direccion
+                    Direccion = nuevoEncabezado.Direccion,
                 };
                 _unitOfWork.RepositorioFacturaE.Insert(encabezado);
                 _unitOfWork.Save();

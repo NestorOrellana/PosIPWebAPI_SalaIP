@@ -19,5 +19,12 @@ namespace BusinessEntities
         public byte EstadoTraslado { get; set; }
         public string TipoPago { get; set; }
         public long NumeroAutorizacion { get; set; }
+        public string FelSerie { get; set; }
+        public string FelNumero { get; set; }
+        public string FelDescripcion { get; set; }
+        public string FelNombre { get; set; }
+        public string FelDireccion { get; set; }
+        public bool EnviadoWs { get; set; }
+        public bool Anulada { get; set; }
     }
 }
