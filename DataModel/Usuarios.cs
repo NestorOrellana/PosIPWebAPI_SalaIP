@@ -27,6 +27,8 @@ namespace DataModel
         public string Nombre { get; set; }
         public long IdUsuario { get; set; }
         public string Usuario { get; set; }
+        public Nullable<System.DateTime> FechaActivacion { get; set; }
+        public Nullable<System.DateTime> FechaInactivacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CajaChica> CajaChica { get; set; }

@@ -25,6 +25,8 @@ namespace DataModel
         public long IdProducto { get; set; }
         public bool Estado { get; set; }
         public Nullable<bool> SeDetalla { get; set; }
+        public Nullable<System.DateTime> FechaActivacion { get; set; }
+        public Nullable<System.DateTime> FechaInactivacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleFactura> DetalleFactura { get; set; }

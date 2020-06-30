@@ -50,7 +50,10 @@ namespace BusinessServices
                     IdSucursal = nuevaSucursal.IdSucursal,
                     Descripcion = nuevaSucursal.Descripcion,
                     CentroSAP = nuevaSucursal.CentroSAP,
-                    Estado = nuevaSucursal.Estado
+                    Estado = nuevaSucursal.Estado,
+                    OficinaVenta = nuevaSucursal.OficinaVenta,
+                    IdEstablecimiento = nuevaSucursal.IdEstablecimiento,
+                    CodigoCliente = nuevaSucursal.CodigoCliente
                 };
                 _unitOfWork.RepositorioSucursal.Insert(sucursal);
                 _unitOfWork.Save();

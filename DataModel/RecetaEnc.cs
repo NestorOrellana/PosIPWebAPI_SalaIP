@@ -25,6 +25,8 @@ namespace DataModel
         public short IdSucursal { get; set; }
         public string descripcion { get; set; }
         public bool estado { get; set; }
+        public Nullable<System.DateTime> FechaActivacion { get; set; }
+        public Nullable<System.DateTime> FechaInactivacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PLU> PLU { get; set; }

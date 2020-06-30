@@ -20,7 +20,7 @@ namespace BusinessServices.Servicios
 
         public IEnumerable<ViewPluEnt> PluPorSucursal(short idSucursal)
         {
-            Func<VistaPLU, Boolean> param = x => { return x.IdSucursal == idSucursal && x.IdEstado ? true : false; };
+            Func<VistaPLU, Boolean> param = x => { return x.IdSucursal == idSucursal ? true : false; };
             var listPlu = _unitOfWork.RepositorioVistaPlu.GetMany(param).ToList();
             if (listPlu.Any())
             {

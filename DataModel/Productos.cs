@@ -34,6 +34,9 @@ namespace DataModel
         public decimal Precio { get; set; }
         public Nullable<byte> Tipo { get; set; }
         public long CodigoSAP { get; set; }
+        public Nullable<byte> Estado { get; set; }
+        public Nullable<System.DateTime> FechaActivacion { get; set; }
+        public Nullable<System.DateTime> FechaInactivacion { get; set; }
     
         public virtual Categorias Categorias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -39,6 +39,8 @@ namespace DataModel
         public string FelDireccion { get; set; }
         public Nullable<bool> EnviadoWs { get; set; }
         public Nullable<bool> Anulada { get; set; }
+        public Nullable<long> CodigoAcceso { get; set; }
+        public string Mensaje { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleFactura> DetalleFactura { get; set; }

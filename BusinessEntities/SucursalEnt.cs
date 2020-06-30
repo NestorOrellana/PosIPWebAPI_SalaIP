@@ -13,5 +13,8 @@ namespace BusinessEntities
         public string Descripcion { get; set; }
         public bool Estado { get; set; }
         public long CentroSAP { get; set; }
+        public int OficinaVenta { get; set; }
+        public long IdEstablecimiento { get; set; }
+        public long CodigoCliente { get; set; }
     }
 }

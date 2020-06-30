@@ -107,6 +107,8 @@
           <Property Name="FelDireccion" Type="varchar" MaxLength="150" />
           <Property Name="EnviadoWs" Type="bit" />
           <Property Name="Anulada" Type="bit" />
+          <Property Name="CodigoAcceso" Type="bigint" />
+          <Property Name="Mensaje" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="MotivosInventario">
           <Key>
@@ -138,6 +140,8 @@
           <Property Name="IdProducto" Type="bigint" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
           <Property Name="SeDetalla" Type="bit" />
+          <Property Name="FechaActivacion" Type="datetime" />
+          <Property Name="FechaInactivacion" Type="datetime" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -149,6 +153,9 @@
           <Property Name="Precio" Type="money" Nullable="false" />
           <Property Name="Tipo" Type="tinyint" />
           <Property Name="CodigoSAP" Type="bigint" Nullable="false" />
+          <Property Name="Estado" Type="tinyint" />
+          <Property Name="FechaActivacion" Type="datetime" />
+          <Property Name="FechaInactivacion" Type="datetime" />
         </EntityType>
         <EntityType Name="RecetaDet">
           <Key>
@@ -168,6 +175,8 @@
           <Property Name="IdSucursal" Type="smallint" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="FechaActivacion" Type="datetime" />
+          <Property Name="FechaInactivacion" Type="datetime" />
         </EntityType>
         <EntityType Name="RegistroInventario">
           <Key>
@@ -246,6 +255,8 @@
           <Property Name="CentroSAP" Type="bigint" Nullable="false" />
           <Property Name="IdSucursal" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OficinaVenta" Type="int" Nullable="false" />
+          <Property Name="IdEstablecimiento" Type="bigint" />
+          <Property Name="CodigoCliente" Type="bigint" />
         </EntityType>
         <EntityType Name="TipoUsuario">
           <Key>
@@ -266,6 +277,8 @@
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
           <Property Name="IdUsuario" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Usuario" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="FechaActivacion" Type="datetime" />
+          <Property Name="FechaInactivacion" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ComercializacionDIP.PosIP.WebServicePath' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1084,6 +1097,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Name="FelDireccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="EnviadoWs" Type="Boolean" />
           <Property Name="Anulada" Type="Boolean" />
+          <Property Name="CodigoAcceso" Type="Int64" />
+          <Property Name="Mensaje" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MotivosInventario">
           <Key>
@@ -1113,6 +1128,9 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <NavigationProperty Name="PLU" Relationship="ComercializacionDIPModel.FK__PLU__IdProducto__5972B0A0" FromRole="Productos" ToRole="PLU1" />
           <NavigationProperty Name="RecetaDet" Relationship="ComercializacionDIPModel.FK__RecetaDet__IdPro__54ADFB83" FromRole="Productos" ToRole="RecetaDet" />
           <NavigationProperty Name="PedidosRecibidos" Relationship="ComercializacionDIPModel.FK__PedidosRe__IdPro__22427747" FromRole="Productos" ToRole="PedidosRecibidos" />
+          <Property Name="Estado" Type="Byte" />
+          <Property Name="FechaActivacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaInactivacion" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="RegistroInventario">
           <Key>
@@ -1193,6 +1211,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Name="OficinaVenta" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RegistroSincronizacion" Relationship="ComercializacionDIPModel.FK__RegistroS__IdSuc__41F02CCA" FromRole="Sucursal" ToRole="RegistroSincronizacion" />
           <NavigationProperty Name="PedidosRecibidos" Relationship="ComercializacionDIPModel.FK__PedidosRe__Estad__214E530E" FromRole="Sucursal" ToRole="PedidosRecibidos" />
+          <Property Name="IdEstablecimiento" Type="Int64" />
+          <Property Name="CodigoCliente" Type="Int64" />
         </EntityType>
         <EntityType Name="TipoUsuario">
           <Key>
@@ -1217,6 +1237,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <NavigationProperty Name="CajaChica" Relationship="Self.FK__CajaChica__IdUsu__36297463" FromRole="Usuarios" ToRole="CajaChica" />
           <NavigationProperty Name="Sucursal" Relationship="Self.FK__Usuarios__IdSucu__0D275ED0" FromRole="Usuarios" ToRole="Sucursal" />
           <NavigationProperty Name="TipoUsuario" Relationship="Self.FK__Usuarios__IdTipo__02A9D05D" FromRole="Usuarios" ToRole="TipoUsuario" />
+          <Property Name="FechaActivacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaInactivacion" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="VistaSeriesFacturas">
           <Key>
@@ -1694,6 +1716,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <NavigationProperty Name="Productos" Relationship="ComercializacionDIPModel.FK__PLU__IdProducto__5972B0A0" FromRole="PLU1" ToRole="Productos" />
           <NavigationProperty Name="RecetaEnc" Relationship="ComercializacionDIPModel.FK__PLU__IdRecetaEnc__587E8C67" FromRole="PLU1" ToRole="RecetaEnc" />
           <Property Name="SeDetalla" Type="Boolean" />
+          <Property Name="FechaActivacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaInactivacion" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="RecetaDet">
           <Key>
@@ -1718,6 +1742,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <NavigationProperty Name="RecetaDet" Relationship="ComercializacionDIPModel.FK__RecetaDet__IdRec__55A21FBC" FromRole="RecetaEnc" ToRole="RecetaDet" />
           <NavigationProperty Name="Sucursal" Relationship="ComercializacionDIPModel.FK__RecetaEnc__IdSuc__51D18ED8" FromRole="RecetaEnc" ToRole="Sucursal" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaActivacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaInactivacion" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK__DetalleFa__IdPlu__5C4F1D4B">
           <End Type="ComercializacionDIPModel.PLU" Role="PLU1" Multiplicity="1" />
@@ -1993,6 +2019,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="FacturaE">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.FacturaE">
               <MappingFragment StoreEntitySet="FacturaE">
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="CodigoAcceso" ColumnName="CodigoAcceso" />
                 <ScalarProperty Name="Anulada" ColumnName="Anulada" />
                 <ScalarProperty Name="EnviadoWs" ColumnName="EnviadoWs" />
                 <ScalarProperty Name="FelDireccion" ColumnName="FelDireccion" />
@@ -2027,6 +2055,9 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="Productos">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.Productos">
               <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="FechaInactivacion" ColumnName="FechaInactivacion" />
+                <ScalarProperty Name="FechaActivacion" ColumnName="FechaActivacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
                 <ScalarProperty Name="UnidadMedida" ColumnName="UnidadMedida" />
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
@@ -2100,6 +2131,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="Sucursal">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.Sucursal">
               <MappingFragment StoreEntitySet="Sucursal">
+                <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
+                <ScalarProperty Name="IdEstablecimiento" ColumnName="IdEstablecimiento" />
                 <ScalarProperty Name="OficinaVenta" ColumnName="OficinaVenta" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
@@ -2120,6 +2153,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="FechaInactivacion" ColumnName="FechaInactivacion" />
+                <ScalarProperty Name="FechaActivacion" ColumnName="FechaActivacion" />
                 <ScalarProperty Name="PIN" ColumnName="PIN" />
                 <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
                 <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
@@ -2228,6 +2263,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="PLUSet">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.PLU">
               <MappingFragment StoreEntitySet="PLU">
+                <ScalarProperty Name="FechaInactivacion" ColumnName="FechaInactivacion" />
+                <ScalarProperty Name="FechaActivacion" ColumnName="FechaActivacion" />
                 <ScalarProperty Name="SeDetalla" ColumnName="SeDetalla" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
@@ -2250,6 +2287,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="RecetaEnc">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.RecetaEnc">
               <MappingFragment StoreEntitySet="RecetaEnc">
+                <ScalarProperty Name="FechaInactivacion" ColumnName="FechaInactivacion" />
+                <ScalarProperty Name="FechaActivacion" ColumnName="FechaActivacion" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
