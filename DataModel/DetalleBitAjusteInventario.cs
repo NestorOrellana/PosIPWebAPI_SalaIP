@@ -18,7 +18,7 @@ namespace DataModel
         public Nullable<int> IdAjuste { get; set; }
         public string Descripcion { get; set; }
         public long IdProducto { get; set; }
-        public decimal Cantidad { get; set; }
+        public Nullable<decimal> Cantidad { get; set; }
         public short Operacion { get; set; }
     
         public virtual BitAjusteInventario BitAjusteInventario { get; set; }

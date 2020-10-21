@@ -48,7 +48,7 @@
           <Property Name="IdAjuste" Type="int" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="IdProducto" Type="bigint" Nullable="false" />
-          <Property Name="Cantidad" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Cantidad" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Operacion" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="DetalleFactura">
@@ -130,6 +130,7 @@
           <Property Name="CantidadConfirmada" Type="float" Nullable="false" />
           <Property Name="Estado" Type="tinyint" Nullable="false" />
           <Property Name="IdPedido" Type="bigint" Nullable="false" />
+          <Property Name="FechaHoraAprobacion" Type="datetime" />
         </EntityType>
         <EntityType Name="PLU">
           <Key>
@@ -156,6 +157,7 @@
           <Property Name="Estado" Type="tinyint" />
           <Property Name="FechaActivacion" Type="datetime" />
           <Property Name="FechaInactivacion" Type="datetime" />
+          <Property Name="EsServicio" Type="bit" />
         </EntityType>
         <EntityType Name="RecetaDet">
           <Key>
@@ -557,6 +559,18 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__PedidosRe__IdPro__76F1324A">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="PedidosRecibidos">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__PedidosRe__IdSuc__57AD911B">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
@@ -570,6 +584,18 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__PedidosRe__IdSuc__64136800">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="PedidosRecibidos">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PedidosRe__IdSuc__75FD0E11">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -912,11 +938,19 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             <End Role="Productos" EntitySet="Productos" />
             <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
           </AssociationSet>
+          <AssociationSet Name="FK__PedidosRe__IdPro__76F1324A" Association="Self.FK__PedidosRe__IdPro__76F1324A">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
+          </AssociationSet>
           <AssociationSet Name="FK__PedidosRe__IdSuc__57AD911B" Association="Self.FK__PedidosRe__IdSuc__57AD911B">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
           </AssociationSet>
           <AssociationSet Name="FK__PedidosRe__IdSuc__64136800" Association="Self.FK__PedidosRe__IdSuc__64136800">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PedidosRe__IdSuc__75FD0E11" Association="Self.FK__PedidosRe__IdSuc__75FD0E11">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
           </AssociationSet>
@@ -1026,7 +1060,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Name="IdAjuste" Type="Int32" />
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdProducto" Type="Int64" Nullable="false" />
-          <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Operacion" Type="Int16" Nullable="false" />
           <NavigationProperty Name="BitAjusteInventario" Relationship="Self.FK__DetalleBi__IdAju__0C9D4EEB" FromRole="DetalleBitAjusteInventario" ToRole="BitAjusteInventario" />
           <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleBi__IdPro__3258E37F" FromRole="DetalleBitAjusteInventario" ToRole="Productos" />
@@ -1131,6 +1165,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Name="Estado" Type="Byte" />
           <Property Name="FechaActivacion" Type="DateTime" Precision="3" />
           <Property Name="FechaInactivacion" Type="DateTime" Precision="3" />
+          <Property Name="EsServicio" Type="Boolean" />
         </EntityType>
         <EntityType Name="RegistroInventario">
           <Key>
@@ -1607,9 +1642,6 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             <Parameter Name="sucursal" Mode="In" Type="Int32" />
             <Parameter Name="user" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="WsGetPedidosHoyJSON" ReturnType="Collection(ComercializacionDIPModel.WsGetPedidosHoyJSON_Result)">
-          <Parameter Name="CodCliente" Mode="In" Type="Int64" />
-          </FunctionImport>
           <EntitySet Name="PLUSet" EntityType="ComercializacionDIPModel.PLU" />
           <EntitySet Name="RecetaDet" EntityType="ComercializacionDIPModel.RecetaDet" />
           <EntitySet Name="RecetaEnc" EntityType="ComercializacionDIPModel.RecetaEnc" />
@@ -1658,6 +1690,9 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             <End Role="Productos" EntitySet="Productos" />
             <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
           </AssociationSet>
+          <FunctionImport Name="WsGetPedidosHoyJSON" ReturnType="Collection(ComercializacionDIPModel.WsGetPedidosHoyJSON_Result1)">
+            <Parameter Name="CodCliente" Mode="In" Type="Int64" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SPObtenerProductos_Result">
           <Property Type="Int64" Name="idProducto" Nullable="false" />
@@ -1899,6 +1934,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Name="IdPedido" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Sucursal" Relationship="ComercializacionDIPModel.FK__PedidosRe__Estad__214E530E" FromRole="PedidosRecibidos" ToRole="Sucursal" />
           <NavigationProperty Name="Productos" Relationship="ComercializacionDIPModel.FK__PedidosRe__IdPro__22427747" FromRole="PedidosRecibidos" ToRole="Productos" />
+          <Property Name="FechaHoraAprobacion" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK__PedidosRe__Estad__214E530E">
           <End Type="ComercializacionDIPModel.Sucursal" Role="Sucursal" Multiplicity="1" />
@@ -1924,6 +1960,16 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="WsGetPedidosHoyJSON_Result1">
+          <Property Type="Int64" Name="IdPedido" Nullable="true" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" />
+          <Property Type="Int64" Name="idproductos" Nullable="false" />
+          <Property Type="Int16" Name="UnidadesPedido" Nullable="false" />
+          <Property Type="Double" Name="PesoPedido" Nullable="false" />
+          <Property Type="Double" Name="PrecioUnitario" Nullable="false" />
+          <Property Type="Int64" Name="Numerolinea" Nullable="true" />
+          <Property Type="Int32" Name="UnidadFacturacion" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2055,6 +2101,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="Productos">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.Productos">
               <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="EsServicio" ColumnName="EsServicio" />
                 <ScalarProperty Name="FechaInactivacion" ColumnName="FechaInactivacion" />
                 <ScalarProperty Name="FechaActivacion" ColumnName="FechaActivacion" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
@@ -2246,20 +2293,6 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPUpdateCorrelativo" FunctionName="ComercializacionDIPModel.Store.SPUpdateCorrelativo" />
           <FunctionImportMapping FunctionImportName="TrasladoFacturas" FunctionName="ComercializacionDIPModel.Store.TrasladoFacturas" />
-          <FunctionImportMapping FunctionImportName="WsGetPedidosHoyJSON" FunctionName="ComercializacionDIPModel.Store.WsGetPedidosHoyJSON">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ComercializacionDIPModel.WsGetPedidosHoyJSON_Result">
-                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
-                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
-                <ScalarProperty Name="IdProductos" ColumnName="IdProductos" />
-                <ScalarProperty Name="UnidadesPedido" ColumnName="UnidadesPedido" />
-                <ScalarProperty Name="PesoPedido" ColumnName="PesoPedido" />
-                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
-                <ScalarProperty Name="NumeroLinea" ColumnName="NumeroLinea" />
-                <ScalarProperty Name="UnidadFacturacion" ColumnName="UnidadFacturacion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="PLUSet">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.PLU">
               <MappingFragment StoreEntitySet="PLU">
@@ -2346,6 +2379,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="PedidosRecibidos">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.PedidosRecibidos">
               <MappingFragment StoreEntitySet="PedidosRecibidos">
+                <ScalarProperty Name="FechaHoraAprobacion" ColumnName="FechaHoraAprobacion" />
                 <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="CantidadConfirmada" ColumnName="CantidadConfirmada" />
@@ -2357,6 +2391,20 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="WsGetPedidosHoyJSON" FunctionName="ComercializacionDIPModel.Store.WsGetPedidosHoyJSON">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ComercializacionDIPModel.WsGetPedidosHoyJSON_Result1">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="idproductos" ColumnName="idproductos" />
+                <ScalarProperty Name="UnidadesPedido" ColumnName="UnidadesPedido" />
+                <ScalarProperty Name="PesoPedido" ColumnName="PesoPedido" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Numerolinea" ColumnName="Numerolinea" />
+                <ScalarProperty Name="UnidadFacturacion" ColumnName="UnidadFacturacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -46,7 +46,8 @@ namespace WebApiPosIp.Controllers
                     CantidadEnviada = detallePedido.CantidadEnviada,
                     CantidadConfirmada = detallePedido.CantidadConfirmada,
                     Estado = detallePedido.Estado,
-                    IdPedido = detallePedido.IdPedido
+                    IdPedido = detallePedido.IdPedido,
+                    FechaHoraAprobacion = detallePedido.FechaHoraAprobacion
                 };
 
                 itemsMappedList.Add(mappedItem);

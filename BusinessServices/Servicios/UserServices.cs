@@ -134,5 +134,25 @@ namespace BusinessServices
 
             return usuario != null ? true : false;
         }
+
+        public bool ValidateAdminUser(string usuario, string password)
+        {
+            Func<Usuarios, bool> param = x =>
+            {
+                if (!string.IsNullOrEmpty(usuario) && !string.IsNullOrEmpty(password))
+                {
+                    if (usuario == x.Usuario && password == x.PIN.ToString() && x.Estado && x.IdTipoUsuario == 20)
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                    return false;
+            };
+
+            var user = _unitOfWork.RepositorioUsuario.Get(param);
+
+            return user != null ? true : false;
+        }
     }
 }

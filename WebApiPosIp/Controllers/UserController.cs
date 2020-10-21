@@ -93,6 +93,13 @@ namespace WebApiPosIp.Controllers
         {
             return _userServices.ValidateIfAdmin(userPass);
         }
-    }
 
+        [EnableQuery]
+        [Route("ValidarUsuarioAdministrador")]
+        [HttpPost]
+        public bool ValidateAdminUser(string usuario, string password)
+        {
+            return _userServices.ValidateAdminUser(usuario, password);
+        }
+    } 
 }

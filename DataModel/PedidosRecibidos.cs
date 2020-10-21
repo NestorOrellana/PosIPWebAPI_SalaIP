@@ -22,6 +22,7 @@ namespace DataModel
         public double CantidadConfirmada { get; set; }
         public byte Estado { get; set; }
         public long IdPedido { get; set; }
+        public Nullable<System.DateTime> FechaHoraAprobacion { get; set; }
     
         public virtual Sucursal Sucursal { get; set; }
         public virtual Productos Productos { get; set; }

@@ -257,6 +257,79 @@ namespace WebApiPosIp.Controllers
             return Ok();
         }
 
+        [EnableQuery]
+        [Route("RegistroPagoPendienteTarjeta")]
+        [ResponseType(typeof(FacturaE))]
+        public IHttpActionResult RegistrarPagoPendienteTarjeta(FacturaE factura)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
+            try
+            {
+                var facturaUpdate = db.FacturaE.Where(x => x.Correlativo == factura.Correlativo).Where(x => x.NumeroSerie == factura.NumeroSerie).Where(x => x.IdSucursal == factura.IdSucursal).FirstOrDefault();
+                if (facturaUpdate != null)
+                {
+                    facturaUpdate.NumeroAutorizacion = factura.NumeroAutorizacion;
+                    db.Entry(facturaUpdate).State = EntityState.Modified;
+
+                    db.SaveChanges();
+                }
+                else
+                    throw new Exception("No se encontro la factura" +
+                        "");
+
+                //factura.EstadoSinc = 1;
+
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [EnableQuery]
+        [Route("ValidarFacturasAnuladas")]
+        [ResponseType(typeof(FacturaE))]
+        public IHttpActionResult ConfirmarFacturasAnuladas(List<FacturaE> listaFacturasAnuladas)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
+            try
+            {
+                foreach (var factura in listaFacturasAnuladas)
+                {
+                    var facturaUpdate = db.FacturaE.Where(x => x.Correlativo == factura.Correlativo).Where(x => x.NumeroSerie == factura.NumeroSerie).Where(x => x.IdSucursal == factura.IdSucursal).FirstOrDefault();
+                    if (facturaUpdate != null)
+                    {
+                        facturaUpdate.Estado = factura.Estado;
+                        db.Entry(facturaUpdate).State = EntityState.Modified;
+                    }
+                    else
+                        throw new Exception("No se encontro la factura");
+                }
+
+                db.SaveChanges();
+                //factura.EstadoSinc = 1;
+
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

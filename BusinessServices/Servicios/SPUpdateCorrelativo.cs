@@ -16,9 +16,9 @@ namespace BusinessServices.Servicios
         //Retorna una lista de productos registrados filtrados por Categoria
         public int UpdateCorrelativo(string numeroSerie,int idSucursal, long correlativo, long numeroDel, long numeroAl, short idSerie)
         {
-            var context = new ComercializacionDIPEntities();
-            int pedido = 0;
-            if(correlativo == numeroAl)
+            //var context = new ComercializacionDIPEntities();
+            int pedido = 1;
+            /*if(correlativo == numeroAl)
             {
                 pedido = context.SPUpdateCorrelativo(numeroSerie, idSucursal, correlativo - 1, idSerie);
                 pedido = 1;
@@ -32,7 +32,7 @@ namespace BusinessServices.Servicios
             {
                 context.SPInactivarCorrelativo(numeroSerie, idSucursal);
                 pedido = 2;
-            }
+            }*/
             return pedido;
         }
     }

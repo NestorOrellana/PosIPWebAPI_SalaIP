@@ -96,15 +96,6 @@ namespace DataModel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TrasladoFacturas", fechaParameter, sucursalParameter, userParameter);
         }
     
-        public virtual ObjectResult<WsGetPedidosHoyJSON_Result> WsGetPedidosHoyJSON(Nullable<long> codCliente)
-        {
-            var codClienteParameter = codCliente.HasValue ?
-                new ObjectParameter("CodCliente", codCliente) :
-                new ObjectParameter("CodCliente", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WsGetPedidosHoyJSON_Result>("WsGetPedidosHoyJSON", codClienteParameter);
-        }
-    
         public virtual int SPInactivarCorrelativo(string numeroSerie, Nullable<int> idSucursal)
         {
             var numeroSerieParameter = numeroSerie != null ?
@@ -116,6 +107,15 @@ namespace DataModel
                 new ObjectParameter("IdSucursal", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPInactivarCorrelativo", numeroSerieParameter, idSucursalParameter);
+        }
+    
+        public virtual ObjectResult<WsGetPedidosHoyJSON_Result1> WsGetPedidosHoyJSON(Nullable<long> codCliente)
+        {
+            var codClienteParameter = codCliente.HasValue ?
+                new ObjectParameter("CodCliente", codCliente) :
+                new ObjectParameter("CodCliente", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WsGetPedidosHoyJSON_Result1>("WsGetPedidosHoyJSON", codClienteParameter);
         }
     }
 }

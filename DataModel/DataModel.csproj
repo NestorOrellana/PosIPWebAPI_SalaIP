@@ -162,6 +162,9 @@
     <Compile Include="WsGetPedidosHoyJSON_Result.cs">
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="WsGetPedidosHoyJSON_Result1.cs">
+      <DependentUpon>WebApiDataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">

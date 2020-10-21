@@ -16,6 +16,7 @@ namespace BusinessEntities
         public double CantidadConfirmada { get; set; }
         public byte Estado { get; set; }
         public long IdPedido { get; set; }
+        public DateTime FechaHoraAprobacion { get; set; }
 
         public PedidosRecibidosEnt()
         {

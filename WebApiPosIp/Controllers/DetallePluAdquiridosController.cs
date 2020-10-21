@@ -117,7 +117,7 @@ namespace WebApiPosIp.Controllers
                 db.SaveChanges();
                 return Ok();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Conflict();
             }

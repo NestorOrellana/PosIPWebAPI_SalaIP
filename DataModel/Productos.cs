@@ -37,6 +37,7 @@ namespace DataModel
         public Nullable<byte> Estado { get; set; }
         public Nullable<System.DateTime> FechaActivacion { get; set; }
         public Nullable<System.DateTime> FechaInactivacion { get; set; }
+        public Nullable<bool> EsServicio { get; set; }
     
         public virtual Categorias Categorias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
