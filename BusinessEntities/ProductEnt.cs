@@ -19,5 +19,6 @@ namespace BusinessEntities
         public byte Tipo { get; set; }
         public long CodigoSAP { get; set; }
         public long IdProducto { get; set; }
+        public bool EsServicio { get; set; }
     }
 }

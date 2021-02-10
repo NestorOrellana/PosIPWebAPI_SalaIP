@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="ComercializacionDIPModel.DetallePluAdquirido" Width="1.5" PointX="10.5" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ComercializacionDIPModel.FacturaE" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ComercializacionDIPModel.MotivosInventario" Width="1.5" PointX="11" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ComercializacionDIPModel.Productos" Width="1.5" PointX="2.5" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ComercializacionDIPModel.RegistroInventario" Width="1.5" PointX="3" PointY="22" IsExpanded="true" />
         <EntityTypeShape EntityType="ComercializacionDIPModel.Series" Width="1.5" PointX="5.25" PointY="23.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ComercializacionDIPModel.Sucursal" Width="1.5" PointX="0.5" PointY="8.25" IsExpanded="true" />
@@ -25,16 +24,9 @@
         <AssociationConnector Association="ComercializacionDIPModel.FK__DetalleBi__IdAju__0C9D4EEB" ManuallyRouted="false" />
         <AssociationConnector Association="ComercializacionDIPModel.FK__CajaChica__IdSuc__371D989C" ManuallyRouted="false" />
         <AssociationConnector Association="ComercializacionDIPModel.FK__CajaChica__IdUsu__36297463" ManuallyRouted="false" />
-        <AssociationConnector Association="ComercializacionDIPModel.FK__Productos__IdCat__12E03826" ManuallyRouted="false" />
-        <AssociationConnector Association="ComercializacionDIPModel.FK__Conversio__IdPro__28CF7945" ManuallyRouted="false" />
-        <AssociationConnector Association="ComercializacionDIPModel.FK__Conversio__IdPro__29C39D7E" ManuallyRouted="false" />
-        <AssociationConnector Association="ComercializacionDIPModel.FK__DetalleBi__IdPro__3258E37F" ManuallyRouted="false" />
         <AssociationConnector Association="ComercializacionDIPModel.Fk_detalleProducto" ManuallyRouted="false" />
         <AssociationConnector Association="ComercializacionDIPModel.Fk_FacturaE" ManuallyRouted="false" />
-        <AssociationConnector Association="ComercializacionDIPModel.FK__DetalleIn__IdPro__2CA00A29" ManuallyRouted="false" />
-        <AssociationConnector Association="ComercializacionDIPModel.FK__DetalleIn__IdPro__30709B0D" ManuallyRouted="false" />
         <AssociationConnector Association="ComercializacionDIPModel.FK__DetalleIn__IdReg__0B5424F7" ManuallyRouted="false" />
-        <AssociationConnector Association="ComercializacionDIPModel.FK__DetallePl__IdPro__2F7C76D4" ManuallyRouted="false" />
         <AssociationConnector Association="ComercializacionDIPModel.FK__FacturaE__IdSucu__2AB7C1B7" ManuallyRouted="false" />
         <AssociationConnector Association="ComercializacionDIPModel.FK__RegistroI__IdSuc__0F0FA742" ManuallyRouted="false" />
         <AssociationConnector Association="ComercializacionDIPModel.FK__Series__idSucurs__0E1B8309" ManuallyRouted="false" />
@@ -44,9 +36,7 @@
         <EntityTypeShape EntityType="ComercializacionDIPModel.RecetaDet" Width="1.5" PointX="4" PointY="7.125" />
         <EntityTypeShape EntityType="ComercializacionDIPModel.RecetaEnc" Width="1.5" PointX="6.125" PointY="7.375" />
         <AssociationConnector Association="ComercializacionDIPModel.FK__DetalleFa__IdPlu__5C4F1D4B" />
-        <AssociationConnector Association="ComercializacionDIPModel.FK__PLU__IdProducto__5972B0A0" />
         <AssociationConnector Association="ComercializacionDIPModel.FK__PLU__IdRecetaEnc__587E8C67" />
-        <AssociationConnector Association="ComercializacionDIPModel.FK__RecetaDet__IdPro__54ADFB83" />
         <AssociationConnector Association="ComercializacionDIPModel.FK__RecetaDet__IdRec__55A21FBC" />
         <AssociationConnector Association="ComercializacionDIPModel.FK__RecetaEnc__IdSuc__51D18ED8" />
         <EntityTypeShape EntityType="ComercializacionDIPModel.VistaPLU" Width="1.5" PointX="10.375" PointY="5.75" />
@@ -56,7 +46,17 @@
         <AssociationConnector Association="ComercializacionDIPModel.FK__RegistroS__IdSuc__41F02CCA" />
         <EntityTypeShape EntityType="ComercializacionDIPModel.PedidosRecibidos" Width="1.5" PointX="5.75" PointY="17.625" />
         <AssociationConnector Association="ComercializacionDIPModel.FK__PedidosRe__Estad__214E530E" />
-        <AssociationConnector Association="ComercializacionDIPModel.FK__PedidosRe__IdPro__22427747" />
+        <EntityTypeShape EntityType="ComercializacionDIPModel.Productos" Width="1.5" PointX="2.5" PointY="11.125" />
+        <AssociationConnector Association="ComercializacionDIPModel.FK__Productos__IdCat__7F317290" />
+        <AssociationConnector Association="ComercializacionDIPModel.FK__Conversio__IdPro__6FEF2F00" />
+        <AssociationConnector Association="ComercializacionDIPModel.FK__Conversio__IdPro__70E35339" />
+        <AssociationConnector Association="ComercializacionDIPModel.FK__DetalleBi__IdPro__72CB9BAB" />
+        <AssociationConnector Association="ComercializacionDIPModel.FK__DetalleIn__IdPro__75A80856" />
+        <AssociationConnector Association="ComercializacionDIPModel.FK__DetalleIn__IdPro__769C2C8F" />
+        <AssociationConnector Association="ComercializacionDIPModel.FK__DetallePl__IdPro__78847501" />
+        <AssociationConnector Association="ComercializacionDIPModel.FK__PedidosRe__IdPro__7C5505E5" />
+        <AssociationConnector Association="ComercializacionDIPModel.FK__PLU__IdProducto__7D492A1E" />
+        <AssociationConnector Association="ComercializacionDIPModel.FK__RecetaDet__IdPro__002596C9" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -30,7 +30,7 @@ namespace DataModel
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleFactura> DetalleFactura { get; set; }
-        public virtual Productos Productos { get; set; }
         public virtual RecetaEnc RecetaEnc { get; set; }
+        public virtual Productos Productos { get; set; }
     }
 }

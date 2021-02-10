@@ -37,7 +37,6 @@ namespace DataModel
         public virtual DbSet<DetallePluAdquirido> DetallePluAdquirido { get; set; }
         public virtual DbSet<FacturaE> FacturaE { get; set; }
         public virtual DbSet<MotivosInventario> MotivosInventario { get; set; }
-        public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<RegistroInventario> RegistroInventario { get; set; }
         public virtual DbSet<Series> Series { get; set; }
         public virtual DbSet<Sucursal> Sucursal { get; set; }
@@ -52,6 +51,7 @@ namespace DataModel
         public virtual DbSet<WebServicePath> WebServicePath { get; set; }
         public virtual DbSet<RegistroSincronizacion> RegistroSincronizacion { get; set; }
         public virtual DbSet<PedidosRecibidos> PedidosRecibidos { get; set; }
+        public virtual DbSet<Productos> Productos { get; set; }
     
         public virtual ObjectResult<SPObtenerProductos_Result> SPObtenerProductos()
         {

@@ -312,6 +312,7 @@ namespace WebApiPosIp.Controllers
                     if (facturaUpdate != null)
                     {
                         facturaUpdate.Estado = factura.Estado;
+                        facturaUpdate.Anulada = true;
                         db.Entry(facturaUpdate).State = EntityState.Modified;
                     }
                     else

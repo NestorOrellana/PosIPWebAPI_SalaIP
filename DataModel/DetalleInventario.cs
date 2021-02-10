@@ -19,8 +19,8 @@ namespace DataModel
         public Nullable<double> Cantidad { get; set; }
         public int IdRegistro { get; set; }
     
+        public virtual RegistroInventario RegistroInventario { get; set; }
         public virtual Productos Productos { get; set; }
         public virtual Productos Productos1 { get; set; }
-        public virtual RegistroInventario RegistroInventario { get; set; }
     }
 }

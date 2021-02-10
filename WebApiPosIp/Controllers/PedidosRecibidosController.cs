@@ -59,7 +59,7 @@ namespace WebApiPosIp.Controllers
             {
                 db.SaveChanges();
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 var problema = Conflict();
 

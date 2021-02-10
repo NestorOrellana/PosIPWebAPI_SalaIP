@@ -20,7 +20,7 @@ namespace DataModel
         public decimal precio { get; set; }
         public decimal cantidad { get; set; }
     
-        public virtual Productos Productos { get; set; }
         public virtual RecetaEnc RecetaEnc { get; set; }
+        public virtual Productos Productos { get; set; }
     }
 }

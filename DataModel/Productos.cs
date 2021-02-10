@@ -23,9 +23,9 @@ namespace DataModel
             this.DetalleInventario = new HashSet<DetalleInventario>();
             this.DetalleInventario1 = new HashSet<DetalleInventario>();
             this.DetallePluAdquirido = new HashSet<DetallePluAdquirido>();
+            this.PedidosRecibidos = new HashSet<PedidosRecibidos>();
             this.PLU = new HashSet<PLU>();
             this.RecetaDet = new HashSet<RecetaDet>();
-            this.PedidosRecibidos = new HashSet<PedidosRecibidos>();
         }
     
         public string NombreCompleto { get; set; }
@@ -53,10 +53,10 @@ namespace DataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetallePluAdquirido> DetallePluAdquirido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PedidosRecibidos> PedidosRecibidos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PLU> PLU { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RecetaDet> RecetaDet { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PedidosRecibidos> PedidosRecibidos { get; set; }
     }
 }

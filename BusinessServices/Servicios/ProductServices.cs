@@ -90,7 +90,8 @@ namespace BusinessServices
                     IdCategoria = nuevoProducto.IdCategoria,
                     Precio = nuevoProducto.Precio,
                     Tipo = nuevoProducto.Tipo,
-                    CodigoSAP = nuevoProducto.CodigoSAP
+                    CodigoSAP = nuevoProducto.CodigoSAP,
+                    EsServicio = nuevoProducto.EsServicio
                 };
                 _unitOfWork.RepositorioProducto.Insert(producto);
                 _unitOfWork.Save();
