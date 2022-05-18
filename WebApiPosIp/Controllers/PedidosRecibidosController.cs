@@ -36,27 +36,27 @@ namespace WebApiPosIp.Controllers
                 return BadRequest(ModelState);
             }
 
-            foreach (var detallePedido in detallesPedido)
-            {
-                var mappedItem = new PedidosRecibidos()
-                {
-                    IdSucursal = detallePedido.IdSucursal,
-                    IdProducto = detallePedido.IdProducto,
-                    FechaEntrega = detallePedido.FechaEntrega,
-                    CantidadEnviada = detallePedido.CantidadEnviada,
-                    CantidadConfirmada = detallePedido.CantidadConfirmada,
-                    Estado = detallePedido.Estado,
-                    IdPedido = detallePedido.IdPedido,
-                    FechaHoraAprobacion = detallePedido.FechaHoraAprobacion
-                };
-
-                itemsMappedList.Add(mappedItem);
-            }
-
-            db.PedidosRecibidos.AddRange(itemsMappedList);
-
             try
             {
+                foreach (var detallePedido in detallesPedido)
+                {
+                    var mappedItem = new PedidosRecibidos()
+                    {
+                        IdSucursal = detallePedido.IdSucursal,
+                        IdProducto = detallePedido.IdProducto,
+                        FechaEntrega = detallePedido.FechaEntrega,
+                        CantidadEnviada = detallePedido.CantidadEnviada,
+                        CantidadConfirmada = detallePedido.CantidadConfirmada,
+                        Estado = detallePedido.Estado,
+                        IdPedido = detallePedido.IdPedido,
+                        FechaHoraAprobacion = detallePedido.FechaHoraAprobacion
+                    };
+
+                    itemsMappedList.Add(mappedItem);
+                }
+
+                db.PedidosRecibidos.AddRange(itemsMappedList);
+
                 db.SaveChanges();
             }
             catch(Exception ex)

@@ -32,6 +32,7 @@ namespace BusinessServices
             registerComponent.RegisterType<IConversionesProductos, ServiciosConversiones>();
             registerComponent.RegisterType<IRegistroSincServices, RegistroSincServices>();
             registerComponent.RegisterType<IPedidosRecibidosServices, PedidosRecibidosServices>();
+            registerComponent.RegisterType<IMovimientoInventario, MovimientoInventarioServices>();
         }
     }
 }

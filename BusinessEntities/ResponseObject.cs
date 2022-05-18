@@ -10,6 +10,7 @@ namespace BusinessEntities
     {
         private string responseMessage;
         private object response;
+        private bool result;
 
         public string ResponseMessage
         {
@@ -21,6 +22,12 @@ namespace BusinessEntities
         {
             get { return response; }
             set { response = value; }
+        }
+
+        public bool Result
+        {
+            get { return result; }
+            set { result = value; }
         }
 
         public ResponseObject()

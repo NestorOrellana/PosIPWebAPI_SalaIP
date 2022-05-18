@@ -26,6 +26,9 @@ namespace DataModel
             this.PedidosRecibidos = new HashSet<PedidosRecibidos>();
             this.PLU = new HashSet<PLU>();
             this.RecetaDet = new HashSet<RecetaDet>();
+            this.MovimientoInventario = new HashSet<MovimientoInventario>();
+            this.MovimientoInventario1 = new HashSet<MovimientoInventario>();
+            this.MovimientoInventario2 = new HashSet<MovimientoInventario>();
         }
     
         public string NombreCompleto { get; set; }
@@ -38,6 +41,7 @@ namespace DataModel
         public Nullable<System.DateTime> FechaActivacion { get; set; }
         public Nullable<System.DateTime> FechaInactivacion { get; set; }
         public Nullable<bool> EsServicio { get; set; }
+        public Nullable<bool> AceptaMerma { get; set; }
     
         public virtual Categorias Categorias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -58,5 +62,11 @@ namespace DataModel
         public virtual ICollection<PLU> PLU { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RecetaDet> RecetaDet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MovimientoInventario> MovimientoInventario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MovimientoInventario> MovimientoInventario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MovimientoInventario> MovimientoInventario2 { get; set; }
     }
 }

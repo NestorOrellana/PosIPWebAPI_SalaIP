@@ -93,6 +93,9 @@
     <Compile Include="MotivosInventario.cs">
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MovimientoInventario.cs">
+      <DependentUpon>WebApiDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PedidosRecibidos.cs">
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
@@ -122,6 +125,9 @@
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Sucursal.cs">
+      <DependentUpon>WebApiDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoMovimiento.cs">
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoUsuario.cs">
@@ -160,9 +166,6 @@
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="WsGetPedidosHoyJSON_Result.cs">
-      <DependentUpon>WebApiDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WsGetPedidosHoyJSON_Result1.cs">
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

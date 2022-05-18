@@ -63,6 +63,7 @@
     <Compile Include="Interfaces de Servicios\IConversionesProductos.cs" />
     <Compile Include="Interfaces de Servicios\IDetalleFacturaServices.cs" />
     <Compile Include="Interfaces de Servicios\IDetallePluAdServices.cs" />
+    <Compile Include="Interfaces de Servicios\IMovimientoInventario.cs" />
     <Compile Include="Interfaces de Servicios\IPedidosRecibidosServices.cs" />
     <Compile Include="Interfaces de Servicios\IRegistroSincServices.cs" />
     <Compile Include="Interfaces de Servicios\ISPGetPedidosServices.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Interfaces de Servicios\ITrasladoFacturas.cs" />
     <Compile Include="Interfaces de Servicios\IViewPluServices.cs" />
     <Compile Include="Interfaces de Servicios\IViewRecetaServices.cs" />
+    <Compile Include="Servicios\MovimientoInventarioServices.cs" />
     <Compile Include="Servicios\PedidosRecibidosServices.cs" />
     <Compile Include="Servicios\RegistroSincServices.cs" />
     <Compile Include="Servicios\ServiciosConversiones.cs" />

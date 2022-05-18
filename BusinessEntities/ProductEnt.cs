@@ -20,5 +20,6 @@ namespace BusinessEntities
         public long CodigoSAP { get; set; }
         public long IdProducto { get; set; }
         public bool EsServicio { get; set; }
+        public bool AceptaMerma { get; set; }
     }
 }

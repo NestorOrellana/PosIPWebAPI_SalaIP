@@ -61,6 +61,7 @@
     <Compile Include="DetallePluAdquiridoEnt.cs" />
     <Compile Include="FacturaEEnt.cs" />
     <Compile Include="MotivosInventarioEnt.cs" />
+    <Compile Include="MovimientoInventarioEnt.cs" />
     <Compile Include="PedidosRecibidosEnt.cs" />
     <Compile Include="PluEnt.cs" />
     <Compile Include="ProductEnt.cs" />

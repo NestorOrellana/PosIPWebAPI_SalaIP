@@ -14,12 +14,12 @@ namespace DataModel
     public partial class WsGetPedidosHoyJSON_Result
     {
         public long IdPedido { get; set; }
-        public string FechaEntrega { get; set; }
-        public Nullable<long> IdProductos { get; set; }
+        public Nullable<System.DateTime> FechaEntrega { get; set; }
+        public long IdProductos { get; set; }
         public Nullable<decimal> UnidadesPedido { get; set; }
         public Nullable<decimal> PesoPedido { get; set; }
-        public Nullable<decimal> PrecioUnitario { get; set; }
-        public Nullable<long> NumeroLinea { get; set; }
+        public decimal PrecioUnitario { get; set; }
+        public short NumeroLinea { get; set; }
         public Nullable<int> UnidadFacturacion { get; set; }
     }
 }

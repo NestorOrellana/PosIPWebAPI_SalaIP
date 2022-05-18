@@ -118,6 +118,22 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Estado" Type="smallint" Nullable="false" />
         </EntityType>
+        <EntityType Name="MovimientoInventario">
+          <Key>
+            <PropertyRef Name="IdMovimientoInventario" />
+          </Key>
+          <Property Name="IdMovimientoInventario" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProducto" Type="bigint" Nullable="false" />
+          <Property Name="NombreProducto" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="SaldoInicial" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CantidadEntrada" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Salida" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Ajustes" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SaldoFinal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdSucursal" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraMovimiento" Type="datetime" Nullable="false" />
+          <Property Name="IdTipoMovimiento" Type="smallint" Nullable="false" />
+        </EntityType>
         <EntityType Name="PedidosRecibidos">
           <Key>
             <PropertyRef Name="IdRegistro" />
@@ -158,6 +174,7 @@
           <Property Name="FechaActivacion" Type="datetime" />
           <Property Name="FechaInactivacion" Type="datetime" />
           <Property Name="EsServicio" Type="bit" />
+          <Property Name="AceptaMerma" Type="bit" />
         </EntityType>
         <EntityType Name="RecetaDet">
           <Key>
@@ -259,6 +276,13 @@
           <Property Name="OficinaVenta" Type="int" Nullable="false" />
           <Property Name="IdEstablecimiento" Type="bigint" />
           <Property Name="CodigoCliente" Type="bigint" />
+        </EntityType>
+        <EntityType Name="TipoMovimiento">
+          <Key>
+            <PropertyRef Name="IdTipoMovimiento" />
+          </Key>
+          <Property Name="IdTipoMovimiento" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TipoUsuario">
           <Key>
@@ -523,6 +547,102 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Movimient__IdPro__3EE1E351">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdPro__3FD6078A">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdPro__40CA2BC3">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdSuc__41BE4FFC">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdSuc__42B27435">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdSuc__43A6986E">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdTip__449ABCA7">
+          <End Role="TipoMovimiento" Type="Self.TipoMovimiento" Multiplicity="1" />
+          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMovimiento">
+              <PropertyRef Name="IdTipoMovimiento" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdTipoMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdTip__458EE0E0">
+          <End Role="TipoMovimiento" Type="Self.TipoMovimiento" Multiplicity="1" />
+          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMovimiento">
+              <PropertyRef Name="IdTipoMovimiento" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdTipoMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__PedidosRe__IdPro__7C5505E5">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
@@ -739,6 +859,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySet Name="DetallePluAdquirido" EntityType="Self.DetallePluAdquirido" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="FacturaE" EntityType="Self.FacturaE" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="MotivosInventario" EntityType="Self.MotivosInventario" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="MovimientoInventario" EntityType="Self.MovimientoInventario" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="PedidosRecibidos" EntityType="Self.PedidosRecibidos" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="PLU" EntityType="Self.PLU" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="PosIP" store:Type="Tables" />
@@ -748,6 +869,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySet Name="RegistroSincronizacion" EntityType="Self.RegistroSincronizacion" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="Series" EntityType="Self.Series" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="Sucursal" EntityType="Self.Sucursal" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="TipoMovimiento" EntityType="Self.TipoMovimiento" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="WebServicePath" EntityType="Self.WebServicePath" store:Type="Tables" store:Schema="PosIP">
@@ -865,6 +987,38 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <AssociationSet Name="FK__FacturaE__IdSucu__7A6CBD73" Association="Self.FK__FacturaE__IdSucu__7A6CBD73">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="FacturaE" EntitySet="FacturaE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdPro__3EE1E351" Association="Self.FK__Movimient__IdPro__3EE1E351">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdPro__3FD6078A" Association="Self.FK__Movimient__IdPro__3FD6078A">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdPro__40CA2BC3" Association="Self.FK__Movimient__IdPro__40CA2BC3">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdSuc__41BE4FFC" Association="Self.FK__Movimient__IdSuc__41BE4FFC">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdSuc__42B27435" Association="Self.FK__Movimient__IdSuc__42B27435">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdSuc__43A6986E" Association="Self.FK__Movimient__IdSuc__43A6986E">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdTip__449ABCA7" Association="Self.FK__Movimient__IdTip__449ABCA7">
+            <End Role="TipoMovimiento" EntitySet="TipoMovimiento" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdTip__458EE0E0" Association="Self.FK__Movimient__IdTip__458EE0E0">
+            <End Role="TipoMovimiento" EntitySet="TipoMovimiento" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
           </AssociationSet>
           <AssociationSet Name="FK__PedidosRe__IdPro__7C5505E5" Association="Self.FK__PedidosRe__IdPro__7C5505E5">
             <End Role="Productos" EntitySet="Productos" />
@@ -1143,6 +1297,9 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <NavigationProperty Name="PedidosRecibidos" Relationship="ComercializacionDIPModel.FK__PedidosRe__Estad__214E530E" FromRole="Sucursal" ToRole="PedidosRecibidos" />
           <Property Name="IdEstablecimiento" Type="Int64" />
           <Property Name="CodigoCliente" Type="Int64" />
+          <NavigationProperty Name="MovimientoInventario" Relationship="ComercializacionDIPModel.FK__Movimient__IdSuc__63744982" FromRole="Sucursal" ToRole="MovimientoInventario" />
+          <NavigationProperty Name="MovimientoInventario1" Relationship="ComercializacionDIPModel.FK__Movimient__IdSuc__692D22D8" FromRole="Sucursal" ToRole="MovimientoInventario" />
+          <NavigationProperty Name="MovimientoInventario2" Relationship="ComercializacionDIPModel.FK__Movimient__IdSuc__6C098F83" FromRole="Sucursal" ToRole="MovimientoInventario" />
         </EntityType>
         <EntityType Name="TipoUsuario">
           <Key>
@@ -1460,9 +1617,6 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
           </AssociationSet>
-          <FunctionImport Name="WsGetPedidosHoyJSON" ReturnType="Collection(ComercializacionDIPModel.WsGetPedidosHoyJSON_Result1)">
-          <Parameter Name="CodCliente" Mode="In" Type="Int64" />
-          </FunctionImport>
           <EntitySet Name="Productos" EntityType="ComercializacionDIPModel.Productos" />
           <AssociationSet Name="FK__Productos__IdCat__7F317290" Association="ComercializacionDIPModel.FK__Productos__IdCat__7F317290">
             <End Role="Categorias" EntitySet="Categorias" />
@@ -1504,6 +1658,39 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             <End Role="Productos" EntitySet="Productos" />
             <End Role="RecetaDet" EntitySet="RecetaDet" />
           </AssociationSet>
+          <EntitySet Name="MovimientoInventario" EntityType="ComercializacionDIPModel.MovimientoInventario" />
+          <EntitySet Name="TipoMovimiento" EntityType="ComercializacionDIPModel.TipoMovimiento" />
+          <AssociationSet Name="FK__Movimient__IdTip__3E0A8D4D" Association="ComercializacionDIPModel.FK__Movimient__IdTip__3E0A8D4D">
+            <End Role="TipoMovimiento" EntitySet="TipoMovimiento" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdPro__62802549" Association="ComercializacionDIPModel.FK__Movimient__IdPro__62802549">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdPro__6838FE9F" Association="ComercializacionDIPModel.FK__Movimient__IdPro__6838FE9F">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdPro__6B156B4A" Association="ComercializacionDIPModel.FK__Movimient__IdPro__6B156B4A">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdSuc__63744982" Association="ComercializacionDIPModel.FK__Movimient__IdSuc__63744982">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdSuc__692D22D8" Association="ComercializacionDIPModel.FK__Movimient__IdSuc__692D22D8">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__IdSuc__6C098F83" Association="ComercializacionDIPModel.FK__Movimient__IdSuc__6C098F83">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <FunctionImport Name="WsGetPedidosHoyJSON" ReturnType="Collection(ComercializacionDIPModel.WsGetPedidosHoyJSON_Result)">
+          <Parameter Name="CodCliente" Mode="In" Type="Int64" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SPObtenerProductos_Result">
           <Property Type="Int64" Name="idProducto" Nullable="false" />
@@ -1539,16 +1726,6 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Type="Boolean" Name="ProductoLocal" Nullable="false" />
           <Property Type="Decimal" Name="Costo" Nullable="true" Precision="19" />
           <Property Type="Boolean" Name="AplicaImpuestos" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="WsGetPedidosHoyJSON_Result">
-          <Property Type="Int64" Name="IdPedido" Nullable="false" />
-          <Property Type="String" Name="FechaEntrega" Nullable="true" MaxLength="10" />
-          <Property Type="Int64" Name="IdProductos" Nullable="true" />
-          <Property Type="Decimal" Name="UnidadesPedido" Nullable="true" Precision="38" Scale="2" />
-          <Property Type="Decimal" Name="PesoPedido" Nullable="true" Precision="38" Scale="4" />
-          <Property Type="Decimal" Name="PrecioUnitario" Nullable="true" Precision="38" Scale="6" />
-          <Property Type="Int64" Name="NumeroLinea" Nullable="true" />
-          <Property Type="Int32" Name="UnidadFacturacion" Nullable="true" />
         </ComplexType>
         <EntityType Name="PLU">
           <Key>
@@ -1735,16 +1912,6 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="WsGetPedidosHoyJSON_Result1">
-          <Property Type="Int64" Name="IdPedido" Nullable="true" />
-          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" />
-          <Property Type="Int64" Name="idproductos" Nullable="false" />
-          <Property Type="Int16" Name="UnidadesPedido" Nullable="false" />
-          <Property Type="Double" Name="PesoPedido" Nullable="false" />
-          <Property Type="Double" Name="PrecioUnitario" Nullable="false" />
-          <Property Type="Int64" Name="Numerolinea" Nullable="true" />
-          <Property Type="Int32" Name="UnidadFacturacion" Nullable="false" />
-        </ComplexType>
         <EntityType Name="Productos">
           <Key>
             <PropertyRef Name="CodigoSAP" />
@@ -1769,6 +1936,10 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <NavigationProperty Name="PedidosRecibidos" Relationship="ComercializacionDIPModel.FK__PedidosRe__IdPro__7C5505E5" FromRole="Productos" ToRole="PedidosRecibidos" />
           <NavigationProperty Name="PLU" Relationship="ComercializacionDIPModel.FK__PLU__IdProducto__7D492A1E" FromRole="Productos" ToRole="PLU" />
           <NavigationProperty Name="RecetaDet" Relationship="ComercializacionDIPModel.FK__RecetaDet__IdPro__002596C9" FromRole="Productos" ToRole="RecetaDet" />
+          <NavigationProperty Name="MovimientoInventario" Relationship="ComercializacionDIPModel.FK__Movimient__IdPro__62802549" FromRole="Productos" ToRole="MovimientoInventario" />
+          <NavigationProperty Name="MovimientoInventario1" Relationship="ComercializacionDIPModel.FK__Movimient__IdPro__6838FE9F" FromRole="Productos" ToRole="MovimientoInventario" />
+          <NavigationProperty Name="MovimientoInventario2" Relationship="ComercializacionDIPModel.FK__Movimient__IdPro__6B156B4A" FromRole="Productos" ToRole="MovimientoInventario" />
+          <Property Name="AceptaMerma" Type="Boolean" />
         </EntityType>
         <Association Name="FK__Productos__IdCat__7F317290">
           <End Type="ComercializacionDIPModel.Categorias" Role="Categorias" Multiplicity="0..1" />
@@ -1890,6 +2061,131 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MovimientoInventario">
+          <Key>
+            <PropertyRef Name="IdMovimientoInventario" />
+          </Key>
+          <Property Name="IdMovimientoInventario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProducto" Type="Int64" Nullable="false" />
+          <Property Name="NombreProducto" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SaldoInicial" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="CantidadEntrada" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Salida" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Ajustes" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="SaldoFinal" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="IdSucursal" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraMovimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdTipoMovimiento" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="TipoMovimiento" Relationship="ComercializacionDIPModel.FK__Movimient__IdTip__3E0A8D4D" FromRole="MovimientoInventario" ToRole="TipoMovimiento" />
+          <NavigationProperty Name="Productos" Relationship="ComercializacionDIPModel.FK__Movimient__IdPro__62802549" FromRole="MovimientoInventario" ToRole="Productos" />
+          <NavigationProperty Name="Productos1" Relationship="ComercializacionDIPModel.FK__Movimient__IdPro__6838FE9F" FromRole="MovimientoInventario" ToRole="Productos" />
+          <NavigationProperty Name="Productos2" Relationship="ComercializacionDIPModel.FK__Movimient__IdPro__6B156B4A" FromRole="MovimientoInventario" ToRole="Productos" />
+          <NavigationProperty Name="Sucursal" Relationship="ComercializacionDIPModel.FK__Movimient__IdSuc__63744982" FromRole="MovimientoInventario" ToRole="Sucursal" />
+          <NavigationProperty Name="Sucursal1" Relationship="ComercializacionDIPModel.FK__Movimient__IdSuc__692D22D8" FromRole="MovimientoInventario" ToRole="Sucursal" />
+          <NavigationProperty Name="Sucursal2" Relationship="ComercializacionDIPModel.FK__Movimient__IdSuc__6C098F83" FromRole="MovimientoInventario" ToRole="Sucursal" />
+        </EntityType>
+        <EntityType Name="TipoMovimiento">
+          <Key>
+            <PropertyRef Name="IdTipoMovimiento" />
+          </Key>
+          <Property Name="IdTipoMovimiento" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MovimientoInventario" Relationship="ComercializacionDIPModel.FK__Movimient__IdTip__3E0A8D4D" FromRole="TipoMovimiento" ToRole="MovimientoInventario" />
+        </EntityType>
+        <Association Name="FK__Movimient__IdTip__3E0A8D4D">
+          <End Type="ComercializacionDIPModel.TipoMovimiento" Role="TipoMovimiento" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.MovimientoInventario" Role="MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMovimiento">
+              <PropertyRef Name="IdTipoMovimiento" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdTipoMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdPro__62802549">
+          <End Type="ComercializacionDIPModel.Productos" Role="Productos" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.MovimientoInventario" Role="MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdPro__6838FE9F">
+          <End Type="ComercializacionDIPModel.Productos" Role="Productos" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.MovimientoInventario" Role="MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdPro__6B156B4A">
+          <End Type="ComercializacionDIPModel.Productos" Role="Productos" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.MovimientoInventario" Role="MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="CodigoSAP" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdSuc__63744982">
+          <End Type="ComercializacionDIPModel.Sucursal" Role="Sucursal" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.MovimientoInventario" Role="MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdSuc__692D22D8">
+          <End Type="ComercializacionDIPModel.Sucursal" Role="Sucursal" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.MovimientoInventario" Role="MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__IdSuc__6C098F83">
+          <End Type="ComercializacionDIPModel.Sucursal" Role="Sucursal" Multiplicity="1" />
+          <End Type="ComercializacionDIPModel.MovimientoInventario" Role="MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="WsGetPedidosHoyJSON_Result">
+          <Property Type="Int64" Name="IdPedido" Nullable="false" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" />
+          <Property Type="Int64" Name="IdProductos" Nullable="false" />
+          <Property Type="Decimal" Name="UnidadesPedido" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PesoPedido" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PrecioUnitario" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int16" Name="NumeroLinea" Nullable="false" />
+          <Property Type="Int32" Name="UnidadFacturacion" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2295,23 +2591,10 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="WsGetPedidosHoyJSON" FunctionName="ComercializacionDIPModel.Store.WsGetPedidosHoyJSON">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ComercializacionDIPModel.WsGetPedidosHoyJSON_Result1">
-                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
-                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
-                <ScalarProperty Name="idproductos" ColumnName="idproductos" />
-                <ScalarProperty Name="UnidadesPedido" ColumnName="UnidadesPedido" />
-                <ScalarProperty Name="PesoPedido" ColumnName="PesoPedido" />
-                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
-                <ScalarProperty Name="Numerolinea" ColumnName="Numerolinea" />
-                <ScalarProperty Name="UnidadFacturacion" ColumnName="UnidadFacturacion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="Productos">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.Productos">
               <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="AceptaMerma" ColumnName="AceptaMerma" />
                 <ScalarProperty Name="EsServicio" ColumnName="EsServicio" />
                 <ScalarProperty Name="FechaInactivacion" ColumnName="FechaInactivacion" />
                 <ScalarProperty Name="FechaActivacion" ColumnName="FechaActivacion" />
@@ -2325,7 +2608,46 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="MovimientoInventario">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.MovimientoInventario">
+              <MappingFragment StoreEntitySet="MovimientoInventario">
+                <ScalarProperty Name="IdTipoMovimiento" ColumnName="IdTipoMovimiento" />
+                <ScalarProperty Name="FechaHoraMovimiento" ColumnName="FechaHoraMovimiento" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="SaldoFinal" ColumnName="SaldoFinal" />
+                <ScalarProperty Name="Ajustes" ColumnName="Ajustes" />
+                <ScalarProperty Name="Salida" ColumnName="Salida" />
+                <ScalarProperty Name="CantidadEntrada" ColumnName="CantidadEntrada" />
+                <ScalarProperty Name="SaldoInicial" ColumnName="SaldoInicial" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdMovimientoInventario" ColumnName="IdMovimientoInventario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoMovimiento">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.TipoMovimiento">
+              <MappingFragment StoreEntitySet="TipoMovimiento">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdTipoMovimiento" ColumnName="IdTipoMovimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="WsGetPedidosHoyJSON" FunctionName="ComercializacionDIPModel.Store.WsGetPedidosHoyJSON">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ComercializacionDIPModel.WsGetPedidosHoyJSON_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="IdProductos" ColumnName="IdProductos" />
+                <ScalarProperty Name="UnidadesPedido" ColumnName="UnidadesPedido" />
+                <ScalarProperty Name="PesoPedido" ColumnName="PesoPedido" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="NumeroLinea" ColumnName="NumeroLinea" />
+                <ScalarProperty Name="UnidadFacturacion" ColumnName="UnidadFacturacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

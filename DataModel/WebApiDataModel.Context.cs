@@ -52,6 +52,8 @@ namespace DataModel
         public virtual DbSet<RegistroSincronizacion> RegistroSincronizacion { get; set; }
         public virtual DbSet<PedidosRecibidos> PedidosRecibidos { get; set; }
         public virtual DbSet<Productos> Productos { get; set; }
+        public virtual DbSet<MovimientoInventario> MovimientoInventario { get; set; }
+        public virtual DbSet<TipoMovimiento> TipoMovimiento { get; set; }
     
         public virtual ObjectResult<SPObtenerProductos_Result> SPObtenerProductos()
         {
@@ -109,13 +111,13 @@ namespace DataModel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPInactivarCorrelativo", numeroSerieParameter, idSucursalParameter);
         }
     
-        public virtual ObjectResult<WsGetPedidosHoyJSON_Result1> WsGetPedidosHoyJSON(Nullable<long> codCliente)
+        public virtual ObjectResult<WsGetPedidosHoyJSON_Result> WsGetPedidosHoyJSON(Nullable<long> codCliente)
         {
             var codClienteParameter = codCliente.HasValue ?
                 new ObjectParameter("CodCliente", codCliente) :
                 new ObjectParameter("CodCliente", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WsGetPedidosHoyJSON_Result1>("WsGetPedidosHoyJSON", codClienteParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WsGetPedidosHoyJSON_Result>("WsGetPedidosHoyJSON", codClienteParameter);
         }
     }
 }

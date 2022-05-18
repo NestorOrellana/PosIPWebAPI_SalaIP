@@ -25,6 +25,9 @@ namespace DataModel
             this.RecetaEnc = new HashSet<RecetaEnc>();
             this.RegistroSincronizacion = new HashSet<RegistroSincronizacion>();
             this.PedidosRecibidos = new HashSet<PedidosRecibidos>();
+            this.MovimientoInventario = new HashSet<MovimientoInventario>();
+            this.MovimientoInventario1 = new HashSet<MovimientoInventario>();
+            this.MovimientoInventario2 = new HashSet<MovimientoInventario>();
         }
     
         public string Descripcion { get; set; }
@@ -51,5 +54,11 @@ namespace DataModel
         public virtual ICollection<RegistroSincronizacion> RegistroSincronizacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PedidosRecibidos> PedidosRecibidos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MovimientoInventario> MovimientoInventario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MovimientoInventario> MovimientoInventario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MovimientoInventario> MovimientoInventario2 { get; set; }
     }
 }

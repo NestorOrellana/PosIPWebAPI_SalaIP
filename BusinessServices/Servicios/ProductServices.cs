@@ -91,7 +91,8 @@ namespace BusinessServices
                     Precio = nuevoProducto.Precio,
                     Tipo = nuevoProducto.Tipo,
                     CodigoSAP = nuevoProducto.CodigoSAP,
-                    EsServicio = nuevoProducto.EsServicio
+                    EsServicio = nuevoProducto.EsServicio,
+                    AceptaMerma = nuevoProducto.AceptaMerma
                 };
                 _unitOfWork.RepositorioProducto.Insert(producto);
                 _unitOfWork.Save();

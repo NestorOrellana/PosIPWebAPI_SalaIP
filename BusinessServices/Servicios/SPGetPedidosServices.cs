@@ -24,11 +24,11 @@ namespace BusinessServices
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<WsGetPedidosHoyJSON_Result1, BusinessEntities.SPGetPedidosEnt>();
+                    cfg.CreateMap<WsGetPedidosHoyJSON_Result, BusinessEntities.SPGetPedidosEnt>();
                 });
 
                 IMapper mapper = config.CreateMapper();
-                var modeloPedido = mapper.Map<List<WsGetPedidosHoyJSON_Result1>, List<BusinessEntities.SPGetPedidosEnt>>(pedido);
+                var modeloPedido = mapper.Map<List<WsGetPedidosHoyJSON_Result>, List<BusinessEntities.SPGetPedidosEnt>>(pedido);
                 return modeloPedido;
             }
             return null;
