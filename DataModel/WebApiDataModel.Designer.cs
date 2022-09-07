@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\norellana\Source\Repos\WebApiPosIp\DataModel\WebApiDataModel.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\norellana\Documents\POSIP_WebAPI_SalaIP\WebApiPosIp\DataModel\WebApiDataModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

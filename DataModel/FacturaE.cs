@@ -41,6 +41,9 @@ namespace DataModel
         public Nullable<bool> Anulada { get; set; }
         public Nullable<long> CodigoAcceso { get; set; }
         public string Mensaje { get; set; }
+        public Nullable<bool> credito { get; set; }
+        public Nullable<short> canal { get; set; }
+        public Nullable<long> idcliente { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleFactura> DetalleFactura { get; set; }

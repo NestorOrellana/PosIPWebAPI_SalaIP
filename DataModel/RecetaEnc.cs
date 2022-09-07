@@ -27,6 +27,7 @@ namespace DataModel
         public bool estado { get; set; }
         public Nullable<System.DateTime> FechaActivacion { get; set; }
         public Nullable<System.DateTime> FechaInactivacion { get; set; }
+        public string ListaPrecio { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PLU> PLU { get; set; }

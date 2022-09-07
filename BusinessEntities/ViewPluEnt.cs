@@ -18,5 +18,6 @@ namespace BusinessEntities
         public byte IdUnidadVenta { get; set; }
         public bool IdEstado { get; set; }
         public bool SeDetalla { get; set; }
+        public string ListaPrecio { get; set; }
     }
 }

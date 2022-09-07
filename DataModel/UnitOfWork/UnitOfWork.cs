@@ -40,6 +40,7 @@ namespace DataModel.UnitOfWork
         private GenericRepository<RegistroSincronizacion> _repositorioRegistroSinc;
         private GenericRepository<PedidosRecibidos> _repositorioPedidosRecibidos;
         private GenericRepository<MovimientoInventario> _repositorioMovimientoInventario;
+        private GenericRepository<Clientes> _repositorioClientes;
         #endregion
 
         public UnitOfWork()
@@ -274,6 +275,17 @@ namespace DataModel.UnitOfWork
                 if (this._repositorioMovimientoInventario == null)
                     this._repositorioMovimientoInventario = new GenericRepository<MovimientoInventario>(_context);
                 return _repositorioMovimientoInventario;
+            }
+        }
+
+        public GenericRepository<Clientes> RepositorioClientes
+        {
+            get
+            {
+                if (this._repositorioClientes == null)
+                    this._repositorioClientes = new GenericRepository<Clientes>(_context);
+
+                return _repositorioClientes;
             }
         }
         #endregion

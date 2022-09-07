@@ -109,6 +109,9 @@
           <Property Name="Anulada" Type="bit" />
           <Property Name="CodigoAcceso" Type="bigint" />
           <Property Name="Mensaje" Type="nvarchar" MaxLength="200" />
+          <Property Name="credito" Type="bit" />
+          <Property Name="canal" Type="smallint" />
+          <Property Name="idcliente" Type="bigint" />
         </EntityType>
         <EntityType Name="MotivosInventario">
           <Key>
@@ -175,6 +178,8 @@
           <Property Name="FechaInactivacion" Type="datetime" />
           <Property Name="EsServicio" Type="bit" />
           <Property Name="AceptaMerma" Type="bit" />
+          <Property Name="AceptaAjuste" Type="bit" />
+          <Property Name="Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="RecetaDet">
           <Key>
@@ -196,6 +201,7 @@
           <Property Name="estado" Type="bit" Nullable="false" />
           <Property Name="FechaActivacion" Type="datetime" />
           <Property Name="FechaInactivacion" Type="datetime" />
+          <Property Name="ListaPrecio" Type="varchar" MaxLength="2" />
         </EntityType>
         <EntityType Name="RegistroInventario">
           <Key>
@@ -276,6 +282,7 @@
           <Property Name="OficinaVenta" Type="int" Nullable="false" />
           <Property Name="IdEstablecimiento" Type="bigint" />
           <Property Name="CodigoCliente" Type="bigint" />
+          <Property Name="Eliminado" Type="bit" />
         </EntityType>
         <EntityType Name="TipoMovimiento">
           <Key>
@@ -307,7 +314,7 @@
           <Property Name="FechaInactivacion" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ComercializacionDIP.PosIP.WebServicePath' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'SalaIP_GT.PosIP.WebServicePath' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="WebServicePath">
           <Key>
             <PropertyRef Name="IdPath" />
@@ -318,8 +325,78 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.WebServicePath' does not
           <Property Name="WsPath" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Tipo" Type="tinyint" Nullable="false" />
         </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="bigint" Nullable="false" />
+          <Property Name="Nombre1" Type="nvarchar" MaxLength="40" />
+          <Property Name="Nombre2" Type="nvarchar" MaxLength="40" />
+          <Property Name="Nombre3" Type="nvarchar" MaxLength="40" />
+          <Property Name="NombreNegocio" Type="nvarchar" MaxLength="40" />
+          <Property Name="DirCalle1" Type="nvarchar" MaxLength="60" />
+          <Property Name="DirCalle2" Type="nvarchar" MaxLength="40" />
+          <Property Name="DirColonia" Type="nvarchar" MaxLength="40" />
+          <Property Name="DirCiudad" Type="nvarchar" MaxLength="40" />
+          <Property Name="DirNumeroExt" Type="nvarchar" MaxLength="10" />
+          <Property Name="DirNumeroInt" Type="nvarchar" MaxLength="10" />
+          <Property Name="DirDepartamento" Type="nvarchar" MaxLength="3" />
+          <Property Name="DirPais" Type="nvarchar" MaxLength="3" />
+          <Property Name="TelFijo" Type="nvarchar" MaxLength="30" />
+          <Property Name="TelMovil" Type="nvarchar" MaxLength="30" />
+          <Property Name="TelFax" Type="nvarchar" MaxLength="30" />
+          <Property Name="LimiteCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SaldoCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CodigoContribuyente" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoTipoNegocio" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoOrganizacion" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoCanalDistribucion" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoSector" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoCondicionPago" Type="nvarchar" MaxLength="4" />
+          <Property Name="DiasCredito" Type="smallint" Nullable="false" />
+          <Property Name="CodigoRutaVenta" Type="smallint" />
+          <Property Name="CodigoGrupoCuenta" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoClientePrincipal" Type="bigint" />
+          <Property Name="CodigoBloqueoPedidos" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoGrupoCliente" Type="nvarchar" MaxLength="4" />
+          <Property Name="IdFiscal1" Type="nvarchar" MaxLength="20" />
+          <Property Name="IdFiscal2" Type="nvarchar" MaxLength="12" />
+          <Property Name="ClasificacionIva" Type="nvarchar" MaxLength="1" />
+          <Property Name="ClasificacionPercepcion" Type="nvarchar" MaxLength="1" />
+          <Property Name="CodigoGrupoVendedores" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoZonaVenta" Type="nvarchar" MaxLength="6" />
+          <Property Name="UltimaModificacion" Type="datetime" />
+          <Property Name="CodigoRutaReparto" Type="nvarchar" MaxLength="10" />
+          <Property Name="CodigoListaPrecios" Type="nvarchar" MaxLength="3" />
+          <Property Name="CodigoGrupoPrecios" Type="nvarchar" MaxLength="3" />
+          <Property Name="CodigoClaseCliente" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoCompatibilidad" Type="nvarchar" MaxLength="12" />
+          <Property Name="FechaAlta" Type="datetime" />
+          <Property Name="DirMunicipio" Type="nvarchar" MaxLength="8" />
+          <Property Name="CodigoMunicipal" Type="nvarchar" MaxLength="4" />
+          <Property Name="GrupoImputacion" Type="nvarchar" MaxLength="4" />
+          <Property Name="GrupoCuentasDeudor" Type="nvarchar" MaxLength="4" />
+          <Property Name="Vendedor" Type="nvarchar" MaxLength="10" />
+          <Property Name="AsesorTecnico" Type="nvarchar" MaxLength="10" />
+          <Property Name="NotaRemision" Type="nvarchar" MaxLength="5" />
+          <Property Name="ClienteEstrategico" Type="nvarchar" MaxLength="3" />
+          <Property Name="CanalAtencion" Type="char" MaxLength="3" />
+          <Property Name="CodigoGrupoCliente3" Type="nvarchar" MaxLength="8" />
+          <Property Name="CodigoGrupoCliente4" Type="nvarchar" MaxLength="8" />
+          <Property Name="CodigoGrupoCliente5" Type="nvarchar" MaxLength="8" />
+          <Property Name="MacroCanal" Type="char" MaxLength="3" />
+          <Property Name="Canal" Type="char" MaxLength="3" />
+          <Property Name="ExclusivoSolucion" Type="char" MaxLength="3" />
+          <Property Name="Categoria" Type="char" MaxLength="3" />
+          <Property Name="IntensidadCompetitiva" Type="char" MaxLength="3" />
+          <Property Name="TipoNegocio" Type="char" MaxLength="3" />
+          <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="200" />
+          <Property Name="CodigoAgrupador" Type="bigint" />
+          <Property Name="CanalSubCanal" Type="char" MaxLength="3" />
+          <Property Name="IdEstadoCliente" Type="bit" />
+        </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaPLU' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'SalaIP_GT.PosIP.VistaPLU' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VistaPLU">
           <Key>
             <PropertyRef Name="IdPLU" />
@@ -334,16 +411,17 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaPLU' does not have 
           <Property Name="IdPLU" Type="bigint" Nullable="false" />
           <Property Name="IdReceta" Type="bigint" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="precio" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="precio" Type="decimal" Precision="38" Scale="2" />
           <Property Name="IdUnidadVenta" Type="tinyint" Nullable="false" />
           <Property Name="IdCategoria" Type="smallint" Nullable="false" />
           <Property Name="IdSucursal" Type="smallint" Nullable="false" />
           <Property Name="IdEstado" Type="bit" Nullable="false" />
           <Property Name="CodigoSAP" Type="bigint" Nullable="false" />
           <Property Name="SeDetalla" Type="bit" />
+          <Property Name="ListaPrecio" Type="varchar" MaxLength="2" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaReceta' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'SalaIP_GT.PosIP.VistaReceta' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VistaReceta">
           <Key>
             <PropertyRef Name="IdReceta" />
@@ -357,9 +435,10 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaReceta' does not ha
           <Property Name="precio" Type="money" Nullable="false" />
           <Property Name="cantidad" Type="decimal" Precision="7" Scale="2" Nullable="false" />
           <Property Name="IdSucursal" Type="smallint" Nullable="false" />
+          <Property Name="ListaPrecio" Type="varchar" MaxLength="2" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VistaSeriesFacturas">
           <Key>
             <PropertyRef Name="idSerie" />
@@ -403,7 +482,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Name="idestado" Type="tinyint" />
           <Property Name="EstadoDocumento" Type="nvarchar" MaxLength="15" />
         </EntityType>
-        <Association Name="FK__CajaChica__IdSuc__6E06E68E">
+        <Association Name="FK__CajaChica__IdSuc__59FA5E80">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="CajaChica" Type="Self.CajaChica" Multiplicity="*" />
           <ReferentialConstraint>
@@ -415,7 +494,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CajaChica__IdUsu__6EFB0AC7">
+        <Association Name="FK__CajaChica__IdUsu__5AEE82B9">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
           <End Role="CajaChica" Type="Self.CajaChica" Multiplicity="*" />
           <ReferentialConstraint>
@@ -427,7 +506,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conversio__IdPro__6FEF2F00">
+        <Association Name="FK__Conversio__IdPro__5BE2A6F2">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="ConversionesProductos" Type="Self.ConversionesProductos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -439,7 +518,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conversio__IdPro__70E35339">
+        <Association Name="FK__Conversio__IdPro__5CD6CB2B">
           <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
           <End Role="ConversionesProductos" Type="Self.ConversionesProductos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -451,7 +530,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleBi__IdAju__71D77772">
+        <Association Name="FK__DetalleBi__IdAju__5DCAEF64">
           <End Role="BitAjusteInventario" Type="Self.BitAjusteInventario" Multiplicity="0..1" />
           <End Role="DetalleBitAjusteInventario" Type="Self.DetalleBitAjusteInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -463,7 +542,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleBi__IdPro__72CB9BAB">
+        <Association Name="FK__DetalleBi__IdPro__5EBF139D">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetalleBitAjusteInventario" Type="Self.DetalleBitAjusteInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -475,7 +554,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleFa__IdPlu__73BFBFE4">
+        <Association Name="FK__DetalleFa__IdPlu__5FB337D6">
           <End Role="PLU" Type="Self.PLU" Multiplicity="1" />
           <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -487,7 +566,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleIn__IdPro__75A80856">
+        <Association Name="FK__DetalleIn__IdPro__619B8048">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetalleInventario" Type="Self.DetalleInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -499,7 +578,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleIn__IdPro__769C2C8F">
+        <Association Name="FK__DetalleIn__IdPro__628FA481">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetalleInventario" Type="Self.DetalleInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -511,7 +590,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetalleIn__IdReg__779050C8">
+        <Association Name="FK__DetalleIn__IdReg__6383C8BA">
           <End Role="RegistroInventario" Type="Self.RegistroInventario" Multiplicity="1" />
           <End Role="DetalleInventario" Type="Self.DetalleInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -523,7 +602,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DetallePl__IdPro__78847501">
+        <Association Name="FK__DetallePl__IdPro__6477ECF3">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="DetallePluAdquirido" Type="Self.DetallePluAdquirido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -535,7 +614,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__FacturaE__IdSucu__7A6CBD73">
+        <Association Name="FK__FacturaE__IdSucu__66603565">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="FacturaE" Type="Self.FacturaE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -547,7 +626,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Movimient__IdPro__3EE1E351">
+        <Association Name="FK__Movimient__IdPro__6754599E">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -559,31 +638,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Movimient__IdPro__3FD6078A">
-          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
-          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="CodigoSAP" />
-            </Principal>
-            <Dependent Role="MovimientoInventario">
-              <PropertyRef Name="IdProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Movimient__IdPro__40CA2BC3">
-          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
-          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="CodigoSAP" />
-            </Principal>
-            <Dependent Role="MovimientoInventario">
-              <PropertyRef Name="IdProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Movimient__IdSuc__41BE4FFC">
+        <Association Name="FK__Movimient__IdSuc__68487DD7">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -595,31 +650,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Movimient__IdSuc__42B27435">
-          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
-          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sucursal">
-              <PropertyRef Name="IdSucursal" />
-            </Principal>
-            <Dependent Role="MovimientoInventario">
-              <PropertyRef Name="IdSucursal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Movimient__IdSuc__43A6986E">
-          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
-          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sucursal">
-              <PropertyRef Name="IdSucursal" />
-            </Principal>
-            <Dependent Role="MovimientoInventario">
-              <PropertyRef Name="IdSucursal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Movimient__IdTip__449ABCA7">
+        <Association Name="FK__Movimient__IdTip__693CA210">
           <End Role="TipoMovimiento" Type="Self.TipoMovimiento" Multiplicity="1" />
           <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -631,19 +662,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Movimient__IdTip__458EE0E0">
-          <End Role="TipoMovimiento" Type="Self.TipoMovimiento" Multiplicity="1" />
-          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoMovimiento">
-              <PropertyRef Name="IdTipoMovimiento" />
-            </Principal>
-            <Dependent Role="MovimientoInventario">
-              <PropertyRef Name="IdTipoMovimiento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PedidosRe__IdPro__7C5505E5">
+        <Association Name="FK__PedidosRe__IdPro__6B24EA82">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -655,7 +674,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PedidosRe__IdSuc__7B60E1AC">
+        <Association Name="FK__PedidosRe__IdSuc__6A30C649">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="PedidosRecibidos" Type="Self.PedidosRecibidos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -667,7 +686,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PLU__IdProducto__7D492A1E">
+        <Association Name="FK__PLU__IdProducto__6C190EBB">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="PLU" Type="Self.PLU" Multiplicity="*" />
           <ReferentialConstraint>
@@ -679,7 +698,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PLU__IdRecetaEnc__7E3D4E57">
+        <Association Name="FK__PLU__IdRecetaEnc__6D0D32F4">
           <End Role="RecetaEnc" Type="Self.RecetaEnc" Multiplicity="1" />
           <End Role="PLU" Type="Self.PLU" Multiplicity="*" />
           <ReferentialConstraint>
@@ -691,7 +710,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Productos__IdCat__7F317290">
+        <Association Name="FK__Productos__IdCat__6E01572D">
           <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
           <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -703,7 +722,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RecetaDet__IdPro__002596C9">
+        <Association Name="FK__RecetaDet__IdPro__6EF57B66">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="RecetaDet" Type="Self.RecetaDet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -715,7 +734,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RecetaDet__IdRec__0119BB02">
+        <Association Name="FK__RecetaDet__IdRec__6FE99F9F">
           <End Role="RecetaEnc" Type="Self.RecetaEnc" Multiplicity="1" />
           <End Role="RecetaDet" Type="Self.RecetaDet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -727,7 +746,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RecetaEnc__IdSuc__020DDF3B">
+        <Association Name="FK__RecetaEnc__IdSuc__70DDC3D8">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="RecetaEnc" Type="Self.RecetaEnc" Multiplicity="*" />
           <ReferentialConstraint>
@@ -739,7 +758,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RegistroI__IdSuc__03020374">
+        <Association Name="FK__RegistroI__IdSuc__71D1E811">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="RegistroInventario" Type="Self.RegistroInventario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -751,7 +770,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RegistroS__IdSuc__03F627AD">
+        <Association Name="FK__RegistroS__IdSuc__72C60C4A">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="RegistroSincronizacion" Type="Self.RegistroSincronizacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -763,7 +782,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Series__idSucurs__04EA4BE6">
+        <Association Name="FK__Series__idSucurs__73BA3083">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="Series" Type="Self.Series" Multiplicity="*" />
           <ReferentialConstraint>
@@ -775,7 +794,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__IdSucu__05DE701F">
+        <Association Name="FK__Usuarios__IdSucu__74AE54BC">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -787,7 +806,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__IdTipo__06D29458">
+        <Association Name="FK__Usuarios__IdTipo__75A278F5">
           <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -872,6 +891,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySet Name="TipoMovimiento" EntityType="Self.TipoMovimiento" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="SAP" store:Type="Tables" />
           <EntitySet Name="WebServicePath" EntityType="Self.WebServicePath" store:Type="Tables" store:Schema="PosIP">
             <DefiningQuery>SELECT 
     [WebServicePath].[IdPath] AS [IdPath], 
@@ -890,7 +910,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
     [VistaPLU].[IdSucursal] AS [IdSucursal], 
     [VistaPLU].[IdEstado] AS [IdEstado], 
     [VistaPLU].[CodigoSAP] AS [CodigoSAP], 
-    [VistaPLU].[SeDetalla] AS [SeDetalla]
+    [VistaPLU].[SeDetalla] AS [SeDetalla], 
+    [VistaPLU].[ListaPrecio] AS [ListaPrecio]
     FROM [PosIP].[VistaPLU] AS [VistaPLU]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VistaReceta" EntityType="Self.VistaReceta" store:Type="Views" store:Schema="PosIP">
@@ -899,7 +920,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
     [VistaReceta].[IdProducto] AS [IdProducto], 
     [VistaReceta].[precio] AS [precio], 
     [VistaReceta].[cantidad] AS [cantidad], 
-    [VistaReceta].[IdSucursal] AS [IdSucursal]
+    [VistaReceta].[IdSucursal] AS [IdSucursal], 
+    [VistaReceta].[ListaPrecio] AS [ListaPrecio]
     FROM [PosIP].[VistaReceta] AS [VistaReceta]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VistaSeriesFacturas" EntityType="Self.VistaSeriesFacturas" store:Type="Views" store:Schema="PosIP">
@@ -940,135 +962,115 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
     [VistaSeriesFacturas].[EstadoDocumento] AS [EstadoDocumento]
     FROM [PosIP].[VistaSeriesFacturas] AS [VistaSeriesFacturas]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__CajaChica__IdSuc__6E06E68E" Association="Self.FK__CajaChica__IdSuc__6E06E68E">
+          <AssociationSet Name="FK__CajaChica__IdSuc__59FA5E80" Association="Self.FK__CajaChica__IdSuc__59FA5E80">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="CajaChica" EntitySet="CajaChica" />
           </AssociationSet>
-          <AssociationSet Name="FK__CajaChica__IdUsu__6EFB0AC7" Association="Self.FK__CajaChica__IdUsu__6EFB0AC7">
+          <AssociationSet Name="FK__CajaChica__IdUsu__5AEE82B9" Association="Self.FK__CajaChica__IdUsu__5AEE82B9">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="CajaChica" EntitySet="CajaChica" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conversio__IdPro__6FEF2F00" Association="Self.FK__Conversio__IdPro__6FEF2F00">
+          <AssociationSet Name="FK__Conversio__IdPro__5BE2A6F2" Association="Self.FK__Conversio__IdPro__5BE2A6F2">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="ConversionesProductos" EntitySet="ConversionesProductos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conversio__IdPro__70E35339" Association="Self.FK__Conversio__IdPro__70E35339">
+          <AssociationSet Name="FK__Conversio__IdPro__5CD6CB2B" Association="Self.FK__Conversio__IdPro__5CD6CB2B">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="ConversionesProductos" EntitySet="ConversionesProductos" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleBi__IdAju__71D77772" Association="Self.FK__DetalleBi__IdAju__71D77772">
+          <AssociationSet Name="FK__DetalleBi__IdAju__5DCAEF64" Association="Self.FK__DetalleBi__IdAju__5DCAEF64">
             <End Role="BitAjusteInventario" EntitySet="BitAjusteInventario" />
             <End Role="DetalleBitAjusteInventario" EntitySet="DetalleBitAjusteInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleBi__IdPro__72CB9BAB" Association="Self.FK__DetalleBi__IdPro__72CB9BAB">
+          <AssociationSet Name="FK__DetalleBi__IdPro__5EBF139D" Association="Self.FK__DetalleBi__IdPro__5EBF139D">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetalleBitAjusteInventario" EntitySet="DetalleBitAjusteInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleFa__IdPlu__73BFBFE4" Association="Self.FK__DetalleFa__IdPlu__73BFBFE4">
+          <AssociationSet Name="FK__DetalleFa__IdPlu__5FB337D6" Association="Self.FK__DetalleFa__IdPlu__5FB337D6">
             <End Role="PLU" EntitySet="PLU" />
             <End Role="DetalleFactura" EntitySet="DetalleFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleIn__IdPro__75A80856" Association="Self.FK__DetalleIn__IdPro__75A80856">
+          <AssociationSet Name="FK__DetalleIn__IdPro__619B8048" Association="Self.FK__DetalleIn__IdPro__619B8048">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetalleInventario" EntitySet="DetalleInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleIn__IdPro__769C2C8F" Association="Self.FK__DetalleIn__IdPro__769C2C8F">
+          <AssociationSet Name="FK__DetalleIn__IdPro__628FA481" Association="Self.FK__DetalleIn__IdPro__628FA481">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetalleInventario" EntitySet="DetalleInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetalleIn__IdReg__779050C8" Association="Self.FK__DetalleIn__IdReg__779050C8">
+          <AssociationSet Name="FK__DetalleIn__IdReg__6383C8BA" Association="Self.FK__DetalleIn__IdReg__6383C8BA">
             <End Role="RegistroInventario" EntitySet="RegistroInventario" />
             <End Role="DetalleInventario" EntitySet="DetalleInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__DetallePl__IdPro__78847501" Association="Self.FK__DetallePl__IdPro__78847501">
+          <AssociationSet Name="FK__DetallePl__IdPro__6477ECF3" Association="Self.FK__DetallePl__IdPro__6477ECF3">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="DetallePluAdquirido" EntitySet="DetallePluAdquirido" />
           </AssociationSet>
-          <AssociationSet Name="FK__FacturaE__IdSucu__7A6CBD73" Association="Self.FK__FacturaE__IdSucu__7A6CBD73">
+          <AssociationSet Name="FK__FacturaE__IdSucu__66603565" Association="Self.FK__FacturaE__IdSucu__66603565">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="FacturaE" EntitySet="FacturaE" />
           </AssociationSet>
-          <AssociationSet Name="FK__Movimient__IdPro__3EE1E351" Association="Self.FK__Movimient__IdPro__3EE1E351">
+          <AssociationSet Name="FK__Movimient__IdPro__6754599E" Association="Self.FK__Movimient__IdPro__6754599E">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__Movimient__IdPro__3FD6078A" Association="Self.FK__Movimient__IdPro__3FD6078A">
-            <End Role="Productos" EntitySet="Productos" />
-            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Movimient__IdPro__40CA2BC3" Association="Self.FK__Movimient__IdPro__40CA2BC3">
-            <End Role="Productos" EntitySet="Productos" />
-            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Movimient__IdSuc__41BE4FFC" Association="Self.FK__Movimient__IdSuc__41BE4FFC">
+          <AssociationSet Name="FK__Movimient__IdSuc__68487DD7" Association="Self.FK__Movimient__IdSuc__68487DD7">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__Movimient__IdSuc__42B27435" Association="Self.FK__Movimient__IdSuc__42B27435">
-            <End Role="Sucursal" EntitySet="Sucursal" />
-            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Movimient__IdSuc__43A6986E" Association="Self.FK__Movimient__IdSuc__43A6986E">
-            <End Role="Sucursal" EntitySet="Sucursal" />
-            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Movimient__IdTip__449ABCA7" Association="Self.FK__Movimient__IdTip__449ABCA7">
+          <AssociationSet Name="FK__Movimient__IdTip__693CA210" Association="Self.FK__Movimient__IdTip__693CA210">
             <End Role="TipoMovimiento" EntitySet="TipoMovimiento" />
             <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__Movimient__IdTip__458EE0E0" Association="Self.FK__Movimient__IdTip__458EE0E0">
-            <End Role="TipoMovimiento" EntitySet="TipoMovimiento" />
-            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PedidosRe__IdPro__7C5505E5" Association="Self.FK__PedidosRe__IdPro__7C5505E5">
+          <AssociationSet Name="FK__PedidosRe__IdPro__6B24EA82" Association="Self.FK__PedidosRe__IdPro__6B24EA82">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
           </AssociationSet>
-          <AssociationSet Name="FK__PedidosRe__IdSuc__7B60E1AC" Association="Self.FK__PedidosRe__IdSuc__7B60E1AC">
+          <AssociationSet Name="FK__PedidosRe__IdSuc__6A30C649" Association="Self.FK__PedidosRe__IdSuc__6A30C649">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="PedidosRecibidos" EntitySet="PedidosRecibidos" />
           </AssociationSet>
-          <AssociationSet Name="FK__PLU__IdProducto__7D492A1E" Association="Self.FK__PLU__IdProducto__7D492A1E">
+          <AssociationSet Name="FK__PLU__IdProducto__6C190EBB" Association="Self.FK__PLU__IdProducto__6C190EBB">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="PLU" EntitySet="PLU" />
           </AssociationSet>
-          <AssociationSet Name="FK__PLU__IdRecetaEnc__7E3D4E57" Association="Self.FK__PLU__IdRecetaEnc__7E3D4E57">
+          <AssociationSet Name="FK__PLU__IdRecetaEnc__6D0D32F4" Association="Self.FK__PLU__IdRecetaEnc__6D0D32F4">
             <End Role="RecetaEnc" EntitySet="RecetaEnc" />
             <End Role="PLU" EntitySet="PLU" />
           </AssociationSet>
-          <AssociationSet Name="FK__Productos__IdCat__7F317290" Association="Self.FK__Productos__IdCat__7F317290">
+          <AssociationSet Name="FK__Productos__IdCat__6E01572D" Association="Self.FK__Productos__IdCat__6E01572D">
             <End Role="Categorias" EntitySet="Categorias" />
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
-          <AssociationSet Name="FK__RecetaDet__IdPro__002596C9" Association="Self.FK__RecetaDet__IdPro__002596C9">
+          <AssociationSet Name="FK__RecetaDet__IdPro__6EF57B66" Association="Self.FK__RecetaDet__IdPro__6EF57B66">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="RecetaDet" EntitySet="RecetaDet" />
           </AssociationSet>
-          <AssociationSet Name="FK__RecetaDet__IdRec__0119BB02" Association="Self.FK__RecetaDet__IdRec__0119BB02">
+          <AssociationSet Name="FK__RecetaDet__IdRec__6FE99F9F" Association="Self.FK__RecetaDet__IdRec__6FE99F9F">
             <End Role="RecetaEnc" EntitySet="RecetaEnc" />
             <End Role="RecetaDet" EntitySet="RecetaDet" />
           </AssociationSet>
-          <AssociationSet Name="FK__RecetaEnc__IdSuc__020DDF3B" Association="Self.FK__RecetaEnc__IdSuc__020DDF3B">
+          <AssociationSet Name="FK__RecetaEnc__IdSuc__70DDC3D8" Association="Self.FK__RecetaEnc__IdSuc__70DDC3D8">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="RecetaEnc" EntitySet="RecetaEnc" />
           </AssociationSet>
-          <AssociationSet Name="FK__RegistroI__IdSuc__03020374" Association="Self.FK__RegistroI__IdSuc__03020374">
+          <AssociationSet Name="FK__RegistroI__IdSuc__71D1E811" Association="Self.FK__RegistroI__IdSuc__71D1E811">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="RegistroInventario" EntitySet="RegistroInventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__RegistroS__IdSuc__03F627AD" Association="Self.FK__RegistroS__IdSuc__03F627AD">
+          <AssociationSet Name="FK__RegistroS__IdSuc__72C60C4A" Association="Self.FK__RegistroS__IdSuc__72C60C4A">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="RegistroSincronizacion" EntitySet="RegistroSincronizacion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Series__idSucurs__04EA4BE6" Association="Self.FK__Series__idSucurs__04EA4BE6">
+          <AssociationSet Name="FK__Series__idSucurs__73BA3083" Association="Self.FK__Series__idSucurs__73BA3083">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="Series" EntitySet="Series" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__IdSucu__05DE701F" Association="Self.FK__Usuarios__IdSucu__05DE701F">
+          <AssociationSet Name="FK__Usuarios__IdSucu__74AE54BC" Association="Self.FK__Usuarios__IdSucu__74AE54BC">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__IdTipo__06D29458" Association="Self.FK__Usuarios__IdTipo__06D29458">
+          <AssociationSet Name="FK__Usuarios__IdTipo__75A278F5" Association="Self.FK__Usuarios__IdTipo__75A278F5">
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -1207,6 +1209,9 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Name="Anulada" Type="Boolean" />
           <Property Name="CodigoAcceso" Type="Int64" />
           <Property Name="Mensaje" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="credito" Type="Boolean" />
+          <Property Name="canal" Type="Int16" />
+          <Property Name="idcliente" Type="Int64" />
         </EntityType>
         <EntityType Name="MotivosInventario">
           <Key>
@@ -1300,6 +1305,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <NavigationProperty Name="MovimientoInventario" Relationship="ComercializacionDIPModel.FK__Movimient__IdSuc__63744982" FromRole="Sucursal" ToRole="MovimientoInventario" />
           <NavigationProperty Name="MovimientoInventario1" Relationship="ComercializacionDIPModel.FK__Movimient__IdSuc__692D22D8" FromRole="Sucursal" ToRole="MovimientoInventario" />
           <NavigationProperty Name="MovimientoInventario2" Relationship="ComercializacionDIPModel.FK__Movimient__IdSuc__6C098F83" FromRole="Sucursal" ToRole="MovimientoInventario" />
+          <Property Name="Eliminado" Type="Boolean" />
         </EntityType>
         <EntityType Name="TipoUsuario">
           <Key>
@@ -1691,6 +1697,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <FunctionImport Name="WsGetPedidosHoyJSON" ReturnType="Collection(ComercializacionDIPModel.WsGetPedidosHoyJSON_Result)">
           <Parameter Name="CodCliente" Mode="In" Type="Int64" />
           </FunctionImport>
+          <EntitySet Name="Clientes" EntityType="ComercializacionDIPModel.Clientes" />
         </EntityContainer>
         <ComplexType Name="SPObtenerProductos_Result">
           <Property Type="Int64" Name="idProducto" Nullable="false" />
@@ -1767,6 +1774,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <Property Name="FechaActivacion" Type="DateTime" Precision="3" />
           <Property Name="FechaInactivacion" Type="DateTime" Precision="3" />
+          <Property Name="ListaPrecio" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__DetalleFa__IdPlu__5C4F1D4B">
           <End Type="ComercializacionDIPModel.PLU" Role="PLU1" Multiplicity="1" />
@@ -1830,13 +1838,14 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Name="IdPLU" Type="Int64" Nullable="false" />
           <Property Name="IdReceta" Type="Int64" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="precio" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="precio" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="IdCategoria" Type="Int16" Nullable="false" />
           <Property Name="IdSucursal" Type="Int16" Nullable="false" />
           <Property Name="CodigoSAP" Type="Int64" Nullable="false" />
           <Property Name="IdUnidadVenta" Type="Byte" Nullable="false" />
           <Property Name="IdEstado" Type="Boolean" Nullable="false" />
           <Property Name="SeDetalla" Type="Boolean" />
+          <Property Name="ListaPrecio" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VistaReceta">
           <Key>
@@ -1851,6 +1860,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Name="precio" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="cantidad" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
           <Property Name="IdSucursal" Type="Int16" Nullable="false" />
+          <Property Name="ListaPrecio" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="WebServicePath">
           <Key>
@@ -1940,6 +1950,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <NavigationProperty Name="MovimientoInventario1" Relationship="ComercializacionDIPModel.FK__Movimient__IdPro__6838FE9F" FromRole="Productos" ToRole="MovimientoInventario" />
           <NavigationProperty Name="MovimientoInventario2" Relationship="ComercializacionDIPModel.FK__Movimient__IdPro__6B156B4A" FromRole="Productos" ToRole="MovimientoInventario" />
           <Property Name="AceptaMerma" Type="Boolean" />
+          <Property Name="AceptaAjuste" Type="Boolean" />
+          <Property Name="Eliminado" Type="Boolean" />
         </EntityType>
         <Association Name="FK__Productos__IdCat__7F317290">
           <End Type="ComercializacionDIPModel.Categorias" Role="Categorias" Multiplicity="0..1" />
@@ -2186,6 +2198,76 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <Property Type="Int16" Name="NumeroLinea" Nullable="false" />
           <Property Type="Int32" Name="UnidadFacturacion" Nullable="true" />
         </ComplexType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int64" Nullable="false" />
+          <Property Name="Nombre1" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre2" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre3" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="NombreNegocio" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DirCalle1" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="DirCalle2" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DirColonia" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DirCiudad" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DirNumeroExt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DirNumeroInt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DirDepartamento" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="DirPais" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="TelFijo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TelMovil" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TelFax" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LimiteCredito" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SaldoCredito" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CodigoContribuyente" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoTipoNegocio" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoOrganizacion" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoCanalDistribucion" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoSector" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoCondicionPago" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="DiasCredito" Type="Int16" Nullable="false" />
+          <Property Name="CodigoRutaVenta" Type="Int16" />
+          <Property Name="CodigoGrupoCuenta" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoClientePrincipal" Type="Int64" />
+          <Property Name="CodigoBloqueoPedidos" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoGrupoCliente" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="IdFiscal1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IdFiscal2" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="ClasificacionIva" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ClasificacionPercepcion" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoGrupoVendedores" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoZonaVenta" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="UltimaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="CodigoRutaReparto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoListaPrecios" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoGrupoPrecios" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoClaseCliente" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoCompatibilidad" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="3" />
+          <Property Name="DirMunicipio" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoMunicipal" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="GrupoImputacion" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="GrupoCuentasDeudor" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Vendedor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AsesorTecnico" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NotaRemision" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="ClienteEstrategico" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CanalAtencion" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CodigoGrupoCliente3" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoGrupoCliente4" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoGrupoCliente5" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="MacroCanal" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Canal" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="ExclusivoSolucion" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Categoria" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="IntensidadCompetitiva" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="TipoNegocio" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoAgrupador" Type="Int64" />
+          <Property Name="CanalSubCanal" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="IdEstadoCliente" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2281,6 +2363,9 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="FacturaE">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.FacturaE">
               <MappingFragment StoreEntitySet="FacturaE">
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+                <ScalarProperty Name="canal" ColumnName="canal" />
+                <ScalarProperty Name="credito" ColumnName="credito" />
                 <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
                 <ScalarProperty Name="CodigoAcceso" ColumnName="CodigoAcceso" />
                 <ScalarProperty Name="Anulada" ColumnName="Anulada" />
@@ -2378,6 +2463,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="Sucursal">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.Sucursal">
               <MappingFragment StoreEntitySet="Sucursal">
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
                 <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
                 <ScalarProperty Name="IdEstablecimiento" ColumnName="IdEstablecimiento" />
                 <ScalarProperty Name="OficinaVenta" ColumnName="OficinaVenta" />
@@ -2520,6 +2606,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="RecetaEnc">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.RecetaEnc">
               <MappingFragment StoreEntitySet="RecetaEnc">
+                <ScalarProperty Name="ListaPrecio" ColumnName="ListaPrecio" />
                 <ScalarProperty Name="FechaInactivacion" ColumnName="FechaInactivacion" />
                 <ScalarProperty Name="FechaActivacion" ColumnName="FechaActivacion" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
@@ -2532,6 +2619,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="VistaPLU">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.VistaPLU">
               <MappingFragment StoreEntitySet="VistaPLU">
+                <ScalarProperty Name="ListaPrecio" ColumnName="ListaPrecio" />
                 <ScalarProperty Name="SeDetalla" ColumnName="SeDetalla" />
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
                 <ScalarProperty Name="IdUnidadVenta" ColumnName="IdUnidadVenta" />
@@ -2548,6 +2636,7 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="VistaReceta">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.VistaReceta">
               <MappingFragment StoreEntitySet="VistaReceta">
+                <ScalarProperty Name="ListaPrecio" ColumnName="ListaPrecio" />
                 <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
@@ -2594,6 +2683,8 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
           <EntitySetMapping Name="Productos">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.Productos">
               <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="AceptaAjuste" ColumnName="AceptaAjuste" />
                 <ScalarProperty Name="AceptaMerma" ColumnName="AceptaMerma" />
                 <ScalarProperty Name="EsServicio" ColumnName="EsServicio" />
                 <ScalarProperty Name="FechaInactivacion" ColumnName="FechaInactivacion" />
@@ -2647,6 +2738,77 @@ warning 6002: The table/view 'ComercializacionDIP.PosIP.VistaSeriesFacturas' doe
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="IdEstadoCliente" ColumnName="IdEstadoCliente" />
+                <ScalarProperty Name="CanalSubCanal" ColumnName="CanalSubCanal" />
+                <ScalarProperty Name="CodigoAgrupador" ColumnName="CodigoAgrupador" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="TipoNegocio" ColumnName="TipoNegocio" />
+                <ScalarProperty Name="IntensidadCompetitiva" ColumnName="IntensidadCompetitiva" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="ExclusivoSolucion" ColumnName="ExclusivoSolucion" />
+                <ScalarProperty Name="Canal" ColumnName="Canal" />
+                <ScalarProperty Name="MacroCanal" ColumnName="MacroCanal" />
+                <ScalarProperty Name="CodigoGrupoCliente5" ColumnName="CodigoGrupoCliente5" />
+                <ScalarProperty Name="CodigoGrupoCliente4" ColumnName="CodigoGrupoCliente4" />
+                <ScalarProperty Name="CodigoGrupoCliente3" ColumnName="CodigoGrupoCliente3" />
+                <ScalarProperty Name="CanalAtencion" ColumnName="CanalAtencion" />
+                <ScalarProperty Name="ClienteEstrategico" ColumnName="ClienteEstrategico" />
+                <ScalarProperty Name="NotaRemision" ColumnName="NotaRemision" />
+                <ScalarProperty Name="AsesorTecnico" ColumnName="AsesorTecnico" />
+                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+                <ScalarProperty Name="GrupoCuentasDeudor" ColumnName="GrupoCuentasDeudor" />
+                <ScalarProperty Name="GrupoImputacion" ColumnName="GrupoImputacion" />
+                <ScalarProperty Name="CodigoMunicipal" ColumnName="CodigoMunicipal" />
+                <ScalarProperty Name="DirMunicipio" ColumnName="DirMunicipio" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="CodigoCompatibilidad" ColumnName="CodigoCompatibilidad" />
+                <ScalarProperty Name="CodigoClaseCliente" ColumnName="CodigoClaseCliente" />
+                <ScalarProperty Name="CodigoGrupoPrecios" ColumnName="CodigoGrupoPrecios" />
+                <ScalarProperty Name="CodigoListaPrecios" ColumnName="CodigoListaPrecios" />
+                <ScalarProperty Name="CodigoRutaReparto" ColumnName="CodigoRutaReparto" />
+                <ScalarProperty Name="UltimaModificacion" ColumnName="UltimaModificacion" />
+                <ScalarProperty Name="CodigoZonaVenta" ColumnName="CodigoZonaVenta" />
+                <ScalarProperty Name="CodigoGrupoVendedores" ColumnName="CodigoGrupoVendedores" />
+                <ScalarProperty Name="ClasificacionPercepcion" ColumnName="ClasificacionPercepcion" />
+                <ScalarProperty Name="ClasificacionIva" ColumnName="ClasificacionIva" />
+                <ScalarProperty Name="IdFiscal2" ColumnName="IdFiscal2" />
+                <ScalarProperty Name="IdFiscal1" ColumnName="IdFiscal1" />
+                <ScalarProperty Name="CodigoGrupoCliente" ColumnName="CodigoGrupoCliente" />
+                <ScalarProperty Name="CodigoBloqueoPedidos" ColumnName="CodigoBloqueoPedidos" />
+                <ScalarProperty Name="CodigoClientePrincipal" ColumnName="CodigoClientePrincipal" />
+                <ScalarProperty Name="CodigoGrupoCuenta" ColumnName="CodigoGrupoCuenta" />
+                <ScalarProperty Name="CodigoRutaVenta" ColumnName="CodigoRutaVenta" />
+                <ScalarProperty Name="DiasCredito" ColumnName="DiasCredito" />
+                <ScalarProperty Name="CodigoCondicionPago" ColumnName="CodigoCondicionPago" />
+                <ScalarProperty Name="CodigoSector" ColumnName="CodigoSector" />
+                <ScalarProperty Name="CodigoCanalDistribucion" ColumnName="CodigoCanalDistribucion" />
+                <ScalarProperty Name="CodigoOrganizacion" ColumnName="CodigoOrganizacion" />
+                <ScalarProperty Name="CodigoTipoNegocio" ColumnName="CodigoTipoNegocio" />
+                <ScalarProperty Name="CodigoContribuyente" ColumnName="CodigoContribuyente" />
+                <ScalarProperty Name="SaldoCredito" ColumnName="SaldoCredito" />
+                <ScalarProperty Name="LimiteCredito" ColumnName="LimiteCredito" />
+                <ScalarProperty Name="TelFax" ColumnName="TelFax" />
+                <ScalarProperty Name="TelMovil" ColumnName="TelMovil" />
+                <ScalarProperty Name="TelFijo" ColumnName="TelFijo" />
+                <ScalarProperty Name="DirPais" ColumnName="DirPais" />
+                <ScalarProperty Name="DirDepartamento" ColumnName="DirDepartamento" />
+                <ScalarProperty Name="DirNumeroInt" ColumnName="DirNumeroInt" />
+                <ScalarProperty Name="DirNumeroExt" ColumnName="DirNumeroExt" />
+                <ScalarProperty Name="DirCiudad" ColumnName="DirCiudad" />
+                <ScalarProperty Name="DirColonia" ColumnName="DirColonia" />
+                <ScalarProperty Name="DirCalle2" ColumnName="DirCalle2" />
+                <ScalarProperty Name="DirCalle1" ColumnName="DirCalle1" />
+                <ScalarProperty Name="NombreNegocio" ColumnName="NombreNegocio" />
+                <ScalarProperty Name="Nombre3" ColumnName="Nombre3" />
+                <ScalarProperty Name="Nombre2" ColumnName="Nombre2" />
+                <ScalarProperty Name="Nombre1" ColumnName="Nombre1" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

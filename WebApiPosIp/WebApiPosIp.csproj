@@ -241,6 +241,7 @@
     <Compile Include="Controllers\BitAjusteInventariosController.cs" />
     <Compile Include="Controllers\CajachicaController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ConversionesProductosController.cs" />
     <Compile Include="Controllers\ConversionProductoController.cs" />
     <Compile Include="Controllers\DetalleFacturasController.cs" />

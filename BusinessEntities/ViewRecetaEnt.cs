@@ -13,5 +13,6 @@ namespace BusinessEntities
         public decimal precio { get; set; }
         public decimal cantidad { get; set; }
         public short IdSucursal { get; set; }
+        public string ListaPrecio { get; set; }
     }
 }

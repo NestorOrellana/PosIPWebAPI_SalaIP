@@ -54,6 +54,7 @@ namespace DataModel
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<MovimientoInventario> MovimientoInventario { get; set; }
         public virtual DbSet<TipoMovimiento> TipoMovimiento { get; set; }
+        public virtual DbSet<Clientes> Clientes { get; set; }
     
         public virtual ObjectResult<SPObtenerProductos_Result> SPObtenerProductos()
         {

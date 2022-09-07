@@ -24,5 +24,6 @@ namespace DataModel
         public byte IdUnidadVenta { get; set; }
         public bool IdEstado { get; set; }
         public Nullable<bool> SeDetalla { get; set; }
+        public string ListaPrecio { get; set; }
     }
 }

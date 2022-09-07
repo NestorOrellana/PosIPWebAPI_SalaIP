@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces de Servicios\IClientesServices.cs" />
     <Compile Include="Interfaces de Servicios\IConversionesProductos.cs" />
     <Compile Include="Interfaces de Servicios\IDetalleFacturaServices.cs" />
     <Compile Include="Interfaces de Servicios\IDetallePluAdServices.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Interfaces de Servicios\ITrasladoFacturas.cs" />
     <Compile Include="Interfaces de Servicios\IViewPluServices.cs" />
     <Compile Include="Interfaces de Servicios\IViewRecetaServices.cs" />
+    <Compile Include="Servicios\ClientesServices.cs" />
     <Compile Include="Servicios\MovimientoInventarioServices.cs" />
     <Compile Include="Servicios\PedidosRecibidosServices.cs" />
     <Compile Include="Servicios\RegistroSincServices.cs" />

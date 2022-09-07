@@ -69,7 +69,9 @@
     <Compile Include="Categorias.cs">
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Clientes.cs">
+      <DependentUpon>WebApiDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ConversionesProductos.cs">
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>

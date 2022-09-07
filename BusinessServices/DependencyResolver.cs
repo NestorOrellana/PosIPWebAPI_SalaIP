@@ -33,6 +33,7 @@ namespace BusinessServices
             registerComponent.RegisterType<IRegistroSincServices, RegistroSincServices>();
             registerComponent.RegisterType<IPedidosRecibidosServices, PedidosRecibidosServices>();
             registerComponent.RegisterType<IMovimientoInventario, MovimientoInventarioServices>();
+            registerComponent.RegisterType<IClientesServices, ClientesServices>();
         }
     }
 }
