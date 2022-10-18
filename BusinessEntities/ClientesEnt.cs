@@ -17,6 +17,7 @@ namespace BusinessEntities
         public short DiasCredito { get; set; }
         public string IdFiscal1 { get; set; }
         public string CodigoListaPrecios { get; set; }
+        public string DirCalle1 { get; set; }
 
         public ClientesEnt()
         {

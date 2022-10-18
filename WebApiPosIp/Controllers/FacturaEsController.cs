@@ -274,6 +274,8 @@ namespace WebApiPosIp.Controllers
                 if (facturaUpdate != null)
                 {
                     facturaUpdate.NumeroAutorizacion = factura.NumeroAutorizacion;
+                    facturaUpdate.TipoPago = factura.TipoPago;
+                    facturaUpdate.credito = factura.credito;
                     db.Entry(facturaUpdate).State = EntityState.Modified;
 
                     db.SaveChanges();
