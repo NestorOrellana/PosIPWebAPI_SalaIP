@@ -43,18 +43,18 @@ namespace BusinessServices
 
         public ClientesEnt GetClientePorNit(string nit)
         {
-            Func<Clientes, Boolean> param = x => { if (x.IdFiscal1 == nit) return true; else return false; };
+            Func<VistaClientes, Boolean> param = x => { if (x.IdFiscal1 == nit) return true; else return false; };
 
-            var cliente = _unitOfWork.RepositorioClientes.GetFirst(param);
+            var cliente = _unitOfWork.RepositorioVistaClientes.GetFirst(param);
             if (cliente != null)
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<Clientes, ClientesEnt>();
+                    cfg.CreateMap<VistaClientes, ClientesEnt>();
                 });
 
                 IMapper mapper = config.CreateMapper();
-                var modeloCliente = mapper.Map<Clientes, ClientesEnt>(cliente);
+                var modeloCliente = mapper.Map<VistaClientes, ClientesEnt>(cliente);
                 return modeloCliente;
             }
             return null;

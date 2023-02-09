@@ -34,6 +34,7 @@ namespace BusinessServices
             registerComponent.RegisterType<IPedidosRecibidosServices, PedidosRecibidosServices>();
             registerComponent.RegisterType<IMovimientoInventario, MovimientoInventarioServices>();
             registerComponent.RegisterType<IClientesServices, ClientesServices>();
+            registerComponent.RegisterType<IParametroServices, ParametroServices>();
         }
     }
 }

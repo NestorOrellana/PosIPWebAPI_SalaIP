@@ -252,6 +252,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MotivosInventarioController.cs" />
     <Compile Include="Controllers\MovimientoInventarioController.cs" />
+    <Compile Include="Controllers\ParametrosController.cs" />
     <Compile Include="Controllers\PedidosRecibidosController.cs" />
     <Compile Include="Controllers\PluController.cs" />
     <Compile Include="Controllers\ProductController.cs" />

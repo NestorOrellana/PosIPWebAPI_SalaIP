@@ -44,6 +44,8 @@ namespace DataModel
         public Nullable<bool> AceptaMerma { get; set; }
         public Nullable<bool> AceptaAjuste { get; set; }
         public Nullable<bool> Eliminado { get; set; }
+        public Nullable<bool> CWM { get; set; }
+        public Nullable<decimal> PesoMedio { get; set; }
     
         public virtual Categorias Categorias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

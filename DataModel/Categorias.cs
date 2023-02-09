@@ -22,6 +22,7 @@ namespace DataModel
     
         public short IdCategoria { get; set; }
         public string Descripcion { get; set; }
+        public Nullable<bool> Activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Productos> Productos { get; set; }

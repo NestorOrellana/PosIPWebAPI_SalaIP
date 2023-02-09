@@ -30,6 +30,7 @@
           </Key>
           <Property Name="IdCategoria" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityType Name="ConversionesProductos">
           <Key>
@@ -137,6 +138,14 @@
           <Property Name="FechaHoraMovimiento" Type="datetime" Nullable="false" />
           <Property Name="IdTipoMovimiento" Type="smallint" Nullable="false" />
         </EntityType>
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="IdParametro" />
+          </Key>
+          <Property Name="IdParametro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaximoPedido" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="AplicaRestriccion" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="PedidosRecibidos">
           <Key>
             <PropertyRef Name="IdRegistro" />
@@ -180,6 +189,8 @@
           <Property Name="AceptaMerma" Type="bit" />
           <Property Name="AceptaAjuste" Type="bit" />
           <Property Name="Eliminado" Type="bit" />
+          <Property Name="CWM" Type="bit" />
+          <Property Name="PesoMedio" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="RecetaDet">
           <Key>
@@ -283,6 +294,7 @@
           <Property Name="IdEstablecimiento" Type="bigint" />
           <Property Name="CodigoCliente" Type="bigint" />
           <Property Name="Eliminado" Type="bit" />
+          <Property Name="Ruta" Type="varchar" MaxLength="6" />
         </EntityType>
         <EntityType Name="TipoMovimiento">
           <Key>
@@ -330,6 +342,80 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.WebServicePath' does not have a pr
             <PropertyRef Name="IdCliente" />
           </Key>
           <Property Name="IdCliente" Type="bigint" Nullable="false" />
+          <Property Name="Nombre1" Type="nvarchar" MaxLength="40" />
+          <Property Name="Nombre2" Type="nvarchar" MaxLength="40" />
+          <Property Name="Nombre3" Type="nvarchar" MaxLength="40" />
+          <Property Name="NombreNegocio" Type="nvarchar" MaxLength="40" />
+          <Property Name="DirCalle1" Type="nvarchar" MaxLength="60" />
+          <Property Name="DirCalle2" Type="nvarchar" MaxLength="40" />
+          <Property Name="DirColonia" Type="nvarchar" MaxLength="40" />
+          <Property Name="DirCiudad" Type="nvarchar" MaxLength="40" />
+          <Property Name="DirNumeroExt" Type="nvarchar" MaxLength="10" />
+          <Property Name="DirNumeroInt" Type="nvarchar" MaxLength="10" />
+          <Property Name="DirDepartamento" Type="nvarchar" MaxLength="3" />
+          <Property Name="DirPais" Type="nvarchar" MaxLength="3" />
+          <Property Name="TelFijo" Type="nvarchar" MaxLength="30" />
+          <Property Name="TelMovil" Type="nvarchar" MaxLength="30" />
+          <Property Name="TelFax" Type="nvarchar" MaxLength="30" />
+          <Property Name="LimiteCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SaldoCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CodigoContribuyente" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoTipoNegocio" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoOrganizacion" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoCanalDistribucion" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoSector" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoCondicionPago" Type="nvarchar" MaxLength="4" />
+          <Property Name="DiasCredito" Type="smallint" Nullable="false" />
+          <Property Name="CodigoRutaVenta" Type="smallint" />
+          <Property Name="CodigoGrupoCuenta" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoClientePrincipal" Type="bigint" />
+          <Property Name="CodigoBloqueoPedidos" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoGrupoCliente" Type="nvarchar" MaxLength="4" />
+          <Property Name="IdFiscal1" Type="nvarchar" MaxLength="20" />
+          <Property Name="IdFiscal2" Type="nvarchar" MaxLength="12" />
+          <Property Name="ClasificacionIva" Type="nvarchar" MaxLength="1" />
+          <Property Name="ClasificacionPercepcion" Type="nvarchar" MaxLength="1" />
+          <Property Name="CodigoGrupoVendedores" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoZonaVenta" Type="nvarchar" MaxLength="6" />
+          <Property Name="UltimaModificacion" Type="datetime" />
+          <Property Name="CodigoRutaReparto" Type="nvarchar" MaxLength="10" />
+          <Property Name="CodigoListaPrecios" Type="nvarchar" MaxLength="3" />
+          <Property Name="CodigoGrupoPrecios" Type="nvarchar" MaxLength="3" />
+          <Property Name="CodigoClaseCliente" Type="nvarchar" MaxLength="4" />
+          <Property Name="CodigoCompatibilidad" Type="nvarchar" MaxLength="12" />
+          <Property Name="FechaAlta" Type="datetime" />
+          <Property Name="DirMunicipio" Type="nvarchar" MaxLength="8" />
+          <Property Name="CodigoMunicipal" Type="nvarchar" MaxLength="4" />
+          <Property Name="GrupoImputacion" Type="nvarchar" MaxLength="4" />
+          <Property Name="GrupoCuentasDeudor" Type="nvarchar" MaxLength="4" />
+          <Property Name="Vendedor" Type="nvarchar" MaxLength="10" />
+          <Property Name="AsesorTecnico" Type="nvarchar" MaxLength="10" />
+          <Property Name="NotaRemision" Type="nvarchar" MaxLength="5" />
+          <Property Name="ClienteEstrategico" Type="nvarchar" MaxLength="3" />
+          <Property Name="CanalAtencion" Type="char" MaxLength="3" />
+          <Property Name="CodigoGrupoCliente3" Type="nvarchar" MaxLength="8" />
+          <Property Name="CodigoGrupoCliente4" Type="nvarchar" MaxLength="8" />
+          <Property Name="CodigoGrupoCliente5" Type="nvarchar" MaxLength="8" />
+          <Property Name="MacroCanal" Type="char" MaxLength="3" />
+          <Property Name="Canal" Type="char" MaxLength="3" />
+          <Property Name="ExclusivoSolucion" Type="char" MaxLength="3" />
+          <Property Name="Categoria" Type="char" MaxLength="3" />
+          <Property Name="IntensidadCompetitiva" Type="char" MaxLength="3" />
+          <Property Name="TipoNegocio" Type="char" MaxLength="3" />
+          <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="200" />
+          <Property Name="CodigoAgrupador" Type="bigint" />
+          <Property Name="CanalSubCanal" Type="char" MaxLength="3" />
+          <Property Name="IdEstadoCliente" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SalaIP_GT.PosIP.VistaClientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VistaClientes">
+          <Key>
+            <PropertyRef Name="LimiteCredito" />
+            <PropertyRef Name="SaldoCredito" />
+            <PropertyRef Name="DiasCredito" />
+          </Key>
+          <Property Name="IdCliente" Type="bigint" />
           <Property Name="Nombre1" Type="nvarchar" MaxLength="40" />
           <Property Name="Nombre2" Type="nvarchar" MaxLength="40" />
           <Property Name="Nombre3" Type="nvarchar" MaxLength="40" />
@@ -794,7 +880,7 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__IdSucu__74AE54BC">
+        <Association Name="FK__Usuarios__IdSucu__625A9A57">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -806,7 +892,7 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__IdTipo__75A278F5">
+        <Association Name="FK__Usuarios__IdTipo__634EBE90">
           <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -879,6 +965,7 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
           <EntitySet Name="FacturaE" EntityType="Self.FacturaE" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="MotivosInventario" EntityType="Self.MotivosInventario" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="MovimientoInventario" EntityType="Self.MovimientoInventario" Schema="PosIP" store:Type="Tables" />
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="PedidosRecibidos" EntityType="Self.PedidosRecibidos" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="PLU" EntityType="Self.PLU" Schema="PosIP" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="PosIP" store:Type="Tables" />
@@ -898,6 +985,75 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
     [WebServicePath].[WsPath] AS [WsPath], 
     [WebServicePath].[Tipo] AS [Tipo]
     FROM [PosIP].[WebServicePath] AS [WebServicePath]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VistaClientes" EntityType="Self.VistaClientes" store:Type="Views" store:Schema="PosIP">
+            <DefiningQuery>SELECT 
+    [VistaClientes].[IdCliente] AS [IdCliente], 
+    [VistaClientes].[Nombre1] AS [Nombre1], 
+    [VistaClientes].[Nombre2] AS [Nombre2], 
+    [VistaClientes].[Nombre3] AS [Nombre3], 
+    [VistaClientes].[NombreNegocio] AS [NombreNegocio], 
+    [VistaClientes].[DirCalle1] AS [DirCalle1], 
+    [VistaClientes].[DirCalle2] AS [DirCalle2], 
+    [VistaClientes].[DirColonia] AS [DirColonia], 
+    [VistaClientes].[DirCiudad] AS [DirCiudad], 
+    [VistaClientes].[DirNumeroExt] AS [DirNumeroExt], 
+    [VistaClientes].[DirNumeroInt] AS [DirNumeroInt], 
+    [VistaClientes].[DirDepartamento] AS [DirDepartamento], 
+    [VistaClientes].[DirPais] AS [DirPais], 
+    [VistaClientes].[TelFijo] AS [TelFijo], 
+    [VistaClientes].[TelMovil] AS [TelMovil], 
+    [VistaClientes].[TelFax] AS [TelFax], 
+    [VistaClientes].[LimiteCredito] AS [LimiteCredito], 
+    [VistaClientes].[SaldoCredito] AS [SaldoCredito], 
+    [VistaClientes].[CodigoContribuyente] AS [CodigoContribuyente], 
+    [VistaClientes].[CodigoTipoNegocio] AS [CodigoTipoNegocio], 
+    [VistaClientes].[CodigoOrganizacion] AS [CodigoOrganizacion], 
+    [VistaClientes].[CodigoCanalDistribucion] AS [CodigoCanalDistribucion], 
+    [VistaClientes].[CodigoSector] AS [CodigoSector], 
+    [VistaClientes].[CodigoCondicionPago] AS [CodigoCondicionPago], 
+    [VistaClientes].[DiasCredito] AS [DiasCredito], 
+    [VistaClientes].[CodigoRutaVenta] AS [CodigoRutaVenta], 
+    [VistaClientes].[CodigoGrupoCuenta] AS [CodigoGrupoCuenta], 
+    [VistaClientes].[CodigoClientePrincipal] AS [CodigoClientePrincipal], 
+    [VistaClientes].[CodigoBloqueoPedidos] AS [CodigoBloqueoPedidos], 
+    [VistaClientes].[CodigoGrupoCliente] AS [CodigoGrupoCliente], 
+    [VistaClientes].[IdFiscal1] AS [IdFiscal1], 
+    [VistaClientes].[IdFiscal2] AS [IdFiscal2], 
+    [VistaClientes].[ClasificacionIva] AS [ClasificacionIva], 
+    [VistaClientes].[ClasificacionPercepcion] AS [ClasificacionPercepcion], 
+    [VistaClientes].[CodigoGrupoVendedores] AS [CodigoGrupoVendedores], 
+    [VistaClientes].[CodigoZonaVenta] AS [CodigoZonaVenta], 
+    [VistaClientes].[UltimaModificacion] AS [UltimaModificacion], 
+    [VistaClientes].[CodigoRutaReparto] AS [CodigoRutaReparto], 
+    [VistaClientes].[CodigoListaPrecios] AS [CodigoListaPrecios], 
+    [VistaClientes].[CodigoGrupoPrecios] AS [CodigoGrupoPrecios], 
+    [VistaClientes].[CodigoClaseCliente] AS [CodigoClaseCliente], 
+    [VistaClientes].[CodigoCompatibilidad] AS [CodigoCompatibilidad], 
+    [VistaClientes].[FechaAlta] AS [FechaAlta], 
+    [VistaClientes].[DirMunicipio] AS [DirMunicipio], 
+    [VistaClientes].[CodigoMunicipal] AS [CodigoMunicipal], 
+    [VistaClientes].[GrupoImputacion] AS [GrupoImputacion], 
+    [VistaClientes].[GrupoCuentasDeudor] AS [GrupoCuentasDeudor], 
+    [VistaClientes].[Vendedor] AS [Vendedor], 
+    [VistaClientes].[AsesorTecnico] AS [AsesorTecnico], 
+    [VistaClientes].[NotaRemision] AS [NotaRemision], 
+    [VistaClientes].[ClienteEstrategico] AS [ClienteEstrategico], 
+    [VistaClientes].[CanalAtencion] AS [CanalAtencion], 
+    [VistaClientes].[CodigoGrupoCliente3] AS [CodigoGrupoCliente3], 
+    [VistaClientes].[CodigoGrupoCliente4] AS [CodigoGrupoCliente4], 
+    [VistaClientes].[CodigoGrupoCliente5] AS [CodigoGrupoCliente5], 
+    [VistaClientes].[MacroCanal] AS [MacroCanal], 
+    [VistaClientes].[Canal] AS [Canal], 
+    [VistaClientes].[ExclusivoSolucion] AS [ExclusivoSolucion], 
+    [VistaClientes].[Categoria] AS [Categoria], 
+    [VistaClientes].[IntensidadCompetitiva] AS [IntensidadCompetitiva], 
+    [VistaClientes].[TipoNegocio] AS [TipoNegocio], 
+    [VistaClientes].[CorreoElectronico] AS [CorreoElectronico], 
+    [VistaClientes].[CodigoAgrupador] AS [CodigoAgrupador], 
+    [VistaClientes].[CanalSubCanal] AS [CanalSubCanal], 
+    [VistaClientes].[IdEstadoCliente] AS [IdEstadoCliente]
+    FROM [PosIP].[VistaClientes] AS [VistaClientes]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VistaPLU" EntityType="Self.VistaPLU" store:Type="Views" store:Schema="PosIP">
             <DefiningQuery>SELECT 
@@ -1066,11 +1222,11 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="Series" EntitySet="Series" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__IdSucu__74AE54BC" Association="Self.FK__Usuarios__IdSucu__74AE54BC">
+          <AssociationSet Name="FK__Usuarios__IdSucu__625A9A57" Association="Self.FK__Usuarios__IdSucu__625A9A57">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__IdTipo__75A278F5" Association="Self.FK__Usuarios__IdTipo__75A278F5">
+          <AssociationSet Name="FK__Usuarios__IdTipo__634EBE90" Association="Self.FK__Usuarios__IdTipo__634EBE90">
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -1116,6 +1272,7 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
           <Property Name="IdCategoria" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Productos" Relationship="ComercializacionDIPModel.FK__Productos__IdCat__7F317290" FromRole="Categorias" ToRole="Productos" />
+          <Property Name="Activo" Type="Boolean" />
         </EntityType>
         <EntityType Name="ConversionesProductos">
           <Key>
@@ -1306,6 +1463,7 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
           <NavigationProperty Name="MovimientoInventario1" Relationship="ComercializacionDIPModel.FK__Movimient__IdSuc__692D22D8" FromRole="Sucursal" ToRole="MovimientoInventario" />
           <NavigationProperty Name="MovimientoInventario2" Relationship="ComercializacionDIPModel.FK__Movimient__IdSuc__6C098F83" FromRole="Sucursal" ToRole="MovimientoInventario" />
           <Property Name="Eliminado" Type="Boolean" />
+          <Property Name="Ruta" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TipoUsuario">
           <Key>
@@ -1698,6 +1856,8 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
           <Parameter Name="CodCliente" Mode="In" Type="Int64" />
           </FunctionImport>
           <EntitySet Name="Clientes" EntityType="ComercializacionDIPModel.Clientes" />
+          <EntitySet Name="VistaClientes" EntityType="ComercializacionDIPModel.VistaClientes" />
+          <EntitySet Name="Parametros" EntityType="ComercializacionDIPModel.Parametros" />
         </EntityContainer>
         <ComplexType Name="SPObtenerProductos_Result">
           <Property Type="Int64" Name="idProducto" Nullable="false" />
@@ -1952,6 +2112,8 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
           <Property Name="AceptaMerma" Type="Boolean" />
           <Property Name="AceptaAjuste" Type="Boolean" />
           <Property Name="Eliminado" Type="Boolean" />
+          <Property Name="CWM" Type="Boolean" />
+          <Property Name="PesoMedio" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK__Productos__IdCat__7F317290">
           <End Type="ComercializacionDIPModel.Categorias" Role="Categorias" Multiplicity="0..1" />
@@ -2268,6 +2430,86 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
           <Property Name="CanalSubCanal" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="IdEstadoCliente" Type="Boolean" />
         </EntityType>
+        <EntityType Name="VistaClientes">
+          <Key>
+            <PropertyRef Name="LimiteCredito" />
+            <PropertyRef Name="SaldoCredito" />
+            <PropertyRef Name="DiasCredito" />
+          </Key>
+          <Property Name="IdCliente" Type="Int64" />
+          <Property Name="Nombre1" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre2" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre3" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="NombreNegocio" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DirCalle1" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="DirCalle2" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DirColonia" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DirCiudad" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DirNumeroExt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DirNumeroInt" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DirDepartamento" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="DirPais" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="TelFijo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TelMovil" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TelFax" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LimiteCredito" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SaldoCredito" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CodigoContribuyente" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoTipoNegocio" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoOrganizacion" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoCanalDistribucion" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoSector" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoCondicionPago" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="DiasCredito" Type="Int16" Nullable="false" />
+          <Property Name="CodigoRutaVenta" Type="Int16" />
+          <Property Name="CodigoGrupoCuenta" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoClientePrincipal" Type="Int64" />
+          <Property Name="CodigoBloqueoPedidos" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoGrupoCliente" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="IdFiscal1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IdFiscal2" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="ClasificacionIva" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ClasificacionPercepcion" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoGrupoVendedores" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoZonaVenta" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="UltimaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="CodigoRutaReparto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoListaPrecios" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoGrupoPrecios" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoClaseCliente" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoCompatibilidad" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="3" />
+          <Property Name="DirMunicipio" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoMunicipal" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="GrupoImputacion" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="GrupoCuentasDeudor" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Vendedor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AsesorTecnico" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NotaRemision" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="ClienteEstrategico" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CanalAtencion" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CodigoGrupoCliente3" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoGrupoCliente4" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoGrupoCliente5" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="MacroCanal" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Canal" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="ExclusivoSolucion" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Categoria" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="IntensidadCompetitiva" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="TipoNegocio" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoAgrupador" Type="Int64" />
+          <Property Name="CanalSubCanal" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="IdEstadoCliente" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="IdParametro" />
+          </Key>
+          <Property Name="IdParametro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaximoPedido" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="AplicaRestriccion" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2298,6 +2540,7 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
           <EntitySetMapping Name="Categorias">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.Categorias">
               <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
               </MappingFragment>
@@ -2463,6 +2706,7 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
           <EntitySetMapping Name="Sucursal">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.Sucursal">
               <MappingFragment StoreEntitySet="Sucursal">
+                <ScalarProperty Name="Ruta" ColumnName="Ruta" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
                 <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
                 <ScalarProperty Name="IdEstablecimiento" ColumnName="IdEstablecimiento" />
@@ -2683,6 +2927,8 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
           <EntitySetMapping Name="Productos">
             <EntityTypeMapping TypeName="ComercializacionDIPModel.Productos">
               <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="PesoMedio" ColumnName="PesoMedio" />
+                <ScalarProperty Name="CWM" ColumnName="CWM" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
                 <ScalarProperty Name="AceptaAjuste" ColumnName="AceptaAjuste" />
                 <ScalarProperty Name="AceptaMerma" ColumnName="AceptaMerma" />
@@ -2806,6 +3052,86 @@ warning 6002: The table/view 'SalaIP_GT.PosIP.VistaSeriesFacturas' does not have
                 <ScalarProperty Name="Nombre2" ColumnName="Nombre2" />
                 <ScalarProperty Name="Nombre1" ColumnName="Nombre1" />
                 <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VistaClientes">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.VistaClientes">
+              <MappingFragment StoreEntitySet="VistaClientes">
+                <ScalarProperty Name="IdEstadoCliente" ColumnName="IdEstadoCliente" />
+                <ScalarProperty Name="CanalSubCanal" ColumnName="CanalSubCanal" />
+                <ScalarProperty Name="CodigoAgrupador" ColumnName="CodigoAgrupador" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="TipoNegocio" ColumnName="TipoNegocio" />
+                <ScalarProperty Name="IntensidadCompetitiva" ColumnName="IntensidadCompetitiva" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="ExclusivoSolucion" ColumnName="ExclusivoSolucion" />
+                <ScalarProperty Name="Canal" ColumnName="Canal" />
+                <ScalarProperty Name="MacroCanal" ColumnName="MacroCanal" />
+                <ScalarProperty Name="CodigoGrupoCliente5" ColumnName="CodigoGrupoCliente5" />
+                <ScalarProperty Name="CodigoGrupoCliente4" ColumnName="CodigoGrupoCliente4" />
+                <ScalarProperty Name="CodigoGrupoCliente3" ColumnName="CodigoGrupoCliente3" />
+                <ScalarProperty Name="CanalAtencion" ColumnName="CanalAtencion" />
+                <ScalarProperty Name="ClienteEstrategico" ColumnName="ClienteEstrategico" />
+                <ScalarProperty Name="NotaRemision" ColumnName="NotaRemision" />
+                <ScalarProperty Name="AsesorTecnico" ColumnName="AsesorTecnico" />
+                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+                <ScalarProperty Name="GrupoCuentasDeudor" ColumnName="GrupoCuentasDeudor" />
+                <ScalarProperty Name="GrupoImputacion" ColumnName="GrupoImputacion" />
+                <ScalarProperty Name="CodigoMunicipal" ColumnName="CodigoMunicipal" />
+                <ScalarProperty Name="DirMunicipio" ColumnName="DirMunicipio" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="CodigoCompatibilidad" ColumnName="CodigoCompatibilidad" />
+                <ScalarProperty Name="CodigoClaseCliente" ColumnName="CodigoClaseCliente" />
+                <ScalarProperty Name="CodigoGrupoPrecios" ColumnName="CodigoGrupoPrecios" />
+                <ScalarProperty Name="CodigoListaPrecios" ColumnName="CodigoListaPrecios" />
+                <ScalarProperty Name="CodigoRutaReparto" ColumnName="CodigoRutaReparto" />
+                <ScalarProperty Name="UltimaModificacion" ColumnName="UltimaModificacion" />
+                <ScalarProperty Name="CodigoZonaVenta" ColumnName="CodigoZonaVenta" />
+                <ScalarProperty Name="CodigoGrupoVendedores" ColumnName="CodigoGrupoVendedores" />
+                <ScalarProperty Name="ClasificacionPercepcion" ColumnName="ClasificacionPercepcion" />
+                <ScalarProperty Name="ClasificacionIva" ColumnName="ClasificacionIva" />
+                <ScalarProperty Name="IdFiscal2" ColumnName="IdFiscal2" />
+                <ScalarProperty Name="IdFiscal1" ColumnName="IdFiscal1" />
+                <ScalarProperty Name="CodigoGrupoCliente" ColumnName="CodigoGrupoCliente" />
+                <ScalarProperty Name="CodigoBloqueoPedidos" ColumnName="CodigoBloqueoPedidos" />
+                <ScalarProperty Name="CodigoClientePrincipal" ColumnName="CodigoClientePrincipal" />
+                <ScalarProperty Name="CodigoGrupoCuenta" ColumnName="CodigoGrupoCuenta" />
+                <ScalarProperty Name="CodigoRutaVenta" ColumnName="CodigoRutaVenta" />
+                <ScalarProperty Name="DiasCredito" ColumnName="DiasCredito" />
+                <ScalarProperty Name="CodigoCondicionPago" ColumnName="CodigoCondicionPago" />
+                <ScalarProperty Name="CodigoSector" ColumnName="CodigoSector" />
+                <ScalarProperty Name="CodigoCanalDistribucion" ColumnName="CodigoCanalDistribucion" />
+                <ScalarProperty Name="CodigoOrganizacion" ColumnName="CodigoOrganizacion" />
+                <ScalarProperty Name="CodigoTipoNegocio" ColumnName="CodigoTipoNegocio" />
+                <ScalarProperty Name="CodigoContribuyente" ColumnName="CodigoContribuyente" />
+                <ScalarProperty Name="SaldoCredito" ColumnName="SaldoCredito" />
+                <ScalarProperty Name="LimiteCredito" ColumnName="LimiteCredito" />
+                <ScalarProperty Name="TelFax" ColumnName="TelFax" />
+                <ScalarProperty Name="TelMovil" ColumnName="TelMovil" />
+                <ScalarProperty Name="TelFijo" ColumnName="TelFijo" />
+                <ScalarProperty Name="DirPais" ColumnName="DirPais" />
+                <ScalarProperty Name="DirDepartamento" ColumnName="DirDepartamento" />
+                <ScalarProperty Name="DirNumeroInt" ColumnName="DirNumeroInt" />
+                <ScalarProperty Name="DirNumeroExt" ColumnName="DirNumeroExt" />
+                <ScalarProperty Name="DirCiudad" ColumnName="DirCiudad" />
+                <ScalarProperty Name="DirColonia" ColumnName="DirColonia" />
+                <ScalarProperty Name="DirCalle2" ColumnName="DirCalle2" />
+                <ScalarProperty Name="DirCalle1" ColumnName="DirCalle1" />
+                <ScalarProperty Name="NombreNegocio" ColumnName="NombreNegocio" />
+                <ScalarProperty Name="Nombre3" ColumnName="Nombre3" />
+                <ScalarProperty Name="Nombre2" ColumnName="Nombre2" />
+                <ScalarProperty Name="Nombre1" ColumnName="Nombre1" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parametros">
+            <EntityTypeMapping TypeName="ComercializacionDIPModel.Parametros">
+              <MappingFragment StoreEntitySet="Parametros">
+                <ScalarProperty Name="AplicaRestriccion" ColumnName="AplicaRestriccion" />
+                <ScalarProperty Name="MaximoPedido" ColumnName="MaximoPedido" />
+                <ScalarProperty Name="IdParametro" ColumnName="IdParametro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -98,6 +98,9 @@
     <Compile Include="MovimientoInventario.cs">
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Parametros.cs">
+      <DependentUpon>WebApiDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PedidosRecibidos.cs">
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
@@ -138,6 +141,9 @@
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Usuarios.cs">
+      <DependentUpon>WebApiDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VistaClientes.cs">
       <DependentUpon>WebApiDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VistaPLU.cs">

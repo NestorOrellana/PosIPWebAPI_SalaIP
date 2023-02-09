@@ -38,6 +38,7 @@ namespace DataModel
         public Nullable<long> IdEstablecimiento { get; set; }
         public Nullable<long> CodigoCliente { get; set; }
         public Nullable<bool> Eliminado { get; set; }
+        public string Ruta { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CajaChica> CajaChica { get; set; }

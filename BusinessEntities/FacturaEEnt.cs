@@ -26,5 +26,10 @@ namespace BusinessEntities
         public string FelDireccion { get; set; }
         public bool EnviadoWs { get; set; }
         public bool Anulada { get; set; }
+        public long CodigoAcceso { get; set; }
+        public string Mensaje { get; set; }
+        public bool credito { get; set; }
+        public bool canal { get; set; }
+        public long idcliente { get; set; }
     }
 }

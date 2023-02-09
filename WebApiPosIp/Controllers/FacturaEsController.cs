@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.OData;
+using BusinessEntities;
 using DataModel;
 
 namespace WebApiPosIp.Controllers
@@ -260,12 +261,12 @@ namespace WebApiPosIp.Controllers
         [EnableQuery]
         [Route("RegistroPagoPendienteTarjeta")]
         [ResponseType(typeof(FacturaE))]
-        public IHttpActionResult RegistrarPagoPendienteTarjeta(FacturaE factura)
+        public IHttpActionResult RegistrarPagoPendienteTarjeta(FacturaEEnt factura)
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
+            }*/
 
 
             try

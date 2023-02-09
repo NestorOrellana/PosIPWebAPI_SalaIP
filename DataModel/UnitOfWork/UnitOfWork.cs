@@ -41,6 +41,8 @@ namespace DataModel.UnitOfWork
         private GenericRepository<PedidosRecibidos> _repositorioPedidosRecibidos;
         private GenericRepository<MovimientoInventario> _repositorioMovimientoInventario;
         private GenericRepository<Clientes> _repositorioClientes;
+        private GenericRepository<VistaClientes> _repositorioVistaClientes;
+        private GenericRepository<Parametros> _repositorioParametros;
         #endregion
 
         public UnitOfWork()
@@ -286,6 +288,28 @@ namespace DataModel.UnitOfWork
                     this._repositorioClientes = new GenericRepository<Clientes>(_context);
 
                 return _repositorioClientes;
+            }
+        }
+
+        public GenericRepository<VistaClientes> RepositorioVistaClientes
+        {
+            get
+            {
+                if (this._repositorioVistaClientes == null)
+                    this._repositorioVistaClientes = new GenericRepository<VistaClientes>(_context);
+
+                return _repositorioVistaClientes;
+            }
+        }
+
+        public GenericRepository<Parametros> RepositorioParametros
+        {
+            get
+            {
+                if (this._repositorioParametros == null)
+                    this._repositorioParametros = new GenericRepository<Parametros>(_context);
+
+                return _repositorioParametros;
             }
         }
         #endregion
